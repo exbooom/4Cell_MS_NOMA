@@ -1,0 +1,22 @@
+# =============================================================================
+# 4Cell_MS_NOMA —— 锁定文件字节，防止 git 改写换行符
+#
+# 为什么必须有这个文件：
+#   docs/STAGE*_SOURCE_HASH_VERIFICATION.json 与每次 run 的 manifest.json 中，
+#   每个 .m 的 SHA256 是对「原始字节」计算的。git 默认的 text=auto 会在
+#   checkout 时把 CRLF 换成 LF（或反之），字节一变，所有历史哈希核验立刻失效，
+#   并且会表现为「源码被改了」的假告警。
+#   因此 .m 必须声明为 -text（禁止任何换行符转换）。
+# =============================================================================
+
+*.m        -text
+*.mat      binary
+*.pdf      binary
+*.png      binary
+*.fig      binary
+*.mlx      binary
+
+# 文档类允许正常换行符归一化（md/json/csv 不做字节级核验）
+*.md       text
+*.json     text
+*.csv      text

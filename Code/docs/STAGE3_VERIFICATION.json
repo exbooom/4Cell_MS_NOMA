@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "basicTests": 17,
+  "precisionTests": 9,
+  "dualTests": 10,
+  "totalTests": 36,
+  "codeAnalyzerDiagnostics": 0,
+  "sourceFiles": 59,
+  "run50": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_103739_44ea0314",
+  "run20": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_103801_2a4b0adb",
+  "budgetStressRun": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_103811_41e5c04c",
+  "scenarios": [
+    {
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "metrics": [
+        {
+          "algorithm": "dual",
+          "relativeToCentral": -1.8571879389917E-7,
+          "relativeDualityGap": 1.2398469928972115E-10,
+          "maxNormalizedViolation": 0,
+          "kktStationarity": 2.294320037932062E-16,
+          "kktComplementarity": 1.3011616227606381E-12,
+          "objectiveM2": 0.017579506620014076,
+          "elapsedS": 0.5137677
+        },
+        {
+          "algorithm": "cp4a_consistent_candidate",
+          "relativeToCentral": -1.8571881366113985E-7,
+          "relativeDualityGap": 1.0686157046978834E-10,
+          "maxNormalizedViolation": 0,
+          "kktStationarity": 7.16975011859725E-18,
+          "kktComplementarity": 1.3055460968372856E-12,
+          "objectiveM2": 0.01757950662001373,
+          "elapsedS": 0.4177004
+        }
+      ],
+      "candidateOuterIterations": 1,
+      "candidateInnerEvaluations": 1,
+      "printedCarrierOverrun": 1482
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.1,
+      "metrics": [
+        {
+          "algorithm": "dual",
+          "relativeToCentral": -1.4074202581149109E-8,
+          "relativeDualityGap": 1.2161635061089306E-10,
+          "maxNormalizedViolation": 0,
+          "kktStationarity": 3.4712780922991612E-18,
+          "kktComplementarity": 1.2931273392652919E-12,
+          "objectiveM2": 0.27014183593347957,
+          "elapsedS": 0.5076596
+        },
+        {
+          "algorithm": "cp4a_consistent_candidate",
+          "relativeToCentral": -1.4018989746844568E-8,
+          "relativeDualityGap": 3.8083814384687379E-10,
+          "maxNormalizedViolation": 0,
+          "kktStationarity": 1.1108089893105959E-16,
+          "kktComplementarity": 5.120008747613774E-12,
+          "objectiveM2": 0.27014183594839486,
+          "elapsedS": 0.3933621
+        }
+      ],
+      "candidateOuterIterations": 1,
+      "candidateInnerEvaluations": 1,
+      "printedCarrierOverrun": 589
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.001,
+      "metrics": [
+        {
+          "algorithm": "dual",
+          "relativeToCentral": -5.1706247061744648E-9,
+          "relativeDualityGap": 5.5119715587466744E-11,
+          "maxNormalizedViolation": 0,
+          "kktStationarity": 1.3877787807814457E-17,
+          "kktComplementarity": 1.2800790987610523E-12,
+          "objectiveM2": 3.1369602048615697,
+          "elapsedS": 0.0369329
+        },
+        {
+          "algorithm": "cp4a_consistent_candidate",
+          "relativeToCentral": -4.9433965809697611E-9,
+          "relativeDualityGap": 4.1670337925910459E-10,
+          "maxNormalizedViolation": 1.5339907122324803E-10,
+          "kktStationarity": 1.3010426069826053E-18,
+          "kktComplementarity": 4.5502575403103418E-11,
+          "objectiveM2": 3.136960205574375,
+          "elapsedS": 1.0223936
+        }
+      ],
+      "candidateOuterIterations": 19,
+      "candidateInnerEvaluations": 42,
+      "printedCarrierOverrun": 589
+    }
+  ]
+}

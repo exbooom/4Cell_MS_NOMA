@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "runs": [
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_111410_fa412f7e",
+      "sourceCount": 74,
+      "allSourceHashesMatch": true,
+      "pngCount": 9
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_111441_7527b46c",
+      "sourceCount": 74,
+      "allSourceHashesMatch": true,
+      "pngCount": 9
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_111500_a8706e86",
+      "sourceCount": 74,
+      "allSourceHashesMatch": true,
+      "pngCount": 9
+    }
+  ],
+  "visualReview": {
+    "defaultAllNineFigures": true,
+    "prsFigureAllThreeScenarios": true,
+    "result": "reviewed_legible_no_clipped_titles_zero_BER_floor_explicit"
+  }
+}

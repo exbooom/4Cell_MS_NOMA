@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "totalTests": 97,
+  "matlabSources": 104,
+  "runs": [
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122149_c2fd95ca",
+      "sourceCount": 104,
+      "allSourceHashesMatch": true,
+      "pngCount": 13,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122227_ee48d93b",
+      "sourceCount": 104,
+      "allSourceHashesMatch": true,
+      "pngCount": 13,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122317_9135a33a",
+      "sourceCount": 104,
+      "allSourceHashesMatch": true,
+      "pngCount": 14,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122420_925f1ff5",
+      "sourceCount": 104,
+      "allSourceHashesMatch": true,
+      "pngCount": 13,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122505_b591a683",
+      "sourceCount": 104,
+      "allSourceHashesMatch": true,
+      "pngCount": 13,
+      "imagesDecodeSuccessfully": true
+    }
+  ],
+  "visualReview": {
+    "status": "reviewed_legible_no_clipped_titles",
+    "allDefaultFigures": true,
+    "newFiguresAllFiveScenarios": true,
+    "reviewImages": [
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage7_scenario_1_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage7_scenario_2_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage7_scenario_3_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage7_scenario_4_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage7_scenario_5_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage7_default_all_figures_review.png"
+    ]
+  }
+}

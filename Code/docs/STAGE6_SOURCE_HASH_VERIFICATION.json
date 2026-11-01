@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "runs": [
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113009_3dc53e95",
+      "sourceCount": 87,
+      "allSourceHashesMatch": true,
+      "pngCount": 11
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113040_88d74fa4",
+      "sourceCount": 87,
+      "allSourceHashesMatch": true,
+      "pngCount": 11
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113104_6d9b54b4",
+      "sourceCount": 87,
+      "allSourceHashesMatch": true,
+      "pngCount": 11
+    }
+  ],
+  "visualReview": {
+    "status": "reviewed_legible_no_clipped_titles",
+    "defaultAllElevenFigures": true,
+    "newFiguresAllThreeScenarios": true,
+    "reviewImages": [
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage6_remaining_figures_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage6_all_figures_review.png"
+    ]
+  }
+}

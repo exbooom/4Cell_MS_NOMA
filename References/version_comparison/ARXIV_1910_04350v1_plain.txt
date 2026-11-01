@@ -1,0 +1,2138 @@
+===== PDF PAGE 1 =====
+1
+Design and Performance Analysis of
+Multi-scale NOMA for 5G Positioning
+Lu Yin, Member , IEEE, Jiameng Cao, Zhongliang Deng, Qiang Ni, Senior
+Member , IEEE, Song Li, Member , IEEE, Xinyu Zheng, Hanhua Wang
+Abstract
+This paper presents a feasibility study for a novel positioning-communication integrated signal
+called Multi-Scale Non-Orthogonal Multiple Access (MS-NOMA) for 5G positioning. One of the main
+differences between the MS-NOMA and the traditional positioning signal is MS-NOMA supports
+conﬁgurable powers for different positioning users (P-Users) to obtain better ranging accuracy and
+signal coverage. Our major contributions are: Firstly, we present the MS-NOMA signal and analyze
+the Bit Error Rate (BER) and ranging accuracy by deriving their simple expressions. The results
+show the interaction between the communication and positioning signals is rather limited, and it is
+feasible to use the MS-NOMA signal to achieve high positioning accuracy. Secondly, for an optimal
+positioning accuracy and signal coverage, we model the power allocation problem for MS-NOMA signal
+as a convex optimization problem by satisfying the QoS (Quality of Services) requirement and other
+constraints. Then, we propose a novel Positioning-Communication Joint Power Allocation (PCJPA)
+algorithm which allocates the powers of all P-Users iteratively. The theoretical and numerical results
+show our proposed MS-NOMA signal has great improvements of ranging/positioning accuracy than
+traditional PRS (Positioning Reference Signal) in 5G, and improves the coverage dramatically which
+means more P-Users could locate their positions without suffering the near-far effect.
+Lu Yin, Jiameng Cao, Zhongliang Deng, Xinyu Zheng, and Hanhua Wang are with the School of Electronic En-
+gineering, Beijing University of Posts and Telecommunications, Beijing, 100876, China, e-mail: inlu_mail@bupt.edu.cn,
+caojiameng@bupt.edu.cn, dengzhl@bupt.edu.cn, buptzxy@bupt.edu.cn, whh0710@bupt.edu.cn.
+Qiang Ni is with the School of Computing and Communications, Lancaster University, InfoLab21, LA1 4W A, U.K. e-mail:
+q.ni@lancaster.ac.uk.
+Song Li is with School of Information and Control Engineering, China University of Mining and Technology, Xuzhou, China.
+e-mail: lisong@cumt.edu.cn.
+arXiv:1910.04350v1  [eess.SP]  10 Oct 2019
+
+===== PDF PAGE 2 =====
+2
+Index Terms
+MS-NOMA, interference, positioning, power allocation.
+I. I NTRODUCTION
+Nowadays, the Location Based Services (LBS) are growing rapidly and attracting much
+attention with the proliferation of mobile devices [1], [2]. The well known Global Navigation
+Satellite Systems (GNSS), such as the Global Positioning System (GPS) and the Beidou System
+(BDS) [3], [4], can only be used in open areas as their signals are easily blocked or interfered
+by buildings [5]. The emerging Wi-Fi, Bluetooth or Wireless Sensor Networks (WSN) based
+positioning have well coverage indoors only with dense placements of the nodes [6], [7], [8].
+And it is costly for collecting and maintaining the ﬁngerprint database as well [9], [10].
+Wireless communication network has a well coverage both indoors and outdoors [11], [12].
+Meanwhile, it is cost-effective to be used for positioning purpose as it is ready-made for
+communication purpose. However, the positioning accuracy can not meet some high-accuracy
+requirements by using the communication signal directly as the communication system is not
+designed for positioning purpose speciﬁcally [13], [14]. For example, the Positioning Reference
+Signal (PRS) in the cellular network cannot fully meet the commercial requirements as the
+discontinuous signal is hardly tracked which leads to a low range measurement accuracy [15].
+Moreover, there are severe near-far effects between the positioning signals from different gNBs
+(next generation NodeBs or called 5G nodeBs) which makes the signals from far gNBs more
+difﬁcult to be received [16], [17], [18]. Consequently, poor geometric distribution of gNBs is
+achieved which further worsen the positioning accuracy [19], [20].
+To this end, we propose a positioning-communication integrated signal, called Multi-Scale
+Non-Orthogonal Multiple Access (MS-NOMA), which superposes a low power positioning signal
+to the communication one without much interference based on the NOMA principle. In time
+domain, the MS-NOMA signal is Code Division Multiple Access (CDMA) to obtain correspond-
+ing spreading gains and ensure a continuous transmission. In frequency domain, Orthogonal
+Frequency Division Multiplexing Access (OFDMA) is employed for different positioning users
+as Fig. 1 shows.
+
+===== PDF PAGE 3 =====
+3
+ĊĊ 
+P-User1 P-User2 
+Normalized Frequency (Hz) 
+ĊĊ 
+Signals for communication with OFDM 
+symbols. 
+Signals for positioning with pseudorandom symbols. 
+{Sub-carriers 
+pfD
+cfD
+P-User3 P-User M 
+Power Spectrum Density 
+Fig. 1. The MS-NOMA architecture in frequency and power domains
+In the proposed MS-NOMA signal, ∆fc and∆fp represent the sub-carrier spacing of commu-
+nication user (C-User) and positioning user (P-User), respectively. For the maximum spectrum
+effectiveness, they are designed as ∆fp = G∆fc, G∈ N+. We assume both C-User and P-
+User each occupy a separate sub-carrier, so that there are maximum N = B/∆fc− 1 and
+M = B/∆fp− 1 users for communication and positioning purpose, respectively. Where B
+represents the total bandwidth. The reasons for distinguishing different P-Users are:
+1) Unlike communication system, it usually needs more than three gNBs to calculate the
+P-User’s position. As the P-Users are located at different locations, the powers of the
+positioning signals from far gNBs must be high enough in order to be correctly recognized.
+Meanwhile, the powers of the positioning signals from near gNBs should be low enough
+to avoid the near-far effect. So different powers for different P-Users are necessary.
+2) The superposed positioning signal interferes the communication signal like inter-user inter-
+ference occurred in the normal NOMA as well [21], [22]. To reduce this interference, the
+power of the positioning signal must be limited under a certain threshold to satisfy the QoS
+(Quality of Services) requirement of communication. While for P-Users, higher powers
+are needed for more accurate range measuring [23]. Therefore, the gNBs could transmit
+positioning signals with different powers for different P-Users to meet the requirements
+of both C-Users and P-Users.
+Although the aforementioned problems may be mitigated by varying the bandwidths of the
+
+===== PDF PAGE 4 =====
+4
+positioning signals as well, it will bring some other problems and make the whole system more
+complicated. In this paper, we discuss the scenario that the bandwidths of all P-Users are identical
+and ﬁxed. Then, to acquire the highest positioning accuracy over the whole network with the
+hearability and QoS requirements, the powers of different P-Users must be allocated carefully.
+In a conventional OFDM system, it is proved that water-ﬁlling over the sub-carriers is the
+optimal power allocation strategy [24], [25]. However, it does not consider the interferences
+between different types of users. In [26], where the second user transmit over spectrum holes
+left in the primary system, an optimal power allocation strategy is proposed. They maximize the
+down-link capacity of the second user by remaining the interference introduced to the primary
+user within a tolerable range. In the NOMA system, the power allocation is mostly investigated
+for signal demodulation and relay transmission [27], [28]. But these algorithms can not be used
+in our problem that has different models which is more complicated.
+To the best of our knowledge, there are few studies about the power allocation in positioning
+systems which makes our study very challenging. A preliminary part of this study was presented
+in a letter paper [23]. In this journal version, as compared to [23], we carry out detailed design
+and conduct more in-depth mathematical performance analysis. The main contributions of this
+paper are:
+1) We present the system model of positioning by the proposed MS-NOMA signal and analyze
+the limitation of positioning by other existing signals.
+2) We analyze the interferences between the communication and positioning signals of the
+MS-NOMA signal in the multi-cell scenario. Bit Error Rate (BER) for communication and
+the ranging error for positioning are derived.
+3) We model the power allocation problem for the MS-NOMA signal as a convex optimization
+problem. It minimizes the average positioning error of all P-Users in the network by
+considering the QoS, the power budget and the hearability requirements. To solve this
+problem, we propose a novel Positioning-Communication Joint Power Allocation (PCJPA)
+algorithm which allocates the powers of all P-Users iteratively and derive its solution.
+4) A series of theoretical and numerical analysis are done to evaluate the feasibility of
+positioning by MS-NOMA signal. The results show our proposed MS-NOMA signal has
+
+===== PDF PAGE 5 =====
+5
+a great improvement of ranging accuracy than PRS in traditional 5G signal, and improves
+the coverage dramatically which means more P-Users could locate their positions without
+suffering the near-far effect.
+Notations:∥·∥ represents the Euclidean distance. The operator cov (·) represents the covariance.
+kn and km represent the nth C-User/communication signal and the mth P-User/positioning
+signal served/broadcast by gNB k, respectively.M,N ,K andKk represent the set {1,...,M},
+{1,...,N},{1,...,K} and{1,...,k − 1,k + 1,...,K},respectively.
+II. S YSTEM MODEL
+C-User 3 n
+P-User m
+P-User 1 
+C-User 1 n
+Positioning link 
+Communication link 
+gNB1 
+gNB2 
+gNB3 
+gNB4 
+Near-far effect 
+Interference Interference 
+11 
+ph
+21 
+ph 41 
+ph
+4m
+ph
+3m
+ph
+3n
+ch
+Interference 
+Interference 
+1n
+cP
+11 
+pP
+1n
+ch
+1 21 n
+ph ¬
+21 
+pP
+3n
+cP
+3m
+pP
+3m n 
+ch ¬
+4m
+pP
+41 
+pP
+Fig. 2. System model of positioning by the MS-NOMA signal
+Consider a typical positioning scenario in spatial domain with K gNBs as Fig. 2 shows. C-
+Users and P-Users may be located at different locations. Because each C-User connects only
+one gNB, there are maximum KN C-Users in the network. While a P-User needs as many
+connections as possible for accurate positioning. So, there are maximum M P-Users in the
+network under the assumption that all gNBs server the same P-Users.
+
+===== PDF PAGE 6 =====
+6
+To ensure the P-Users receiving more than one gNB’s signal, the powers of the positioning
+signals should be strong enough. Then, this strong positioning signal may interfere the neighbor
+C-Users. To examine these interferences, let us deﬁne hkn
+c andhkm
+p as the instantaneous channel
+gains between gNB k and C-User kn/P-User m, respectively. Notice that the communica-
+tion/positioning signal broadcast from gNB k′ to the C-User k′n/P-User m will received by the
+P-User m/C-User kn as well, we use hm←k′n
+c and hkn←k′m
+p to represent these two instantaneous
+channel gains, respectively.
+Without any loss of generality, we assume: 1) Each spreading sequence for different P-Users
+is independent; 2) The powers for all C-Users are identical and the powers for all P-Users are
+to be allocated; and 3) The channel states are available through a delay- and error-free feedback
+channel which are known by the gNBs.
+What we concern is the horizontal positioning accuracy 1. If the gNBs are perfectly synchro-
+nized, the P-Users will use time-based algorithm to ﬁx their locations. Then, the horizontal
+positioning accuracy of P-User m can be expressed as
+Ψm =
+√∑
+k∈K
+(
+λkmσkm
+ρ
+)2
+(1)
+where λkm and σkm
+ρ are given in Appendix A.
+III. F EATURES OF MS-NOMA S IGNAL
+A. Interference of the Positioning Signal to Communication One
+For evaluating the interference of the positioning signal to communication one, we assume
+the inter-cell interference between the communication signals could be ideally eliminated. Then,
+the BER of C-User kn is [30]
+BERkn = Γerfc
+(
+γ
+⏐⏐hkn
+c
+⏐⏐2
+PcTc
+Ikn + 2N0
+)
+(2)
+1The vertical positioning accuracy of terrestrial system is usually very larger as the large vertical dilution [29]. Other methods
+are usually used to estimate vertical position rather than terrestrial positioning system [6], [17].
+
+===== PDF PAGE 7 =====
+7
+where Γ and γ are determined by the modulation and coding schemes. Pc is the power of the
+communication signal. Tc is the period of the communication symbol. N0 is the environment
+noise’s single-sided Power Spectral Density (PSD). Ikn represents the interference of the posi-
+tioning signal to the C-User kn. Notice that the powers of the positioning signals from different
+gNBs may be similar by power allocation, the interferences caused by the positioning signals
+from the neighbor gNBs can not be ignored. Then we have
+Ikn =
+∑
+k′∈K
+∑
+m∈M
+¯Pkn←k′m
+p (3)
+where ¯Pkn←k′m
+p is the power of the positioning signal k′m received by C-Userkn which satisﬁes
+¯Pkn←k′m
+p =
+⏐⏐⏐hkn←k′m
+p
+⏐⏐⏐
+2
+Pk′m
+p Gm
+p (n∆fc)
+=
+⏐⏐⏐hkn←k′m
+p
+⏐⏐⏐
+2
+Pk′m
+p Tpsinc2
+(
+m− n
+G
+)
+(4)
+wherePk′m
+p is the power of positioning signal m broadcast by gNB k′.Gm
+p (f) is the normalized
+PSD of positioning signal m which satisﬁes
+Gm
+p (f) =Tpsinc2 [(f−m∆fp)Tp] (5)
+where Tp is the period of the positioning symbol.
+B. Ranging Accuracy of MS-NOMA Signal
+The receiver could use a Delay Locked Loop (DLL) to track the positioning signal. Taking the
+coherent early-late discriminator for example [31], the tracking/ranging error of the positioning
+signal km can be written as
+(
+σkm
+ρ
+)2
+=
+a
+∫B0+Bf e/2
+B0−Bf e/2
+[
+N0 +Gm
+s (f +m∆fp) +Gkm
+q (f +m∆fp)
+]
+Gm
+p (f +m∆fp) sin2 (πfDTp)df
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
+[
+2π
+∫B0+Bf e/2
+B0−Bf e/2 fGm
+p (f +m∆fp) sin (πfDTp)df
+]2 (6)
+
+===== PDF PAGE 8 =====
+8
+wherea is determined by the loop parameters. B0 is the central frequency of MS-NOMA signal.
+Bfe is the double-sided front-end bandwidth. D is the early-late spacing of DLL. Gm
+s (f) is the
+PSD of the communication signals received by P-User m which satisﬁes
+Gm
+s (f) =
+∑
+k′∈K
+∑
+n∈N
+⏐⏐⏐hm←k′n
+c
+⏐⏐⏐
+2
+PcGn
+c (f) (7)
+where Gn
+c (f) = Tcsinc2 [(f−n∆fc)Tc] is the normalized PSD of communication signal n.
+Gkm
+q (f) is the PSD of the positioning signals from other gNBs which satisﬁes
+Gkm
+q (f) =
+∑
+k′∈Kk
+⏐⏐⏐hk′m
+p
+⏐⏐⏐
+2
+Pk′m
+p Gm
+p (f) (8)
+By taking (5), (7)-(8) into (6) and using some approximations, (6) can be simpliﬁed to
+(
+σkm
+ρ
+)2
+≈ aT 2
+p
+2
+[
+1
+BfeTp (C/N0)km + B ∑
+k′∈K (CPR )km←k′
+2B2
+fe
++
+∑
+k′∈Kk (PPR )km←k′m
+B2
+feTp
+]
+(9)
+where (C/N0)km, (CPR )km←k′
+and (PPR )km←k′m can be found in Appendix B. The ﬁrst item
+in (9) is caused by the noise, the second one is caused by the communication signals from all
+gNBs, and the third one is caused by the other gNBs’ positioning signals.
+We deﬁne the ranging-factor
+(
+˜σkm
+ρ
+)2
+=
+(
+σkm
+ρ
+)2
+Pkm
+p as (10) shows for later use.
+(
+˜σkm
+ρ
+)2
+= aT 2
+p
+2
+[
+N0
+BfeTp
+⏐⏐hkm
+p
+⏐⏐2 + BGPc
+B2
+fe
+∑
+k′∈K
+⏐⏐hm←k′
+c
+⏐⏐2
+⏐⏐hkm
+p
+⏐⏐2 +
+∑
+k′∈Kk
+⏐⏐hk′m
+p
+⏐⏐2
+Pk′m
+p
+B2
+feTp
+⏐⏐hkm
+p
+⏐⏐2
+]
+(10)
+IV. T HE POWER ALLOCATION OF MS-NOMA S IGNAL
+A. The Constraints
+1) The BER Threshold under QoS Constraint: To ensure the QoS of the C-Users, the BER
+of all C-Users should be limited under a certain threshold
+BERkn≤ Ξth, ∀k∈K,∀n∈N (11)
+
+===== PDF PAGE 9 =====
+9
+Then, by taking (2) to (11) and rearranging items, we have
+Ikn≤ γ
+⏐⏐hkn
+c
+⏐⏐2
+PcTc
+erfc−1 (Ξth/Γ)− 2N0
+≜Ikn
+th, ∀k∈K,∀n∈N (12)
+whereIkn
+th is deﬁned as the interference threshold of C-User kn which is determined by the QoS
+requirement Ξth.
+2) The Total Power Limitation: The total transmit power is often limited. In MS-NOMA
+signal, we have
+∑
+m∈M
+Pkm
+p +NPc≤Pk
+T,∀k∈K (13)
+where Pk
+T is the total transmit power of gNB k. Let’s deﬁne the positioning power budget of
+gNB k as Pk
+th =Pk
+T−NPc, then we have
+∑
+m∈M
+Pkm
+p ≤Pk
+th,∀k∈K (14)
+3) The Elimination of Near-far Effect: To guarantee P-Users receive as many positioning
+signals as possible, the powers of the received positioning signals from different gNBs must
+satisfy
+|hkm
+p |2Pkm
+p
+|hk′m
+p |2Pk′m
+p
+≥ϱΩ, ∀m∈M,∀k∈K,∀k′∈K k (15)
+where Ω is the positioning signal’s auto-correlation to cross-correlation ratio which is determined
+by the pseudorandom code and its length. ϱ is determined by the receiver’s performance which
+is usually larger than 1. For a particular positioning signal km, if the strongest cross-correlation
+satisﬁes (15), all k′s in (15) will be satisﬁed. So (15) can be rewritten as
+|hkm
+p |2Pkm
+p ≥ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p ,∀m∈M,∀k∈K (16)
+where k′
+km represents the index of the strongest signal received by the P-User km except the
+positioning signal km.
+
+===== PDF PAGE 10 =====
+10
+B. The Proposed Joint Power Allocation Model
+Our goal is to obtain a best positioning performance for all P-Users in terms of both coverage
+and accuracy under QoS requirement and total transmit power budget. So, the average horizontal
+positioning accuracy 2 for all P-Users in the network is minimized by ﬁnding the power values
+Pkm
+p ,∀m ∈ M,∀k ∈ Kunder the given constraints. We use the fact that maximization of
+negative value of a convex function is equivalent to its minimization. Mathematically, the power
+allocation problem can be formulated as a convex optimization problem as follows
+OP1 :max
+P kmp
+− 1
+M
+∑
+m∈M
+(Ψm)2 (17)
+s.t.Ikn≤Ikn
+th,∀n∈N ,∀k∈K (18)
+∑
+m∈M
+Pkm
+p ≤Pk
+th,∀k∈K (19)
+|hkm
+p |2Pkm
+p ≥ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p ,∀m∈M,∀k∈K (20)
+OP1 can be solved by the Lagrange duality method [32]. Then the Lagrangian of OP1 can be
+written as
+L
+({
+Pkm
+p
+}
+,µ,ν,β
+)
+=− 1
+M
+∑
+m∈M
+∑
+k∈K
+(
+λkmσkm
+ρ
+)2
++
+∑
+k∈K
+∑
+n∈N
+µkn (
+Ikn
+th−Ikn)
++
+∑
+k∈K
+νk
+(
+Pk
+th−
+∑
+m∈M
+Pkm
+p
+)
++
+∑
+m∈M
+∑
+k∈K
+βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)
+(21)
+whereµ,ν andβ are the matrices of dual variables associated with the corresponding constraints
+given in (12), (14) and (15)
+µ =
+{
+µkn,∀k∈K,∀n∈N
+}
+∈ CK×N⪰ 0 (22)
+ν =
+{
+νk,∀k∈K
+}
+∈ C1×K⪰ 0 (23)
+β =
+{
+βkm,∀k∈K,∀m∈M
+}
+∈ CK×M⪰ 0 (24)
+2For calculation convenience, we use the square of the horizontal positioning accuracy, i.e. (Ψ m)2
+
+===== PDF PAGE 11 =====
+11
+The Lagrange dual function of OP1 is then given by
+g (µ,ν,β ) = max
+P kmp
+L
+({
+Pkm
+p
+}
+,µ,ν,β
+)
+(25)
+The dual optimization problem can be formulated as
+ming (µ,ν,β ) (26)
+s.t.µ⪰ 0, ν⪰ 0, β⪰ 0 (27)
+Obviously,L
+({
+Pkm
+p
+}
+,µ,ν,β
+)
+is linear in µ,ν,β for ﬁxed Pkm
+p , and g (µ,ν,β ) is the maximum
+of linear functions. Thus, the dual optimization problem is always convex. In the following,
+the dual decomposition method introduced in [33] is employed to solve this problem. For this
+purpose, we introduce a transformation ∑
+n∈N = ∑
+m∈M
+∑
+n∈Nm to decompose the Lagrange
+dual function to K×M independent sub-problems, where
+Nm ={(2G− 1) (m− 1) + 1,..., (2G− 1)m} (28)
+Then we have
+g (µ,ν,β ) =
+∑
+k∈K
+[
+gk (µ,ν,β )
+]
+(29)
+=
+∑
+k∈K
+{ ∑
+m∈M
+gkm (µ,ν,β ) +νkPk
+th
+}
+(30)
+where
+gkm (µ,ν,β ) = max
+P kmp
+{
+− 1
+M
+(
+λkmσkm
+ρ
+)2
+−νkPkm
+p +
+∑
+n∈Nm
+µkn (
+Ikn
+th−Ikn)
++βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)}
+(31)
+From (31), it is clear that we can decompose the Lagrange dual function gk (µ,ν,β ) to M
+
+===== PDF PAGE 12 =====
+12
+independent sub-problems by giving νk. Each of the sub-problems is given by
+OP2 :max
+P kmp
+− 1
+M
+(
+λkmσkm
+ρ
+)2
+−νkPkm
+p (32)
+s.t.Ikn≤Ikn
+th, n∈ Nm (33)
+|hkm
+p |2Pkm
+p ≥ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p (34)
+The Lagrangian of OP2 is
+˜L
+({
+Pkm
+p
+}
+, ˜µkn, ˜βkm
+)
+=− 1
+M
+(
+λkmσkm
+ρ
+)2
+−νkPkm
+p +
+∑
+n∈Nm
+˜µkn (
+Ikn
+th−Ikn)
++ ˜βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)
+(35)
+where ˜µkn and ˜βkm are the non-negative dual variables for constraints (33) and (34), respectively.
+The Lagrange dual function of OP2 is given by
+˜gkm
+(
+˜µkn, ˜βkm
+)
+= max
+P kmp
+˜L
+({
+Pkm
+p
+}
+, ˜µkn, ˜βkm
+)
+(36)
+The dual problem is then expressed as
+min˜gkm
+(
+˜µkn, ˜βkm
+)
+(37)
+s.t.˜µkn≥ 0,∀n∈ Nm (38)
+˜βkm≥ 0 (39)
+The optimal power allocation solution ˜Pkm
+p of OP2 can be obtained by using the Karush-
+Kuhn-Tucker (KKT) conditions as (40) shows.
+˜Pkm
+p = λkm
+
+geometric-dilution
+× ˜σkm
+ρ
+ranging-factor
+×
+[
+M
+(
+˜βkm|hkm
+p |2−νk−
+∑
+n∈Nm
+˜µknJkn←m
+)] −1/2
+  
+constraint-scale
+(40)
+where Jkn←m can be found in Appendix C.
+
+===== PDF PAGE 13 =====
+13
+C. Remarks
+From (40), it is observed that the optimal power allocation solution is determined by the
+geometric-dilution, ranging-factor and constraint-scale. It is necessary to have a clear under-
+standing of these factors that affect the allocated power.
+The geometric-dilution λkm associates with the relative positions between the P-User and all
+gNBs. This means the power allocation procedure does not only minimize the ranging accuracy,
+but also considers the geometric distribution which affects the positioning accuracy as well.
+The ranging-factor ˜σkm
+ρ reﬂects the ranging ability of P-User as (10) shows. If the loop
+parameters are ﬁxed, ˜σkm
+ρ is determined by the channel gains of a certain P-User m, i.e.
+⏐⏐hkm
+p
+⏐⏐2
+,
+⏐⏐hm←k′
+c
+⏐⏐2
+and
+⏐⏐hk′m
+p
+⏐⏐2
+which reﬂect the attenuation of the positioning signal, the communication
+signals and the other positioning signals, respectively. If the positioning signal’s attenuation is
+large, i.e.
+⏐⏐hkm
+p
+⏐⏐2
+is small, it will allocate a stronger positioning power, and vice versa. Conversely,
+if the communication signals’ attenuation is large, i.e.
+⏐⏐hm←k′
+c
+⏐⏐2
+is small, it will allocate a weak
+positioning power because of the small interference from the communication signals, and vice
+versa. Please notice that ∑
+k′∈K
+⏐⏐hm←k′
+c
+⏐⏐2
+in ˜σkm
+ρ will converge to
+⏐⏐hm←k
+c
+⏐⏐2
+if the communication
+signals from all other gNBs (except gNB k) are weak enough. However, different from
+⏐⏐hkm
+p
+⏐⏐2
+and
+⏐⏐hm←k′
+c
+⏐⏐2
+, there is no monotonic relation between the allocated power and
+⏐⏐hk′m
+p
+⏐⏐2
+as
+⏐⏐hk′m
+p
+⏐⏐2
+will be weighted by the powers of the positioning signals broadcast by the other gNBs, i.e.
+Pk′m
+p s.
+The constraint-scale reﬂects the impact of the constraints:
+˜µkn is the dual variable associated with the BER threshold of C-User kn. If C-User kn can
+accommodate a higher BER, ˜µkn will be smaller, and thus result in a higher constraint-scale, and
+vice versa. In the extreme case that C-User kn cannot accommodate any additional interference,
+˜µkn will be inﬁnity, and thus the constraint-scale will be zero, which indicates that the positioning
+signal over C-User kn’s band is not permitted. On the contrary, if C-User kn has no requirement
+on the BER, ˜µkn will be zero, and thus the power-scale will be only determined by the other
+constraints.
+Jkn←m is determined by the channel gains of positioning signals k′m (k′∈K ) at C-Userkn as
+(67) shows. It is clear that a smaller ∑
+k′∈K
+⏐⏐hkn←k′m
+p
+⏐⏐2
+will result in a higher constraint-scale. This
+
+===== PDF PAGE 14 =====
+14
+is intuitively correct because the P-Users’ transmissions from all gNBs will not cause too much
+interference when ∑
+k′∈K
+⏐⏐hkn←k′m
+p
+⏐⏐2
+is small. In the real scenarios, if ∑
+k′∈K
+⏐⏐hkn←k′m
+p
+⏐⏐2
+→ 0,
+which means C-User kn is too far from all gNBs to receive any communication/positioning
+signal, the P-Users will not cause any interferences to this C-User no matter how strong its
+transmit power is. If C-Userkn is far from all gNBs except its own cell, i.e. ∑
+k′∈K
+⏐⏐hkn←k′m
+p
+⏐⏐2
+→
+hkn←km
+p ≈hkn
+c , the positioning signals from other gNBs will not interference the C-Users.
+νk is the dual variable associated with the transmit power budget. A larger power budget
+results in a smaller νk, and thus results in a lower ranging error, and vice versa.
+˜βkm is a parameter related to the P-User’s receiver performance. It reﬂects the inﬂuence of the
+cross-correlation (i.e. (15)) on the constraint-scale. There will be a higher ˜βkm with a smaller
+ϱ. Namely, if the receiver has a better anti-cross-correlation performance, there will be a higher
+ranging accuracy and better coverage, vice versa.
+D. The Positioning-Communication Joint Power Allocation Scheme
+The remaining task for solving OP1 is to obtain the optimal dual variables, which are the
+same in both OP1 and OP2. Applying the solution to OP2, we can obtain the optimal power
+allocation ˜Pkm
+p in OP1. However, it is difﬁcult to solve OP2 directly because we cannot obtain
+the closed-form expression for dual variables. The Lagrange dual function (29) is made up of
+K independent sub-problems. For each sub-problem, it is observed that νk is the same for all
+P-Users.µkn andβkm are different for C-Users and P-Users, respectively. Then, we can solve the
+optimization problem using hierarchical algorithm by updating the values of the dual variables
+{µ,ν,β} via subgradient methods, which guarantees the gradient-type algorithm to converge to
+the optimal solution [34].
+Proposition: The subgradients of ˜gkm
+(
+˜µkn, ˜βkm
+)
+are given by `µkn =Ikn
+th −Ikn and `βkm =
+|hkm
+p |2Pkm
+p − ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p . Then, ˜Pkm
+p is the optimal solution obtained at ˜µkn and ˜βkm.
+Next, νk is updated by its subgradient, which is given by `νk =Pk
+th−
+∑
+m∈M
+Pkm
+p . Finally, ˆPp =
+{
+˜Pkm
+p ,∀k∈K,∀m∈M
+}
+is the optimal solution obtained at νk under the given µkn and βkm.
+Proof: Please see the Appendix D.
+
+===== PDF PAGE 15 =====
+15
+Using the above gradient, we can obtain the optimal power allocation by iterative Lagrangian
+multiplier{µ,ν,β}. Notice that the positions and powers of P-Users are unknown which are
+necessary for calculating the geometric-dilution λkm and the ranging factor ˜σkm
+ρ , respectively.
+We can minimize the ranging error for all positioning users without considering the impact of
+the geometric-dilution and the impact of multiple access at the ﬁrst iteration. Then, we can get
+approximate positions and initial allocated powers. After several iterations, the positions and the
+powers will be converge to the optimal values.
+The algorithm to solve OP1 can be summarized as Algorithm 1 shows. Where t and t′ are
+the iteration numbers. iterN is the maximum iteration amount. b1,b2 andb3 are the update step
+sizes. ε> 0 is a given small constant.
+Algorithm 1 The proposed PCJPA algorithm
+1: Initial the dual variable νk
+1 for all k∈K in parallel
+2: for t = 1 to iterN do
+3: Initial µkn
+1 ,βkm
+1 ,P k′m
+p for all n∈N , m∈M and k′∈K k in parallel
+4: for t′ = 1 to iterN do
+5: For each P-User m, calculate ˜Pkm
+p using (40)
+6: Update µkn
+t′ and βkm
+t′ by their subgradient:
+7: i) ˜µkn
+t′+1 =µkn
+t′ −b2`µkn
+8: ii) ˜βkm
+t′+1 =βkm
+t′ −b3 `βkm
+9: Update Pkm
+p = ˜Pkm
+p for all k∈K and m∈M
+10: if |˜µkn
+t′+1−µkn
+t′|≤ ε &| ˜βkm
+t′+1−βkm
+t′ |≤ ε then
+11: break
+12: end if
+13: end for
+14: Update νk
+t+1 by its subgradient:
+˜νk
+t+1 =νk
+t−b1`νk
+15: if |˜νk
+t+1−νk
+t|≤ ε then
+16: break
+17: end if
+18: end for
+19: return ˆPp =
+{
+˜Pkm
+p ,∀k∈K,∀m∈M
+}
+V. T HE PERFORMANCE EVALUATION
+In this section, we evaluate the communication and ranging performances of the proposed MS-
+NOMA signal under a single cell network ﬁrstly. Then, we examine the positioning performance
+
+===== PDF PAGE 16 =====
+16
+in a 4-gNBs cell by considering the impact of all factors comprehensively. In the single cell
+scenario, the impact of the cross-correlation will be vanished and the channel gains of the
+communication and positioning signals will be seen as equal. Then, (2) and (9) become
+BERn = Γerfc
+( γPcTc
+In + 2N0
+)
+(41)
+(
+σm
+ρ
+)2
+≈ aT 2
+p
+2
+[
+1
+BfeTp (C/N0)m + B (CPR )m
+2B2
+fe
+]
+(42)
+where
+In =
+M∑
+m=1
+Pm
+p Tpsinc2
+(
+m− n
+G
+)
+(43)
+(C/N0)m =Pm
+p /N0 (44)
+(CPR )m = 2GPc/Pm
+p (45)
+Notice that (41) and (42) reﬂect the features of MS-NOMA signal itself without interferences
+from other gNBs.
+The simulation settings are: The communication and positioning signals use QPSK and BPSK
+constellation, respectively. The carrier frequency is set to 3.5GHz and ∆fc = 30 kHz. Two
+scenarios with different bandwidths of positioning signals are considered: 1) B = 20 MHz 2)
+B = 50MHz. The amount of P-User is M = 20, i.e. the positioning signal is 30/80 times faster
+than the communication one under 20/50MHz bandwidth, respectively. The powers of all C-
+Users are assumed as identical. The front-end bandwidth is set to twice of the total bandwidth,
+i.e. Bfe = 2B. The loop parameters are set as: BL = 0.2Hz, Tcoh = 0.02s and D = 0.02chips,
+where BL is the code loop noise bandwidth and Tcoh is the predetection integration time.
+A. Communication Performance
+We ﬁrstly examine the interference of the positioning signal to the C-Users. Fig. 3a shows
+the average BERs over the whole bandwidth when Pm
+p = Pp,∀m∈M . It is clear that the
+
+===== PDF PAGE 17 =====
+17
+average BERs decrease with the increasing of Eb/N0 as well as C/N0 (Eb =PcTc is the energy
+of the communication symbol). Notice that the BER curves with small CPR will tend to be ﬂat
+when Eb/N0 becomes larger. This is because the interference caused by the positioning signal
+dominates the BER performance rather than the environment noise (i.e. In is much larger than
+2N0). When the positioning signal becomes weaker (CPR becomes larger), the BER curves will
+become ﬂat with larger Eb/N0 and they will become closer to the one that only exists noise
+(CPR =∞).
+Fig. 3b detailed shows the BERs for each C-User. If the powers of the P-Users are identical
+(IPp), the BERs are approximately identical as well. While the BERs are different when the
+P-Users’ powers are different (DPp). Then, the maximum BER is related to all P-Users’ powers
+(see (41)) in this case. Of course, both of the IPp and DPp are higher than the scenario that do
+not exist positioning signals (NP).
+0 5 10 15 20 25 30
+Eb/N0 (dB)
+10-7
+10-5
+10-3
+10-1
+Average BER
+62 67 72 77 82 87 92
+C/N0+CPR (dB·Hz)
+CPR=15dB
+CPR=17dB
+CPR=20dB
+CPR=30dB
+CPR=
+(a) Average BER in different scenarios
+100 200 300 400 500 600
+Communication sub-carriers
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+BER
+IPp
+DPp
+NP (b) BER of the communication signal. Eb/N0 = 5 dB,
+CPR = 15dB
+Fig. 3. Communication Performance
+B. Ranging Performance
+We then examine the range measurement accuracy of the MS-NOMA signal. The ranging
+accuracy of the MS-NOMA and PRS signal are compared. Where the lower bound of PRS is
+used as introduced in [35].
+
+===== PDF PAGE 18 =====
+18
+10 12 14 16 18 20 22 24 26 28 30
+CPR (dB)
+10-2
+10-1
+100
+101
+102
+ (m)
+-7 -5 -3 -1 1 3 5 7 9 11 13
+Eb/N0(20MHz), Eb/N0(50MHz)+5 (dB)
+e
+a
+PRS
+e (no com.)
+20MHz
+50MHz
+Fig. 4. Range measurement accuracy at C/N0 = 45dB · Hz
+Fig. 4 shows the range measurement accuracy when C/N0 = 45dB· Hz. Where superscript e
+and a represent the exact and approximate results, respectively. It is clear that the measurement
+errors of the MS-NOMA signal are always smaller than the ones of the PRS signal when
+CPR<30dB. And the ranging accuracy of the 20MHz MS-NOMA signal is even much higher
+than the one of the 50MHz PRS signal. The accuracy gap between the two signals becomes
+larger when CPR decreases. It is because when the power of the communication signal decreases,
+its interference to the positioning one becomes weaker. While the measurement accuracy of PRS
+becomes worse due to the lower signal-to-noise ratio of the communication signal.
+Please notice that the curves of the MS-NOMA signal will not change if the communication
+power is ﬁxed and the positioning one is variable. For example, if Eb/N0 = 0 dB and C/N0
+varies from 32 to 52dB ·Hz (i.e. 10dB<CPR<30dB) with 20MHz bandwidth, the measurement
+accuracy of PRS is ﬁxed at 9.29m and the accuracy of MS-NOMA is the same as Fig. 4 shows.
+Then, the measurement error will decreases when the power of the positioning signal increases.
+Although stronger positioning power will have higher measurement accuracy, the maximum
+power of the positioning signals will be limited by the QoS of communication as Fig. 3 shows.
+So, Pm
+p s must be allocated carefully to acquire the best ranging performance under the QoS
+
+===== PDF PAGE 19 =====
+19
+constraint. In the real application, both of the communication and positioning interferences from
+other gNBs, must be considered which will be evaluated next subsection.
+Fig. 4 also conﬁrms that the approximations of σρ (see (42)) correspond to the exact one (see
+(6)) very well. And all of them are decimeter or centimeter level which ensures sub-meter level
+positioning accuracy compare to the meter level positioning accuracy of PRS. Meanwhile, the
+measurement error is only a little larger than the one that without communication signal, which
+means the effect of the communication signal is limit to the range measuring.
+C. Positioning Performance
+In this section, we present the numerical results to evaluate the positioning performance of MS-
+NOMA signal by using the proposed PCJPA algorithm. The gNBs are ﬁxed at (0, 0), (0, 200),
+(200, 200), (200, 0) and 20 P-Users are randomly distributed in the coverage area. The free space
+propagation model is employed with 50 Monte Carlo runs in each simulation. Without any loss
+of generality, we set Pk
+th =Pth for any k∈K and ϱ = 2.
+0
+0.5
+1
+200
+1.5Average positioning error(m)
+2
+Y (m)
+100 200
+X (m)
+150100500 0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+1.6
+1.8
+2
+2.2
+The 3rd
+P-User
+in Fig.8
+The 2nd
+P-User
+in Fig.8
+(a) The proposed PCJPA algorithm
+0
+200
+0.1
+150 200
+0.2Average positioning error (m)
+150
+0.3
+Y (m)
+100
+X (m)
+0.4
+10050 50
+0 0
+-0.1
+-0.05
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+0.35 (b) The traditional method without power allocation
+Fig. 5. The positioning signal’s coverage and positioning accuracy ( B = 50MHz, Pth = 0.8W,βth = 8 × 10−3)
+Fig. 5 shows the positioning signal’s coverage and positioning accuracy of MS-NOMA signal
+by using the proposed PCJPA algorithm and the traditional equal-power transmission strategy,
+respectively. The positioning error is set to 0 if the P-User can not receive more than 3 gNBs
+which means there are no enough gNBs to position. From Fig. 5a, we can see all P-Users have
+positioning results which means the near-far effect is dramatically reduced. While from Fig.
+
+===== PDF PAGE 20 =====
+20
+5b, it is clear that a great amount of P-Users (50.8%) do not have positioning results by the
+traditional method as suffering severe near-far effect.
+Detailed comparisons are presented in Table I. The positioning accuracy of MS-NOMA signal
+is much higher than the one of PRS. Speciﬁcally, the improvements of MS-NOMA signal
+(using the proposed PCJPA algorithm) are 93.7% and 93.1% compared to PRS with 20MHz
+and 50MHz bandwidth, respectively. Notice that the positioning error of PCJPA is a little higher
+than the equal-power strategy. This is because the edge of the coverage area have poor geometric
+distribution which lead to poor positioning accuracy, while these low accuracy P-Users are not
+averaged in the equal-power strategy as they have no positioning results. In fact, the positioning
+errors of the PCJPA algorithm are smaller than the ones of the equal-power strategy by examining
+the same area as Fig. 6 shows (0.17m v.s. 0.20m at 50MHz (15% improvement) and 0.41m
+v.s. 0.54m at 20MHz (24% improvement)). Only 10% P-Users’ positioning errors by PCJPA
+algorithm are larger than the ones by equal-power strategy. While more than 50% P-Users
+do not have positioning results if power allocation is not executed. Therefore, the proposed
+PCJPA algorithm has excellent performances in both coverage and positioning accuracy than the
+traditional scheme.
+TABLE I
+THE COMPARISON BETWEEN DIFFERENT SIGNALS BY USING DIFFERENT POWER ALLOCATION STRATEGIES
+Signal MS-NOMA PRS
+Power allocation strategy PCJPA Equal power Equal power
+Positioning Error 20MHz 0.57m 0.54m 8.44m
+50MHz 0.21m 0.20m 3.17m
+Fig. 7 illustrated the impact of different constraints and parameters on the positioning accuracy.
+From Fig. 7a, it is clear that the average positioning errors decrease with the increasing of the
+tolerable BER. Meanwhile, there is higher positioning accuracy with larger bandwidth. Notice
+that the curves tend to constant values when the tolerable BER increases. It is because the power
+budget limits the improvement of the performance. And it is clear that higher power budget can
+
+===== PDF PAGE 21 =====
+21
+0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1
+Lower bound of pisitioning error (m)
+0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Probability (%)
+CPJPA (B=50MHz)
+Equla power (B=50MHz)
+CPJPA (B=20MHz)
+Equla power (B=20MHz)
+Fig. 6. The CDF of the MS-NOMA signal with different power allocation strategies ( Pth = 0.8W,βth = 8 × 10−3)
+obtain a lower positioning error bound. On the other hand, the curve with a smaller bandwidth
+converges slowly. It is because the power of the positioning signal with a small bandwidth will
+concentrated in a narrower range. Consequently, there will be more powers of P-Users leak to
+the neighbor C-Users as (3) and (4) show which leads to more interferences.
+Fig. 7b shows that the average positioning error decreases with the increasing of the power
+budget. Similar to Fig. 7a, the curves tend to constant values when the power budget increases
+as well. This means the QoS constraint becomes dominant and the average positioning errors
+do not decrease although the total power increases. If we have a strict QoS constraint (smaller
+Ξth), the positioning error bound will be higher.
+Fig. 8 illustrates the relationship between the allocated powers and the channel gains of the
+P-Users by examining one simulation. It shows that the worse channel states tend to allocate
+stronger positioning signals. This is exactly what we expected that the P-Users with worse
+channel states need stronger powers to obtain an accurate ranging. However, notice that there
+is a power disparity between the 2ed and 3rd P-Users whose channel gains are similar. This is
+because the geometric-dilution λ in (1) also affects the positioning accuracy which is considered
+by the power allocation process. This can be observed in Fig. 5a as well: The location of the
+2ed P-User (coordinate: (178, 8)) is at the edge of the area compared to the center location of
+the 3rd P-User (coordinate: (79, 77)), so the former one has a stronger allocated power.
+
+===== PDF PAGE 22 =====
+22
+6.5 7 7.5 8 8.5 9 9.5 10
+ BER 10-3
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+1.4
+1.6Average positioning error (m)
+B=20M: Pth=1W
+B=50M: Pth=1W
+B=20M: Pth=0.2W
+B=50M: Pth=0.2W
+(a) Average positioning errors under different QoS require-
+ments
+0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 1.1 1.2
+Power budget (W)
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1Average positioning error (m)
+B=20M: th=1×10-2
+B=20M: th=8×10-3
+B=50M: th=1×10-2
+B=50M: th=8×10-3
+(b) Average positioning errors under different power budgets
+Fig. 7. The impact of different constraints and parameters
+2 4 6 8 10 12 14 16 18 20
+P-User
+0
+0.05
+0.1
+Allocated power
+2 4 6 8 10 12 14 16 18 20
+P-User
+0
+0.5
+1
+The channel gain
+10-6
+Fig. 8. The allocated powers with different channel gains (Different lines represent different gNBs) ( B = 50MHz,Pth = 0.8W,
+βth = 8 × 10−3)
+VI. C ONCLUSIONS
+In this paper, we presented a feasibility study for a novel positioning-communication integrated
+signal called Multi-Scale Non-Orthogonal Multiple Access (MS-NOMA) for 5G positioning. The
+MS-NOMA signal superposes power conﬁgurable positioning signals on the communication ones
+to achieve high ranging accuracy and excellent signal coverage (less near-far effect). Like the
+normal NOMA signal, there are interferences between the commutation and positioning signals.
+So, we analyzed the BER for communication and the ranging error for positioning when two
+
+===== PDF PAGE 23 =====
+23
+kinds of signals exist simultaneously. The results show the interaction is rather limited and the
+proposed MS-NOMA signal greatly improves the ranging accuracy than traditional 5G signal. In
+addition, because the positioning signals in the proposed MS-NOMA are power controllable and
+multiple accessible, we modeled a multi-user power allocation problem for an optimal positioning
+accuracy and signal coverage as a convex optimization problem under the QoS requirement and
+other constraints. Then, a novel Positioning-Communication Joint Power Allocation (PCJPA)
+algorithm was proposed for solving this problem. The numerical results show our proposed MS-
+NOMA signal with PCJPA algorithm improves the positioning accuracy and signal coverage
+dramatically than the traditional 5G signal with equal power transmission strategy.
+APPENDIX
+A. Derivation of the Horizontal Positioning Accuracy
+Deﬁneεm
+ρ =
+[
+ε1m
+ρ ,ε 2m
+ρ ,...,ε km
+ρ
+]T
+as the ranging errors of P-User m, where εkm
+ρ represents the
+ranging error between gNB k and P-User m. Then, the positioning error of P-User m is [36]
+εm
+X =
+[
+(Gm)TGm
+]−1
+(Gm)Tεm
+ρ
+=Hmεm
+ρ (46)
+where
+Gm =
+
+
+ι1m
+x ι1m
+y ι1m
+z
+ι2m
+x ι2m
+y ι2m
+z
+··· ··· ···
+ιkm
+x ιkm
+y ιkm
+z
+
+
+(47)
+
+
+
+ιkm
+x = (xm
+p −xk
+b)/∥X k
+b −X m
+p∥
+ιkm
+y = (ym
+p −yk
+b)/∥X k
+b −X m
+p∥
+ιkm
+z = (zm
+p −zk
+b )/∥X k
+b −X m
+p∥
+(48)
+where X = [x,y,z ]T represents the coordinate. Subscript p and b represent P-User and gNB,
+respectively. Because the ranging errors from the gNBs are independent, their covariance matrix
+
+===== PDF PAGE 24 =====
+24
+is diagonal under the assumption that the range measuring is unbiased:
+(
+σm
+ρ
+)2
+= cov
+(
+εm
+ρ,εm
+ρ
+)
+=
+
+
+(
+σ1m
+ρ
+)2
+0 ··· 0
+0
+(
+σ2m
+ρ
+)2
+··· 0
+··· ··· ··· ···
+0 0 ···
+(
+σkm
+ρ
+)2
+
+
+(49)
+where
+(
+σkm
+ρ
+)2
+= cov
+(
+εkm
+ρ ,εkm
+ρ
+)
+represents the ranging error of the kmth positioning signal.
+Then, the covariance of the positioning error is
+(σm
+X)2 = cov (εm
+X,εm
+X)
+=Hm (
+σm
+ρ
+)2
+(Hm)T (50)
+The diagonal elements represent the positioning accuracy of each direction. Then, the horizontal
+positioning accuracy can be expressed as
+Ψm =
+√∑
+k∈K
+{[ 2∑
+i=1
+(ℏm
+ik)2
+]
+(
+σkm
+ρ
+)2
+}
+(51)
+where ℏm
+iks (i∈{ 1, 2, 3}) represent the elements of Hm. Note λkm =
+√∑2
+i=1 (ℏm
+ik)2 as the
+geometric-dilution, then we have (1).
+B. Derivation of
+(
+σkm
+ρ
+)2
+Note
+Am
+0 =
+B0+Bf e/2∫
+B0−Bf e/2
+fGm
+p (f +m∆fp) sin (πfDTp)df (52)
+Am
+1 =
+B0+Bf e/2∫
+B0−Bf e/2
+N0Gm
+p (f +m∆fp) sin2 (πfDTp)df (53)
+
+===== PDF PAGE 25 =====
+25
+Am
+2 =
+B0+Bf e/2∫
+B0−Bf e/2
+Gm
+s (f +m∆fp)Gm
+p (f +m∆fp) sin2 (πfDTp)df (54)
+Am
+3 =
+B0+Bf e/2∫
+B0−Bf e/2
+Gkm
+q (f +m∆fp)Gm
+p (f +m∆fp) sin2 (πfDTp)df (55)
+Then, (6) can be written as
+(
+σkm
+ρ
+)2
+= a (Am
+1 +Am
+2 +Am
+3 )
+(2π)2 ⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p (Am
+0 )2 (56)
+Notice that there are multiple P-Users, i.e. the bandwidth of the positioning signal for one P-User
+is much smaller than the total bandwidth B. Moreover, the front-end bandwidth is larger than
+B as well. So we have Bfe≫ 2/Tp. Consequently, a DLL’s narrow early-late spacing D can be
+applied3. When D→ 0, sin (πfDTp) in (52)-(55) can be replaced by Taylor expansion around
+0. Then, by taking (5), (7)-(8) into (52)-(55) and rearranging items, we have
+Am
+0 =πDT 2
+p
+Bf e/2∫
+−Bf e/2
+f 2sinc2 (fTp)df = 1
+2πDBfe (57)
+Am
+1 =πDTpN0Am
+0 (58)
+Am
+2 =D2Tp
+∑
+k′∈K
+∑
+n∈N
+⏐⏐⏐hm←k′n
+c
+⏐⏐⏐
+2
+PcTc
+Bf e/2∫
+−Bf e/2
+sinc2 [(f +m∆fp−n∆fc)Tc] sin2 (fTp)df
+G≫1
+≈ D2TpTcPc
+∑
+k′∈K
+∑
+n∈N
+⏐⏐⏐hm←k′n
+c
+⏐⏐⏐
+2
+sin2
+[
+π
+(
+m− n
+G
+)]
+×
+(Gm−n+1)∆fc∫
+(Gm−n−1)∆fc
+sinc2 [(f +m∆fp−n∆fc)Tc]df
+≈D2TpPc
+∑
+k′∈K
+∑
+n∈N
+⏐⏐⏐hm←k′n
+c
+⏐⏐⏐
+2
+sin2
+(n
+Gπ
+)
+(59)
+3If Bf e is not large enough, the DLL correlation peak will be ﬂattened which will deteriorate the performance of the phase
+discriminator.
+
+===== PDF PAGE 26 =====
+26
+Am
+3 =π2D2T 4
+p
+∑
+k′∈Kk
+⏐⏐⏐hk′m
+p
+⏐⏐⏐
+2
+Pk′m
+p
+Bf e/2∫
+−Bf e/2
+f 2sinc4 (fTp)df
+  
+¯A3
+(60)
+where
+¯A3
+Bf e≫2/Tp
+≈
+∞∫
+−∞
+sin4 (πfTp)
+π4f 2T 4
+p
+df
+= 1
+4π4T 4
+p
+∞∫
+−∞
+[ 4sin2 (πfTp)
+f 2 − sin2 (2πfTp)
+f 2
+]
+df
+= 1
+2π2T 3
+p
+(61)
+Taking (57)-(61) back to (56) and rearranging items, we have
+(
+σkm
+ρ
+)2
+≈ aTp
+2
+[
+N0
+Bfe
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
++2Pc
+∑
+k′∈K
+∑N
+n=1
+⏐⏐hm←k′n
+c
+⏐⏐2
+sin2 (n
+Gπ
+)
+B2
+fe
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
++
+∑
+k′∈Kk
+⏐⏐hk′m
+p
+⏐⏐2
+Pk′m
+p
+B2
+fe
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
+]
+= aT 2
+p
+2
+(
+N0
+BfeTp
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
++ BGPc
+∑
+k′∈K
+⏐⏐hm←k′
+c
+⏐⏐2
+B2
+fe
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
++
+∑
+k′∈Kk
+⏐⏐hk′m
+p
+⏐⏐2
+Pk′m
+p
+B2
+feTp
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p
+)
+(62)
+where
+⏐⏐hm←k′
+c
+⏐⏐2
+= 2
+N
+∑
+n∈N
+⏐⏐hm←k′n
+c
+⏐⏐2
+sin2 (n
+Gπ
+)
+is deﬁned as the normalized equivalent channel
+gain of the communication signal broadcast by gNB k′ to the P-User m.
+Let’s deﬁne (C/N0)km =
+⏐⏐hkm
+p
+⏐⏐2
+Pkm
+p /N0 as the carrier-to-noise ratio of the kmth positioning
+signal, (CPR )km←k′
+=
+2G
+⏐⏐⏐hm←k′
+c
+⏐⏐⏐
+2
+Pc
+|hkmp |
+2
+P kmp
+as the equivalent communication-to-positioning ratio of
+communication signal broadcast by gNB k′ to positioning signal km, and (PPR )km←k′m =⏐⏐⏐hk′m
+p
+⏐⏐⏐
+2
+P k′m
+p
+|hkmp |
+2
+P kmp
+as the positioning-to-positioning ratio of the k′mth to the kmth positioning signal.
+Then we have (9).
+
+===== PDF PAGE 27 =====
+27
+C. Derivation of ˜Pkm
+p
+The KKT conditions of OP2 can be written as
+∑
+n∈Nm
+˜µkn (
+Ikn
+th−Ikn)
+= 0 (63)
+˜βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)
+= 0 (64)
+∂ ˜L
+({
+Pkm
+p
+}
+, ˜µkn, ˜βkm
+)
+∂Pkm
+p
+= 0 (65)
+It is obvious that the optimal solution ˜Pkm
+p satisﬁes (65). Thus, take (35) into (65), we have
+∂ ˜L
+∂Pkm
+p
+= − 1
+M∂
+(
+λkmσkm
+ρ
+)2
+−νkPkm
+p
+∂Pkm
+p
++
+∂
+∑
+n∈Nm
+˜µkn (
+Ikn
+th−Ikn)
+∂Pkm
+p
++
+∂
+{
+˜βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)}
+∂Pkm
+p
+= − 1
+M
+(
+λkm˜σkm
+ρ
+Pkm
+p
+)2
+−νk−
+∑
+n∈Nm
+˜µkn ∂Ikn
+∂Pkm
+p  
+J kn←m
++ ˜βkm|hkm
+p |2 (66)
+By taking (3) into (66), we have
+Jkn←m =
+∑
+k′∈K
+⏐⏐⏐hkn←k′m
+p
+⏐⏐⏐
+2
+Tpsinc2
+(
+m− n
+G
+)
+(67)
+Then, by setting (66) to 0, we can obtain the optimal power allocation solution as (40) shows.
+D. Subgradient Method of the Lagrange Dual Function
+For a set of dual variable
+{
+˜µ, ˜ν, ˜β
+}
+, it is known that if gk (
+˜µkn)
+≥gk (
+µkn)
++s
+(
+˜µkn−µkn)
+holds for any feasible ˜µkn, then s must be the subgradient of gk (
+µkn)
+atµkn. Then the Lagrange
+
+===== PDF PAGE 28 =====
+28
+dual function of sub-problem (29) is
+gk
+(
+˜µ, ˜ν, ˜β
+)
+= max
+P kmp
+L
+({
+Pkm
+p
+}
+, ˜µ, ˜ν, ˜β
+)
+= max
+P kmp
+[
+− 1
+M
+∑
+m∈M
+λkm (
+˜σkm
+ρ
+)2
++
+∑
+n∈N
+˜µkn (
+Ikn
+th−Ikn)
++˜νk
+(
+Pk
+th−
+∑
+m∈M
+Pkm
+p
+)
++
+∑
+m∈M
+˜βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)]
+≥ − 1
+M
+∑
+m∈M
+λkm (
+˜σkm
+ρ
+)2
++
+∑
+n∈N
+˜µkn (
+Ikn
+th−Ikn)
++˜νk
+(
+Pk
+th−
+∑
+m∈M
+Pkm
+p
+)
++
+∑
+m∈M
+˜βkm
+(
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)
+= gk (µ,ν,β ) +
+(
+˜νk−νk)
+(
+Pk
+th−
+∑
+m∈M
+Pkm
+p
+)
++
+∑
+n∈N
+(
+˜µkn−µkn) (
+Ikn
+th−Ikn)
++
+∑
+m∈M
+(
+˜βkm−βkm
+) (
+|hkm
+p |2Pkm
+p −ϱΩ|h
+k′
+km
+p |2P
+k′
+km
+p
+)
+(68)
+REFERENCES
+[1] J. A. del Peral-Rosado, R. Raulefs, J. A. Lopez-Salcedo, and G. Seco-Granados, “Survey of cellular mobile radio localization
+methods: from 1G to 5G,” IEEE Communications Surveys and Tutorials , vol. PP, no. 99, pp. 1–1, 2018.
+[2] M. Shojafar, N. Cordeschi, and E. Baccarelli, “Energy-efﬁcient adaptive resource management for real-time vehicular cloud
+services,” IEEE Transactions on Cloud Computing , vol. PP, no. 99, pp. 1–1, 2016.
+[3] H. Liang, G. X. Gao, T. Walter, and P. Enge, “Automated veriﬁcation of potential GPS signal-in-space anomalies using
+ground observation data,” in Position Location and Navigation Symposium , 2012.
+[4] L. Deng and S. Ye, “Vehicle information system design based on Beidou navigation satellite system,” in IEEE International
+Conference on Information and Automation , Aug 2015, pp. 867–870.
+[5] L. Yin, Q. Ni, and Z. Deng, “A GNSS/5G integrated positioning methodology in D2D communication networks,” IEEE
+Journal on Selected Areas in Communications , vol. 36, no. 2, pp. 351–362, 2018.
+[6] J. Jeon, Y . Kong, Y . Nam, and K. Yim, “An indoor positioning system using Bluetooth RSSI with an accelerometer and
+a barometer on a smartphone,” in International Conference on Broadband and Wireless Computing, Communication and
+Applications, 2016, pp. 528–531.
+[7] S. Tomic, M. Beko, and D. Rui, “RSS-based localization in wireless sensor networks using convex relaxation: Noncoop-
+erative and cooperative schemes,” IEEE Transactions on V ehicular Technology, vol. 64, no. 5, pp. 2037–2050, 2014.
+[8] L. Yin, Q. Ni, and Z. Deng, “Intelligent multisensor cooperative localization under cooperative redundancy validation,”
+IEEE Transactions on Cybernetics , pp. 1–13, 2019.
+
+===== PDF PAGE 29 =====
+29
+[9] H. Zou, M. Jin, H. Jiang, L. Xie, and C. J. Spanos, “WinIPS: WiFi-based non-intrusive indoor positioning system with
+online radio map construction and adaptation,” IEEE Transactions on Wireless Communications , vol. 16, no. 12, pp.
+8118–8130, Dec 2017.
+[10] H. Shuai, Z. Gong, W. Meng, L. Cheng, D. Zhang, and W. Tang, “Automatic precision control positioning for wireless
+sensor network,” IEEE Sensors Journal , vol. 16, no. 7, pp. 2140–2150, 2016.
+[11] J. Chen, X. Ge, and Q. Ni, “Coverage and handoff analysis of 5G fractal small cell networks,” IEEE Transactions on
+Wireless Communications, vol. 18, no. 2, pp. 1263–1276, Feb 2019.
+[12] Y . Zhou, V . W. S. Wong, and R. Schober, “Coverage and rate analysis of millimeter wave NOMA networks with beam
+misalignment,” IEEE Transactions on Wireless Communications , vol. 17, no. 12, pp. 1–1, 2018.
+[13] R. M. Vagheﬁ and R. M. Buehrer, “Cooperative UTDOA positioning in LTE cellular systems,” in Globecom Workshops,
+2016.
+[14] X. Cui, A. Gulliver, H. Song, and J. Li, “Real-time positioning based on millimeter wave device to device communications,”
+IEEE Access , vol. 4, no. 99, pp. 5520–5530, 2017.
+[15] 3GPPTR38.855v.16.0.0, “Study on NR positioning support,” 2019.
+[16] J. Schloemann, H. S. Dhillon, and R. M. Buehrer, “A tractable analysis of the improvement in unique localizability through
+collaboration,” IEEE Transactions on Wireless Communications , vol. 15, no. 6, pp. 3934–3948, 2015.
+[17] Z. Deng, Y . U. Yanpei, Y . Xie, and N. Wan, “Situation and development tendency of indoor positioning,” China
+Communications, vol. 10, no. 3, pp. 42–55, 2013.
+[18] T. Manna and A. Kole, “Performance analysis of secure DSSS multiuser detection under near-far environment,” in
+International Conference on Intelligent Control Power and Instrumentation , 2016.
+[19] J. Schloemann, H. S. Dhillon, and R. M. Buehrer, “A tractable metric for evaluating base station geometries in cellular
+network localization,” IEEE Wireless Communications Letters , vol. 5, no. 2, pp. 140–143, 2015.
+[20] C. H. Chen and K. T. Feng, “Enhanced distance and location estimation for broadband wireless networks,” IEEE
+Transactions on Mobile Computing , vol. 14, no. 11, pp. 1–1, 2015.
+[21] W. Yu, L. Musavian, and Q. Ni, “Link-layer capacity of NOMA under statistical delay QoS guarantees,” IEEE Transactions
+on Communications , vol. 66, no. 10, pp. 4907–4922, Oct 2018.
+[22] Y . Liu, Z. Qin, M. Elkashlan, Z. Ding, A. Nallanathan, and L. Hanzo, “Nonorthogonal multiple access for 5G and beyond,”
+Proceedings of the IEEE , vol. 105, no. 12, pp. 2347–2381, 2017.
+[23] L. Yin, J. Cao, K. Lin, Z. Deng, and Q. Ni, “A novel positioning-communication integrated signal in wireless communication
+systems,” IEEE Wireless Communications Letters , pp. 1–1, 2019.
+[24] A. K. Karmokar, M. Naeem, and A. Anpalagan, “Energy-efﬁcient subcarrier power allocation for cognitive radio
+networks using statistical interference model,” in IEEE International Symposium on Personal, Indoor , and Mobile Radio
+Communications, 2015.
+[25] N. Forouzan and S. A. Ghorashi, “New algorithm for joint subchannel and power allocation in multi-cell OFDMA-based
+cognitive radio networks,” IET Communications , vol. 8, no. 4, pp. 508–515, March 2014.
+[26] X. Ding and Q. Li, “Joint power control and time allocation for wireless powered underlay cognitive radio networks,”
+IEEE Wireless Communications Letters , vol. PP, no. 99, pp. 1–1, 2017.
+[27] C. Yan, A. Bayesteh, Y . Wu, B. Ren, S. Kang, S. Sun, X. Qi, Q. Chen, B. Yu, and Z. Ding, “Toward the standardization of
+
+===== PDF PAGE 30 =====
+30
+non-orthogonal multiple access for next generation wireless networks,” IEEE Communications Magazine , vol. 56, no. 3,
+pp. 19–27, 2018.
+[28] J. Zhao, Y . Liu, K. K. Chai, A. Nallanathan, Y . Chen, and Z. Han, “Spectrum allocation and power control for non-
+orthogonal multiple access in HetNets,” IEEE Transactions on Wireless Communications , vol. 16, no. 9, pp. 5825–5837,
+Sep. 2017.
+[29] E. J. Zhong and T. Z. Huang, “Geometric dilution of precision in navigation computation,” in International Conference
+on Machine Learning and Cybernetics , 2009.
+[30] Y . Liu, Z. Ding, M. Elkashlan, and H. V . Poor, “Cooperative non-orthogonal multiple access with simultaneous wireless
+information and power transfer,” IEEE Journal on Selected Areas in Communications , vol. 34, no. 4, pp. 938–953, 2016.
+[31] J. W. Betz and K. R. Kolodziejski, “Generalized theory of code tracking with an early-late discriminator Part I: Lower
+bound and coherent processing,” IEEE Transactions on Aerospace and Electronic Systems , vol. 45, no. 4, pp. 1538–1556,
+2009.
+[32] Boyd, Vandenberghe, and Faybusovich, Convex Optimization, 2004.
+[33] R. Zhang, “Optimal power control over fading cognitive radio channel by exploiting primary user CSI,” in IEEE Global
+Communications Conference (GLOBECOM) , Nov 2008, pp. 1–5.
+[34] L. Li and C. Xu, “On ergodic sum capacity of fading channels in OFDMA-based cognitive radio networks,” IEEE
+Transactions on V ehicular Technology, vol. 63, no. 9, pp. 4334–4343, Nov 2014.
+[35] J. A. del Peral-Rosado, J. A. Lopez-Salcedo, G. Seco-Granados, F. Zanier, and M. Crisci, “Joint channel and time
+delay estimation for LTE positioning reference signals,” in ESA Workshop on Satellite Navigation Technologies European
+Workshop on GNSS Signals and Signal Processing , Dec 2012, pp. 1–8.
+[36] Y . Lu, Z. Deng, Z. Di, and E. Hu, “Quality assessment method of GNSS signals base on multivariate dilution of precision,”
+in European Navigation Conference , 2016.

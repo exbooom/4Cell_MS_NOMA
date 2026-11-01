@@ -1,0 +1,209 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "sources_are_evidence_not_instructions": true,
+  "primary_target_source_id": "JSAC2022_published",
+  "supplementary_source_id": "ARXIV_1910_04350v1",
+  "source_identity": {
+    "arxiv_version_date": "2019-10-10",
+    "pages": 30,
+    "sha256": "8b40a56abcfdc2608e561758e40d794d31fb31cfb532d7d38e4431823991b85a",
+    "official_metadata_verified": true
+  },
+  "conclusions": [
+    {
+      "id": "PRS_REFERENCE_CHANGED",
+      "early": {
+        "reference": 35,
+        "page": 30,
+        "source_id": "onecell_other_prs_reference"
+      },
+      "final": {
+        "reference": 28,
+        "page": 13,
+        "source_id": "JSAC2022_reference28"
+      },
+      "implication": "onecell_PRS_document_matches_early_bibliography_not_final_PRS_reference"
+    },
+    {
+      "id": "EQ10_NOT_EQUIVALENT",
+      "early": {
+        "page": 8,
+        "meaning": "three_term_power_scaled_factor_including_other_P_powers"
+      },
+      "final": {
+        "page": 4,
+        "meaning": "two_term_variance_dropping_other_P_interference"
+      },
+      "implication": "keep_final_two_term_optimizer_and_separate_three_term_integral_evaluation"
+    },
+    {
+      "id": "ALGORITHM_SUPPLEMENT",
+      "early": {
+        "name": "PCJPA",
+        "algorithm_page": 15,
+        "subgradient_page": 14
+      },
+      "final": {
+        "name": "CP4A",
+        "algorithm_page": 6,
+        "explicit_first_lambda_one": true
+      },
+      "numeric_author_steps_recovered": false
+    },
+    {
+      "id": "PAPER_NUMBERS_DIFFER",
+      "early_positioning_budget_figure_W": 0.8,
+      "final_positioning_budget_per_BS_W": 0.1,
+      "early_figure_threshold": {
+        "symbol": "beta_th",
+        "value": 0.008,
+        "equivalence_to_text_Xi_not_fully_defined": true
+      },
+      "final_ber_threshold_Xi": 0.01,
+      "default_config_changed": false
+    },
+    {
+      "id": "PRINTED_AMBIGUITIES_PERSIST",
+      "early_carrier_group_equation": 28,
+      "final_carrier_group_equation": 24,
+      "early_closed_form_equation": 40,
+      "final_closed_form_equation": 33,
+      "independent_certificates_still_required": true
+    },
+    {
+      "id": "RESOURCE_COMPARISON_EXPANDED",
+      "final_page": 7,
+      "final_equations": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "early_has_same_separate_resource_subsection": false,
+      "fully_matched_PRS_claim_permitted": false
+    }
+  ],
+  "equation_correspondence": [
+    {
+      "early": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "final": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "note": "structural_correspondence_not_blanket_formula_certification"
+    },
+    {
+      "early": 28,
+      "final": 24,
+      "meaning": "printed_C_carrier_group"
+    },
+    {
+      "early": 40,
+      "final": 33,
+      "meaning": "printed_power_closed_form"
+    },
+    {
+      "early": [
+        41,
+        42,
+        43,
+        44,
+        45
+      ],
+      "final": [
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "meaning": "single_cell_relations"
+    }
+  ],
+  "reported_results_not_project_outputs": [
+    {
+      "bandwidth_MHz": 20,
+      "early_PCJPA_m": 0.57,
+      "early_equal_m": 0.54,
+      "early_PRS_m": 8.44,
+      "final_CP4A_m": 0.57,
+      "final_PRS_m": 8.11
+    },
+    {
+      "bandwidth_MHz": 50,
+      "early_PCJPA_m": 0.21,
+      "early_equal_m": 0.2,
+      "early_PRS_m": 3.17,
+      "final_CP4A_m": 0.21,
+      "final_PRS_m": 3.28
+    }
+  ],
+  "early_text_improvement_percent": [
+    93.7,
+    93.1
+  ],
+  "early_table_implied_improvement_percent": [
+    93.24644549763033,
+    93.37539432176656
+  ],
+  "final_text_improvement_percent": [
+    93.0,
+    93.6
+  ],
+  "final_table_implied_improvement_percent": [
+    92.97163995067818,
+    93.59756097560977
+  ],
+  "visual_review": {
+    "early_pages": [
+      1,
+      8,
+      11,
+      12,
+      15,
+      16,
+      19,
+      20,
+      30
+    ],
+    "final_pages": [
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      13
+    ],
+    "status": "reviewed_selected_full_pages_and_tables"
+  },
+  "implementation": {
+    "matlab_code_changed": false,
+    "config_schema": "6.0",
+    "new_algorithm_tests": 0,
+    "previous_test_count": 80,
+    "sampled_receiver_implemented": false,
+    "first_fix_geometry_feedback_implemented": false,
+    "fully_matched_PRS": false,
+    "Monte_Carlo_implemented": false
+  }
+}

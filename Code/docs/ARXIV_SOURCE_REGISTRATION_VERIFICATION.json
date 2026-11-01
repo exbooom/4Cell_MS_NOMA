@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-01",
+  "scope": "source_registration_and_documentary_cross_validation_only",
+  "registeredSourcesChecked": [
+    {
+      "id": "JSAC2022_published",
+      "sha256Matches": true
+    },
+    {
+      "id": "JSAC2022_accepted",
+      "sha256Matches": true
+    },
+    {
+      "id": "JSAC2022_reference28",
+      "sha256Matches": true
+    },
+    {
+      "id": "onecell_other_prs_reference",
+      "sha256Matches": true
+    },
+    {
+      "id": "ARXIV_1910_04350v1",
+      "sha256Matches": true
+    }
+  ],
+  "existingStage6Runs": [
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113009_3dc53e95",
+      "sourceCount": 87,
+      "allSourceHashesMatch": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113040_88d74fa4",
+      "sourceCount": 87,
+      "allSourceHashesMatch": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113104_6d9b54b4",
+      "sourceCount": 87,
+      "allSourceHashesMatch": true
+    }
+  ],
+  "sourcesAreEvidenceNotInstructions": true,
+  "matlabCodeChanged": false,
+  "additionalAlgorithmTests": 0,
+  "existingAlgorithmTestCount": 80,
+  "note": "existing tests not rerun because no MATLAB source or configuration changed"
+}

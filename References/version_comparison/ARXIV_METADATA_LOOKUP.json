@@ -1,0 +1,60 @@
+{
+  "url": "https://arxiv.org/abs/1910.04350v1",
+  "checkedDate": "2026-11-01",
+  "httpStatus": 200,
+  "status": "retrieved",
+  "citationMetadata": [
+    {
+      "name": "citation_title",
+      "content": "Design and Performance Analysis of Multi-scale NOMA for 5G Positioning"
+    },
+    {
+      "name": "citation_author",
+      "content": "Yin, Lu"
+    },
+    {
+      "name": "citation_author",
+      "content": "Cao, Jiameng"
+    },
+    {
+      "name": "citation_author",
+      "content": "Deng, Zhongliang"
+    },
+    {
+      "name": "citation_author",
+      "content": "Ni, Qiang"
+    },
+    {
+      "name": "citation_author",
+      "content": "Li, Song"
+    },
+    {
+      "name": "citation_author",
+      "content": "Zheng, Xinyu"
+    },
+    {
+      "name": "citation_author",
+      "content": "Wang, Hanhua"
+    },
+    {
+      "name": "citation_date",
+      "content": "2019/10/10"
+    },
+    {
+      "name": "citation_online_date",
+      "content": "2019/10/10"
+    },
+    {
+      "name": "citation_pdf_url",
+      "content": "https://arxiv.org/pdf/1910.04350"
+    },
+    {
+      "name": "citation_arxiv_id",
+      "content": "1910.04350"
+    },
+    {
+      "name": "citation_abstract",
+      "content": "This paper presents a feasibility study for a novel positioning-communication integrated signal called Multi-Scale Non-Orthogonal Multiple Access (MS-NOMA) for 5G positioning. One of the main differences between the MS-NOMA and the traditional positioning signal is MS-NOMA supports configurable powers for different positioning users (P-Users) to obtain better ranging accuracy and signal coverage. Our major contributions are: Firstly, we present the MS-NOMA signal and analyze the Bit Error Rate (BER) and ranging accuracy by deriving their simple expressions. The results show the interaction between the communication and positioning signals is rather limited, and it is feasible to use the MS-NOMA signal to achieve high positioning accuracy. Secondly, for an optimal positioning accuracy and signal coverage, we model the power allocation problem for MS-NOMA signal as a convex optimization problem by satisfying the QoS (Quality of Services) requirement and other constraints. Then, we propose a novel Positioning-Communication Joint Power Allocation (PCJPA) algorithm which allocates the powers of all P-Users iteratively. The theoretical and numerical results show our proposed MS-NOMA signal has great improvements of ranging/positioning accuracy than traditional PRS (Positioning Reference Signal) in 5G, and improves the coverage dramatically which means more P-Users could locate their positions without suffering the near-far effect."
+    }
+  ]
+}

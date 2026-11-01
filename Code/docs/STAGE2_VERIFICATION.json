@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-01",
+  "basicTests": 17,
+  "precisionTests": 9,
+  "totalTests": 26,
+  "codeAnalyzerDiagnostics": 0,
+  "run50": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_000324_2304afbf",
+  "run20": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_000341_1c0cd0cd",
+  "metrics": [
+    {
+      "effectiveBandwidthHz": 4.977E+7,
+      "maxQuadratureChange": 6.0814737523523022E-10,
+      "maxTwoTermRelativeVarianceError": 0.13548837561086546,
+      "maxThreeTermRelativeVarianceError": 0.13432274469456329,
+      "maxFrontendRelativeVarianceDifference": 0.11700127757337087,
+      "prsJointDutyCycle": 0.17333333333333331,
+      "prsMeanPositionBoundM": 0.00012649502617775768
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "maxQuadratureChange": 3.7065504035924077E-9,
+      "maxTwoTermRelativeVarianceError": 0.13451515980183859,
+      "maxThreeTermRelativeVarianceError": 0.133407169740152,
+      "maxFrontendRelativeVarianceDifference": 0.11703775395391336,
+      "prsJointDutyCycle": 0.18666666666666665,
+      "prsMeanPositionBoundM": 0.00029756079665892941
+    }
+  ]
+}

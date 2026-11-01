@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-01",
+  "name": "stage8_20MHz_feedback_fix_limit_sensitivity_5",
+  "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_130239_5d09fd17",
+  "maxFixes": 5,
+  "actualFixes": 4,
+  "converged": true,
+  "maximumPositionChangeM": 1.2546734314122876e-05,
+  "relativePowerChange": 1.486087150000363e-05,
+  "validPositions": 20,
+  "conditionalMeanErrorM": 0.08220022369628763,
+  "geometryRecomputedFromEstimates": true,
+  "sourceHashesMatchCurrentSources": true,
+  "sourceFiles": 112,
+  "figures": 14,
+  "visualReview": "reviewed_legible_no_clipped_titles",
+  "reviewImage": "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_extra_feedback_review.png"
+}

@@ -1,0 +1,111 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "basicTests": 17,
+  "precisionTests": 9,
+  "dualTests": 10,
+  "projectedTests": 9,
+  "prsComparisonTests": 18,
+  "totalTests": 63,
+  "codeAnalyzerDiagnostics": 0,
+  "sourceFiles": 74,
+  "sourceHashesMatchedAllRuns": true,
+  "run50": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_111410_fa412f7e",
+  "run20": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_111441_7527b46c",
+  "budgetStressRun": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_111500_a8706e86",
+  "scenarios": [
+    {
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "jointPrsDutyCycle": 0.17333333333333331,
+      "meanMsTdoaVarianceProxyStdM": 0.063435118409610108,
+      "fullyMatched": false,
+      "policies": [
+        {
+          "id": "global_muting",
+          "meanTdoaBoundM": 0.00011891614833042804,
+          "minimumCommunicationFraction": 0.82666666666666666,
+          "maximumCommunicationFraction": 0.82666666666666666,
+          "maxRequiredEqualEnergyPowerW": 1.2096774193548385,
+          "energyCompensationPeakFeasible": false,
+          "worstActiveBer": 0,
+          "activeBerQosMet": true,
+          "serviceContractMet": false
+        },
+        {
+          "id": "other_bs_communication",
+          "meanTdoaBoundM": 0.054537989152116474,
+          "minimumCommunicationFraction": 0.95,
+          "maximumCommunicationFraction": 0.96333333333333337,
+          "maxRequiredEqualEnergyPowerW": 1.0526315789473684,
+          "energyCompensationPeakFeasible": true,
+          "worstActiveBer": 0,
+          "activeBerQosMet": true,
+          "serviceContractMet": false
+        }
+      ]
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.1,
+      "jointPrsDutyCycle": 0.18666666666666665,
+      "meanMsTdoaVarianceProxyStdM": 0.24037722496936667,
+      "fullyMatched": false,
+      "policies": [
+        {
+          "id": "global_muting",
+          "meanTdoaBoundM": 0.00027964522537816938,
+          "minimumCommunicationFraction": 0.81333333333333335,
+          "maximumCommunicationFraction": 0.81333333333333335,
+          "maxRequiredEqualEnergyPowerW": 1.2295081967213115,
+          "energyCompensationPeakFeasible": false,
+          "worstActiveBer": 0,
+          "activeBerQosMet": true,
+          "serviceContractMet": false
+        },
+        {
+          "id": "other_bs_communication",
+          "meanTdoaBoundM": 0.0017198577178848793,
+          "minimumCommunicationFraction": 0.94333333333333336,
+          "maximumCommunicationFraction": 0.96333333333333337,
+          "maxRequiredEqualEnergyPowerW": 1.0600706713780919,
+          "energyCompensationPeakFeasible": true,
+          "worstActiveBer": 0.34726198052821139,
+          "activeBerQosMet": false,
+          "serviceContractMet": false
+        }
+      ]
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.001,
+      "jointPrsDutyCycle": 0.013333333333333334,
+      "meanMsTdoaVarianceProxyStdM": 1.493093828033681,
+      "fullyMatched": false,
+      "policies": [
+        {
+          "id": "global_muting",
+          "meanTdoaBoundM": 0.0019755462388834637,
+          "minimumCommunicationFraction": 0.98666666666666669,
+          "maximumCommunicationFraction": 0.98666666666666669,
+          "maxRequiredEqualEnergyPowerW": 1.0135135135135136,
+          "energyCompensationPeakFeasible": true,
+          "worstActiveBer": 0,
+          "activeBerQosMet": true,
+          "serviceContractMet": false
+        },
+        {
+          "id": "other_bs_communication",
+          "meanTdoaBoundM": 0.012149911652010608,
+          "minimumCommunicationFraction": 0.9966666666666667,
+          "maximumCommunicationFraction": 0.9966666666666667,
+          "maxRequiredEqualEnergyPowerW": 1.0033444816053512,
+          "energyCompensationPeakFeasible": true,
+          "worstActiveBer": 0.22764645045579826,
+          "activeBerQosMet": false,
+          "serviceContractMet": false
+        }
+      ]
+    }
+  ]
+}

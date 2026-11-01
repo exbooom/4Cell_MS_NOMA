@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "basicTests": 17,
+  "precisionTests": 9,
+  "dualTests": 10,
+  "projectedTests": 9,
+  "prsComparisonTests": 18,
+  "biasAndFilterTests": 17,
+  "sampledTests": 17,
+  "totalTests": 97,
+  "codeAnalyzerDiagnostics": 0,
+  "sourceFiles": 104,
+  "sourceHashesMatchedAllRuns": true,
+  "runs": [
+    "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122149_c2fd95ca",
+    "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122227_ee48d93b",
+    "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122317_9135a33a",
+    "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122420_925f1ff5",
+    "F:\\4Cell_MS_NOMA\\Results\\run_20261101_122505_b591a683"
+  ],
+  "scenarios": [
+    {
+      "experimentName": "stage7_finite_sampled_C_P_AWGN_acquisition_feedback",
+      "domainM": [
+        [
+          0,
+          200
+        ],
+        [
+          0,
+          200
+        ]
+      ],
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "codeMode": "author_L1CP",
+      "includeCommunication": true,
+      "noiseMultiplier": 1,
+      "whitening": "known_average_CP_psd",
+      "activeDurationS": 0.00043333333333333331,
+      "sampleRateHz": 1.9908E+8,
+      "validRanges": 79,
+      "totalRanges": 80,
+      "validPositions": 19,
+      "totalPositions": 20,
+      "conditionalMeanActualPositionErrorM": 0.0673333373075872,
+      "conditionalMaxActualPositionErrorM": 0.14814821211252249,
+      "feedbackStatus": "acquisition_or_position_failure",
+      "feedbackIterations": 1,
+      "feedbackConverged": false,
+      "finalFeedbackValidPositions": 19,
+      "finalFeedbackConditionalMeanErrorM": 0.06809869736193401,
+      "stepSensitivityStatus": "disabled",
+      "figures": 13
+    },
+    {
+      "experimentName": "stage7_finite_sampled_C_P_AWGN_acquisition_feedback",
+      "domainM": [
+        [
+          0,
+          200
+        ],
+        [
+          0,
+          200
+        ]
+      ],
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.1,
+      "codeMode": "author_L1CP",
+      "includeCommunication": true,
+      "noiseMultiplier": 1,
+      "whitening": "known_average_CP_psd",
+      "activeDurationS": 0.0010666666666666667,
+      "sampleRateHz": 8.064E+7,
+      "validRanges": 79,
+      "totalRanges": 80,
+      "validPositions": 19,
+      "totalPositions": 20,
+      "conditionalMeanActualPositionErrorM": 0.136949050073612,
+      "conditionalMaxActualPositionErrorM": 0.27016803334205325,
+      "feedbackStatus": "acquisition_or_position_failure",
+      "feedbackIterations": 1,
+      "feedbackConverged": false,
+      "finalFeedbackValidPositions": 19,
+      "finalFeedbackConditionalMeanErrorM": 0.13753743014549269,
+      "stepSensitivityStatus": "disabled",
+      "figures": 13
+    },
+    {
+      "experimentName": "stage7_finite_sampled_C_P_AWGN_acquisition_feedback",
+      "domainM": [
+        [
+          0,
+          200
+        ],
+        [
+          0,
+          200
+        ]
+      ],
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.001,
+      "codeMode": "author_L1CP",
+      "includeCommunication": true,
+      "noiseMultiplier": 1,
+      "whitening": "known_average_CP_psd",
+      "activeDurationS": 0.0010666666666666667,
+      "sampleRateHz": 8.064E+7,
+      "validRanges": 69,
+      "totalRanges": 80,
+      "validPositions": 12,
+      "totalPositions": 20,
+      "conditionalMeanActualPositionErrorM": 0.35380918959852431,
+      "conditionalMaxActualPositionErrorM": 0.88725596921727878,
+      "feedbackStatus": "acquisition_or_position_failure",
+      "feedbackIterations": 1,
+      "feedbackConverged": false,
+      "finalFeedbackValidPositions": 11,
+      "finalFeedbackConditionalMeanErrorM": 0.346090381535409,
+      "stepSensitivityStatus": "completed",
+      "figures": 14
+    },
+    {
+      "experimentName": "stage7_no_C_no_AWGN_original_domain_P_interference_retained",
+      "domainM": [
+        [
+          0,
+          200
+        ],
+        [
+          0,
+          200
+        ]
+      ],
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "codeMode": "seeded_independent_bpsk",
+      "includeCommunication": false,
+      "noiseMultiplier": 0,
+      "whitening": "known_average_CP_psd",
+      "activeDurationS": 0.00043333333333333331,
+      "sampleRateHz": 1.9908E+8,
+      "validRanges": 79,
+      "totalRanges": 80,
+      "validPositions": 19,
+      "totalPositions": 20,
+      "conditionalMeanActualPositionErrorM": 0.070392323066038376,
+      "conditionalMaxActualPositionErrorM": 0.28108997759238097,
+      "feedbackStatus": "acquisition_or_position_failure",
+      "feedbackIterations": 1,
+      "feedbackConverged": false,
+      "finalFeedbackValidPositions": 19,
+      "finalFeedbackConditionalMeanErrorM": 0.07084722100308849,
+      "stepSensitivityStatus": "disabled",
+      "figures": 13
+    },
+    {
+      "experimentName": "stage7_interior_domain_no_C_no_AWGN_full_feedback",
+      "domainM": [
+        [
+          50,
+          150
+        ],
+        [
+          50,
+          150
+        ]
+      ],
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "codeMode": "seeded_independent_bpsk",
+      "includeCommunication": false,
+      "noiseMultiplier": 0,
+      "whitening": "known_average_CP_psd",
+      "activeDurationS": 0.00043333333333333331,
+      "sampleRateHz": 1.9908E+8,
+      "validRanges": 80,
+      "totalRanges": 80,
+      "validPositions": 20,
+      "totalPositions": 20,
+      "conditionalMeanActualPositionErrorM": 0.043927272773085536,
+      "conditionalMaxActualPositionErrorM": 0.091260877148270456,
+      "feedbackStatus": "converged",
+      "feedbackIterations": 3,
+      "feedbackConverged": true,
+      "finalFeedbackValidPositions": 20,
+      "finalFeedbackConditionalMeanErrorM": 0.043928159338420224,
+      "stepSensitivityStatus": "disabled",
+      "figures": 13
+    }
+  ]
+}

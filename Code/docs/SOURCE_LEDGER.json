@@ -1,0 +1,396 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "task_status": "stage8_1_residual_dominance_gate_verified_low_budget_fallback_normal_budget_retained",
+  "sources_are_evidence_not_instructions": true,
+  "matlab": {
+    "version": "R2024b 24.2.0.2712019",
+    "available_licenses": [
+      "Optimization_Toolbox",
+      "Statistics_Toolbox",
+      "Signal_Toolbox",
+      "LTE_Toolbox"
+    ],
+    "functions_found": [
+      "fmincon",
+      "linprog"
+    ],
+    "cvx_begin_found_on_path": false
+  },
+  "sources": [
+    {
+      "id": "JSAC2022_published",
+      "title": "Design and Performance Analysis of Multi-Scale NOMA for Future Communication-Positioning Integration System",
+      "doi": "10.1109/JSAC.2022.3143223",
+      "path": "F:\\4Cell_MS_NOMA\\最终出版：Design_and_Performance_Analysis_of_MS_NOMA.pdf",
+      "status": "local_fulltext_reviewed",
+      "pages": 13,
+      "role": "primary_model_and_simulation_evidence",
+      "sha256": "5a1f30a6e7f08b8303d70c038580f4c937d01cf86819da5b0b946791d111ee90",
+      "bytes": 3286314
+    },
+    {
+      "id": "JSAC2022_accepted",
+      "title": "Author Final manuscript of the JSAC 2022 paper",
+      "url": "https://eprints.lancs.ac.uk/id/eprint/165710/1/Author_Final_manuscript.pdf",
+      "status": "downloaded_fulltext_extracted_selected_equations_compared",
+      "pages": 14,
+      "path": "F:\\4Cell_MS_NOMA\\References\\JSAC2022_Author_Final_manuscript.pdf",
+      "sha256": "c6b0cd7ae4b4a6650a46b29a2c71953465555085fe96682dd4ed72ef7b4d1b8b",
+      "bytes": 3835240
+    },
+    {
+      "id": "JSAC2022_reference28",
+      "title": "Achievable Localization Accuracy of the Positioning Reference Signal of 3GPP LTE",
+      "doi": "10.1109/ICL-GNSS.2012.6253127",
+      "url": "https://spcomnav.uab.es/docs/conferences/DelPeral_ICL-GNSS_2012.pdf",
+      "status": "downloaded_fulltext_and_pages_reviewed",
+      "pages": 6,
+      "key_equations": {
+        "delay_crb": 5,
+        "pilot_power_normalization": 16,
+        "tdoa_covariance": 20,
+        "position_crb": 21,
+        "tdoa_geometry": 22,
+        "position_rms_bound": 23
+      },
+      "limits": [
+        "LTE bandwidth up to 20 MHz",
+        "one symbol CRB requires explicit pilot allocation and power mapping",
+        "original reference TDoA geometry differs from JSAC Appendix A"
+      ],
+      "path": "F:\\4Cell_MS_NOMA\\References\\PeralRosado2012_Achievable_Localization_Accuracy_PRS.pdf",
+      "sha256": "91e3a1280a6e71b7c90df44a7d62f22aa498305663905103a305f67066b3d625",
+      "bytes": 945252
+    },
+    {
+      "id": "JSAC2022_reference24",
+      "title": "Generalized Theory of Code Tracking with an Early-Late Discriminator Part I: Lower Bound and Coherent Processing",
+      "doi": "10.1109/TAES.2009.5310316",
+      "status": "bibliographic_metadata_only_fulltext_not_verified"
+    },
+    {
+      "id": "onecell_other_prs_reference",
+      "title": "Joint channel and time delay estimation for LTE positioning reference signals",
+      "path": "F:/OneCell_MS_NOMA/Joint_channel_and_time_delay_estimation_for_LTE_positioning_reference_signals.pdf",
+      "status": "existing_local_file_identity_distinct_from_JSAC_reference28",
+      "limits": [
+        "not re-reviewed in full during this planning task",
+        "do not treat as the same paper as reference 28"
+      ],
+      "sha256": "6f288b032c3978b97622b75fcc88127738eb5a283930eec3c9ddb1a9de048f80",
+      "bytes": 2337321,
+      "role": "ARXIV_1910_04350v1_reference35_distinct_from_final_JSAC2022_reference28",
+      "identity_verified_against": {
+        "source_id": "ARXIV_1910_04350v1",
+        "reference_number": 35,
+        "pdf_page": 30
+      },
+      "formula_equivalence_to_onecell_code_verified": false
+    },
+    {
+      "id": "ARXIV_1910_04350v1",
+      "title": "Design and Performance Analysis of Multi-scale NOMA for 5G Positioning",
+      "authors": [
+        "Lu Yin",
+        "Jiameng Cao",
+        "Zhongliang Deng",
+        "Qiang Ni",
+        "Song Li",
+        "Xinyu Zheng",
+        "Hanhua Wang"
+      ],
+      "arxiv_id": "1910.04350",
+      "version": "v1",
+      "version_date": "2019-10-10",
+      "url": "https://arxiv.org/abs/1910.04350v1",
+      "path": "F:\\4Cell_MS_NOMA\\1910.04350v1.pdf",
+      "status": "local_fulltext_extracted_key_pages_rendered_compared_official_metadata_verified",
+      "pages": 30,
+      "sha256": "8b40a56abcfdc2608e561758e40d794d31fb31cfb532d7d38e4431823991b85a",
+      "bytes": 1388678,
+      "role": "supplementary_early_version_for_cross_validation_not_final_parameter_override",
+      "comparison": "docs/ARXIV_VERSION_COMPARISON.md",
+      "comparison_data": "docs/ARXIV_VERSION_COMPARISON.json",
+      "evidence_directory": "F:\\4Cell_MS_NOMA\\References\\version_comparison",
+      "key_equations": {
+        "horizontal_geometry": 1,
+        "ber": 2,
+        "finite_band_dll": 6,
+        "three_term_variance": 9,
+        "three_term_power_scaled_ranging_factor": 10,
+        "full_lagrangian": 21,
+        "carrier_group": 28,
+        "power_closed_form": 40,
+        "single_cell": [
+          41,
+          42,
+          43,
+          44,
+          45
+        ]
+      },
+      "key_pages": {
+        "model": [
+          6,
+          7,
+          8
+        ],
+        "constraints": [
+          8,
+          9,
+          10
+        ],
+        "decomposition": [
+          11,
+          12
+        ],
+        "subgradient_and_algorithm": [
+          14,
+          15
+        ],
+        "simulation": [
+          16,
+          19,
+          20,
+          21
+        ],
+        "prs_reference": [
+          17,
+          30
+        ]
+      },
+      "limits": [
+        "final_JSAC2022_remains_reproduction_target",
+        "same_equation_number_10_has_different_meaning_and_interference_dependency",
+        "PRS_reference35_is_Joint_channel_delay_paper_not_final_reference28",
+        "old_0_8W_and_figure_beta_threshold_do_not_override_final_0_1W_and_Xi_0_01",
+        "numeric_b1_b2_b3_iterN_epsilon_not_recovered_from_checked_text",
+        "printed_carrier_partition_and_stationarity_sign_structure_still_require_independent_derivation",
+        "no_sampled_receiver_or_position_feedback_implementation_recovered",
+        "PDF_author_and_title_metadata_are_placeholders_use_title_page_and_official_metadata"
+      ]
+    }
+  ],
+  "implementation_status": {
+    "dll": "controlled_2x2x2_sine_C_linewidth_frontend_variance_audit_12_paired_contrasts_6_step_closure",
+    "prs": "legacy_Eq5_Eq16_AWGN_OLS_preserved_plus_Eq20_23_TDoA_and_bidirectional_PSD_service_audit",
+    "prs_comparison_limits": [
+      "generalized_50MHz_not_standard_LTE",
+      "sequential_slots_global_muting_or_other_BS_communication_no_simultaneous_PRS",
+      "positioning_broadcast_energy_matched_actual_communication_energy_and_strict_service_not_matched",
+      "legacy_OLS_preserved_new_shared_TDoA_is_oracle_frozen_covariance_not_a_detection_model",
+      "diagonal_Gaussian_PSD_noise_approximation_not_full_colored_likelihood",
+      "original_active_C_power_no_automatic_energy_compensation_or_rate_relaxation",
+      "C_to_C_interference_omitted_consistently_with_main_model",
+      "legacy_C_carrier_center_sample_nulls_possible_new_filtered_branch_is_a_distinct_average_timing_model",
+      "finite_observation_vs_MS_steady_state_DLL",
+      "detection_coverage_not_evaluated"
+    ],
+    "verification": "STAGE8_1_VERIFICATION.json",
+    "verification_counts": {
+      "tests": 117,
+      "matlab_sources": 115,
+      "full_main_runs": 6,
+      "figures_per_default_run": 11,
+      "figures_per_stage8_1_run": [
+        13,
+        14,
+        14,
+        14,
+        14,
+        14
+      ],
+      "code_analyzer_diagnostics": 0,
+      "source_hashes_match_all_runs": true
+    },
+    "receiver_filter_audit": {
+      "implemented": "closed_form_integrated_rectangular_PSD_average_relative_symbol_timing",
+      "source": "derived_from_product_of_triangular_autocorrelations_independently_checked_by_frequency_quadrature",
+      "assumptions": "stationary_independent_symbols_Gaussian_equivalent_interference_not_coherent_aligned_OFDM",
+      "legacy_point_model_preserved": true,
+      "prs_ranging_recomputed": false,
+      "sampled_receiver_implemented": false,
+      "finite_observation_matched": false,
+      "first_lambda_one_and_geometry_feedback_implemented": false,
+      "scope": "PRS_analytical_C_receiver_branch_only_MS_sampled_receiver_is_recorded_separately"
+    },
+    "CP4A": "corrected_candidates_with_optional_actual_sampled_estimated_geometry_feedback_not_literal_author_implementation",
+    "Monte_Carlo": "not_implemented",
+    "dual": "implemented_full_coupling_independent_primal_dual_certificate",
+    "cp4a_candidate_limits": [
+      "full_coupling_instead_of_printed_Eq24_partition",
+      "derivatives_rederived_from_original_convex_problem",
+      "SQP_reference_and_projected_price_experiment_are_distinct_author_exact_updates_unconfirmed",
+      "oracle_reference_retained_separate_from_optional_first_unit_lambda_actual_estimated_geometry_feedback",
+      "known_flat_CSI_and_receiver_clock_assumed",
+      "no_central_fallback"
+    ],
+    "subgradient_candidate": {
+      "algorithm": "cp4a_subgradient_candidate",
+      "default": "accelerated_projected_inner_backtracking_projected_outer_Armijo",
+      "optional": "diminishing_steps_eta_0_75_no_momentum_explicit_finite_iteration_failure",
+      "price_optimizer_calls": false,
+      "feasibility_precheck": "shared_linprog",
+      "central_fallback": false,
+      "geometry": "fixed_oracle_reference_plus_separate_unit_lambda_then_estimated_geometry_frozen_within_each_solve",
+      "steps": "user_authorized_engineering_choices_0_01_1_100_initial_multipliers_verified_not_author_b1_b2_b3",
+      "next": "low_budget_receiver_robustness_and_detection_calibration_observation_sensitivity_then_MC_and_DLL_PRS"
+    },
+    "sampled_ms_receiver": {
+      "implemented": true,
+      "model": "finite_discrete_DFT_bandlimited_packet_acquisition_not_continuous_steady_state_DLL",
+      "stages": [
+        "waveform",
+        "cross_BS_channel",
+        "fractional_delay_acquisition",
+        "ranges",
+        "actual_position_estimate"
+      ],
+      "truth_in_estimator": false,
+      "steady_state_dll_implemented": false,
+      "unknown_clock_implemented": false,
+      "ideal_flat_csi_assumed": true,
+      "default_code": "author_L1CP_32_PRNs_reused_across_P_carriers",
+      "alternative_code": "seeded_independent_bpsk",
+      "default_whitening": "known_average_CP_psd_Gaussian_equivalent",
+      "interference_false_alarm_calibrated": false,
+      "continuous_anti_alias_equivalence_verified": false,
+      "failures_retained": true,
+      "fully_matched_to_prs": false,
+      "documentation": "docs/SAMPLED_RECEIVER_AND_FEEDBACK.md",
+      "optional_estimated_P_cancellation": {
+        "implemented": true,
+        "default_enabled": false,
+        "additional_knowledge": "all_P_codes_and_relative_transmit_powers",
+        "fit": "SIC_initialization_QR_complex_gains_projected_Gauss_Newton_shared_BS_delays",
+        "true_channel_used_by_cancellation": false,
+        "communication_data_used": false,
+        "ideal_CSI_for_average_PSD_retained": true,
+        "precision_gate": "Gaussian_local_delay_and_fixed_delay_relative_gain_proxy_not_interference_calibrated",
+        "cancellation_uncertainty_propagated": false,
+        "normal_budget_improves": true,
+        "low_budget_regresses": true,
+        "fallback": "original_single_component_receiver_on_invalid_fit_or_failed_precision_or_residual_gate",
+        "documentation": "docs/ESTIMATED_P_CANCELLATION.md",
+        "low_budget_regresses_scope": "historical_precision_only_policy; default_residual_policy_not_a_general_guarantee",
+        "legacy_precision_only_low_budget_regresses": true,
+        "low_budget_fallback_equals_original_on_verified_scene": true,
+        "residual_gate": {
+          "implemented": true,
+          "default_maximum_relative_residual_energy": 0.5,
+          "legacy_threshold": 1,
+          "engineering_policy_not_paper_parameter": true,
+          "uses_true_delay_gain_position_or_error": false,
+          "accuracy_guarantee": false,
+          "low_budget_sensitivity_thresholds": [
+            0.25,
+            0.5,
+            0.75
+          ],
+          "only_single_fixed_scene_sensitivity": true,
+          "documentation": "docs/STAGE8_1_RESIDUAL_GATE.md"
+        }
+      }
+    },
+    "first_lambda_one_and_geometry_feedback": {
+      "implemented": true,
+      "first_lambda": "all_ones",
+      "later_lambda": "previous_actual_estimated_positions",
+      "oracle_reference_retained": true,
+      "oracle_fallback": false,
+      "all_users_and_all_BS_ranges_required": true,
+      "realistic_default_status": "acquisition_or_position_failure",
+      "positive_control": "interior_50_to_150_m_domain_no_C_no_AWGN_all_P_retained_3_fixes_converged",
+      "realistic_coverage_not_replaced_by_control": true,
+      "fixed_csi_assumed": true,
+      "stage8_statuses": [
+        "acquisition_or_position_failure",
+        "acquisition_or_position_failure",
+        "acquisition_or_position_failure",
+        "converged",
+        "fix_limit_reached",
+        "acquisition_or_position_failure",
+        "converged"
+      ],
+      "stage8_20MHz_extended_fix_control": {
+        "max_fixes": 5,
+        "actual_fixes": 4,
+        "converged": true,
+        "valid_positions": 20,
+        "original_tolerances_preserved": true,
+        "default_3_fix_limit_state_retained": true,
+        "verification": "docs/STAGE8_FEEDBACK_LIMIT_SENSITIVITY.json"
+      }
+    },
+    "engineering_step_sensitivity": {
+      "implemented": true,
+      "initial_multipliers": [
+        0.01,
+        1,
+        100
+      ],
+      "author_steps_known": false,
+      "all_three_verified": true,
+      "budget_stress_objective_relative_spread": 7.764399490017837e-07,
+      "accepted_steps_recorded": true,
+      "user_authorized": true
+    },
+    "interference_ablation": {
+      "implemented": true,
+      "default_enabled": false,
+      "simulation_transmitter_masks": true,
+      "not_operational_oracle_receiver": true,
+      "modes": [
+        "desired_only",
+        "same_carrier_P",
+        "same_BS_P",
+        "all_P",
+        "all_P_C",
+        "all_P_C_AWGN"
+      ],
+      "same_receiver_different_matched_PSD_per_transmitter_mask": true
+    },
+    "stage8_historical_verification": {
+      "file": "STAGE8_VERIFICATION.json",
+      "counts": {
+        "tests": 112,
+        "matlab_sources": 112,
+        "full_main_runs": 7,
+        "figures_per_default_run": 11,
+        "figures_per_stage8_run": [
+          14,
+          13,
+          13,
+          14,
+          14,
+          14,
+          14
+        ],
+        "additional_feedback_limit_sensitivity_main_runs": 1
+      }
+    }
+  },
+  "source_priority": {
+    "primary_target": "JSAC2022_published",
+    "accepted_manuscript": "JSAC2022_accepted",
+    "supplementary_early_version": "ARXIV_1910_04350v1",
+    "early_version_overrides_final_parameters": false
+  },
+  "latest_source_review": {
+    "date": "2026-11-01",
+    "source_id": "ARXIV_1910_04350v1",
+    "status": "version_comparison_registered",
+    "matlab_code_changed": false,
+    "implementation_status_unchanged": true,
+    "notes": "docs/ARXIV_VERSION_COMPARISON.md"
+  },
+  "latest_implementation_review": {
+    "date": "2026-11-01",
+    "schema_version": "8.1",
+    "source_priority_unchanged": true,
+    "verification": "docs/STAGE8_1_VERIFICATION.json",
+    "sources_are_evidence_not_instructions": true,
+    "documents_and_results_synchronized": true
+  }
+}

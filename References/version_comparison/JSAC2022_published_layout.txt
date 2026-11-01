@@ -1,0 +1,1582 @@
+===== PDF PAGE 1 =====
+                                                                                    
+                                                                                    
+       IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022     1333    
+                                                                                    
+                                                                                    
+         Design    and   Performance       Analysis     of  Multi-Scale             
+                                                                                    
+           NOMA       for  Future    Communication-Positioning                      
+                                                                                    
+                              Integration    System                                 
+                                                                                    
+                                                                                    
+                   Lu Yin , Member, IEEE, Jiameng Cao, Qiang Ni , Senior Member, IEEE,
+                            Yuzheng Ma, and Song Li , Member, IEEE                  
+                                                                                    
+                                                                                    
+        Abstract—This paper presents a feasibility study of a proliferation of mobile devices [1]. Besides the well known
+       novel multiple access technique called Multi-Scale Non- Global Navigation Satellite Systems (GNSS) which can only
+       OrthogonalMultipleAccess(MS-NOMA)forthenextgeneration                        
+                                           be used in open areas as their signals are easily blocked
+       communication-positioningintegrationsystem.Differentfromthe                  
+                                           or interfered by buildings[2], communication-basedposition-
+       traditional positioning signals which are mostly Time Division               
+       MultipleAccesswithcommunicationsignalsandarebroadcastto ing methods (5G, Bluetooth, Wi-Fi, etc.) have been greatly
+       all users, MS-NOMA supports continuouspositioning waveform developed in recent years as the ready-made communication
+       and flexible configurations for different positioning users to networks have natural advantages of wide coverage, easy
+       obtain higher ranging accuracy, lower positioning latency, less              
+                                           deployment and low-cost [3]–[5].         
+       resource consumption and better signal coverage. Our major                   
+                                            There are mainly two categories of communication-based
+       contributions are: Firstly, we present the MS-NOMA waveform                  
+       and evaluate its performances by theoretical and simulation positioning: 1) Based on the existing communication compo-
+       analyses. The results show it is feasible to use the MS-NOMA nents,suchaspositioningbyfingerprintmatchingorSounding
+       waveformtoachievehighpositioningaccuracyandlowBitError Reference Signal (SRS) [4], [6]; 2) Based on the redesigned
+       Rate with little resource consumption simultaneously. Secondly,              
+                                           new waveform, such as positioning by Positioning Reference
+       to achieve optimal positioning accuracy and signal coverage, we              
+                                           Signal(PRS) incellularnetworkorConstantToneExtensions
+       model thepower allocation problemfor MS-NOMA as a convex                     
+       optimization problem satisfying the Quality of Services require- (CTE) in Bluetooth Low Energy 5.1 (BLE 5.1) [7], [8].
+       ment and other constraints. Then, we propose a novel Commu- The positioning performance of the 1st category is always
+       nication and Positioning Performances constrained Positioning unsatisfactory as the communication system is not designed
+       Power Allocation (CP4A) algorithm which allocates the power                  
+                                           for positioning purpose specifically. Better performance is
+       of all P-Users iteratively. The theoretical and numerical results            
+                                           usually obtained by the 2nd category because of the exclusive
+       show our proposed MS-NOMA waveform with CP4A algorithm                       
+       has great improvements of ranging/positioning accuracy than positioning waveform.
+       traditional Positioning Reference Signal in cellular network. In the upcoming B5G (beyond-5G) and 6G eras, emerg-
+                                           ing industries will demand higher positioning requirements.
+        Index Terms—MS-NOMA, communication-positioning                              
+       integration, positioning, power allocation. For example, higher positioning accuracy, measuring fre-
+                                           quency and reliability should be satisfied in the scenarios
+                   I. INTRODUCTION         likeautomaticdrivingandindustrialequipment/roboticcontrol
+       NOWADAYS,  the Location Based Services (LBS) are [9], [10]. However, most of the traditional methods are just
+                                           combinations of communication and positioning components
+          growing rapidly and attracting much attention with the                    
+                                           byTime DivisionMultiple Access(TDMA)andoftenneglect
+        ManuscriptreceivedAugust17,2021;revisedNovember15,2021;accepted their interference. For example, PRS will occupy a great
+       December 17, 2021. Date of publication January 14, 2022; date of current number of resource blocks to obtain better positioning per-
+       version March 17, 2022. This work was supported in part by the National      
+                                           formance. While communication performance will degrade
+       Natural Science Foundation of China under Grant 61801041, in part by the     
+       Beijing Municipal Natural Science FoundationunderGrantL191003,andin significantly withoutthese resource blocks. Even so, PRS can
+       partbytheStateKeyLaboratoryofInformationPhotonicsandOpticalCom- not meet the accuracy and latency requirements simultane-
+       munications (BUPT) under Grant IPOC2019ZT09. (Corresponding author:          
+                                           ously [11]. It is because the discontinuous PRS is hardly
+       LuYin.)                                                                      
+        LuYin, Jiameng Cao, andYuzheng Maare withthe School ofElectronic tracked which leads to low ranging accuracy, and there is a
+       Engineering, Beijing University of Posts and Telecommunications, Beijing long interval between two PRS frames which leads to low
+       100876, China (e-mail: inlu_mail@bupt.edu.cn; caojiameng@bupt.edu.cn;        
+                                           measuringfrequency[12].Ontheotherhand,toobtainhigher
+       mayuzhengjoy@gmail.com).                                                     
+        Qiang Ni is with the InfoLab21, School of Computing and Com- measuring accuracy, positioning components should be trans-
+       munications, Lancaster University, Lancaster LA1 4WA, U.K. (e-mail: mitted continuously from different base stations (BS). Then,
+       q.ni@lancaster.ac.uk).                                                       
+                                           severe near-far effect between these positioning components
+        Song Li is with the School of Information and Control Engineering,          
+       ChinaUniversityofMiningandTechnology,Xuzhou221008,China(e-mail: make the signals from far BSs more difficult to be accessed
+       lisong@cumt.edu.cn).                [11],[13].Consequently,poorgeometricdistributionofBSsis
+        Color versions of one or more figures in this article are available at      
+                                           achieved which further worsens the positioning accuracy and
+       https://doi.org/10.1109/JSAC.2022.3143223.                                   
+        Digital ObjectIdentifier 10.1109/JSAC.2022.3143223 reliability [14].        
+                 0733-8716©2022IEEE.Personaluseispermitted, butrepublication/redistribution requires IEEEpermission.
+                         Seehttps://www.ieee.org/publications/rights/index.html formoreinformation.
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 2 =====
+                                                                                    
+                                                                                    
+       1334                          IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022
+                                                                                    
+                                           problem and without any loss of generality, we assume each
+                                           C-Sub/P-SubisoccupiedbyaC-User/P-User. AndallC-Subs
+                                           havethe same power.Then,to acquirethe highestpositioning
+                                           accuracy over the whole network under the hearability and
+                                           QoS requirements, the parameters of different P-Subs should
+                                           be allocated carefully. In this paper, we focus on the power
+                                           allocation of the P-Subs and assume other parameters are
+                                           constant. It is worth noting that MS-NOMA waveform has
+                                           the potential to allocate all kinds of resources for better
+                                           performances of both positioning and communication, such
+                                           as the power, the bandwidth, the spreading code, etc.
+                                            In a conventional OFDM system, it is proved that water-
+                                           filling over the sub-carriers is the optimal power allocation
+                                           strategy [17]. However, it does not consider the interference
+       Fig.1. TheMS-NOMAarchitecture.                                               
+                                           between different types of users. In [18], where the sec-
+                                           ond user transmits over spectrum holes left in the primary
+        To this end, a novel communication-positioningintegration system, an optimal power allocation strategy is proposed.
+       waveformhastobedesignedwhichmustsatisfythefollowing They maximize the down-link capacity of the second user
+       requirements:                       by remaining the interference introduced to the primary user
+        1) Theinterferencebetweenthe positioningandcommuni- within a tolerable range. In the NOMA system, the power
+          cation componentsmust be weak enough.i.e. The posi- allocation is mostly investigated for signal demodulation and
+          tioningcomponentmustconsumeasfewcommunication relay transmission [19], [20]. But these algorithmscan not be
+          resources as possible to ensure the Quality of Services used in our problem that has different models which is more
+          (QoS) requirements of communication. Meanwhile, the complicated.          
+          positioning performance should be good enough to sat- To the best of our knowledge, it is the first time that pro-
+          isfy the future requirementsunder massive communica- posesamethodologywhichemploysconfigurablewaveformto
+          tion resources.                  differentP-Usersbyallocatingtheirpowerinordertoimprove
+        2) The positioning components should be continuous. i.e. the coverageandaccuracyperformanceswhich is an essential
+          Thereceivercantrackthesignalforbettermeasurement difference with the traditional positioning methods. Because
+          accuracy and higher measuring frequency. there are few studies about the waveform design and power
+        3) In the down-link use case, the positioning components allocationalgorithmofcommunication-positioningintegration
+          for different users must be configurable to reduce the system, it makes our study very challenging. A preliminary
+          near-fareffect.i.e.Differentusersshouldobtaindifferent part of this study was presented in a letter paper [21] which
+          signal strengths or gains from the same BS. focuses on the basic characteristics of MS-NOMA based
+       Tosatisfytheaboverequirements,weproposeanovelmultiple on single-cell scenario. In this journal version, as compared
+       access technique for the next generation communication- to[21],westudyrealisticpositioningproblembasedonmulti-
+       positioning integration system, called Multi-Scale Non- cell scenario and carry out detailed designs by conducting
+       Orthogonal Multiple Access (MS-NOMA), which superposes more in-depth mathematicalanalyses. The main contributions
+       asignificantlow-powerpositioningcomponenttothecommu- of this paper are:      
+       nication one without much interference based on the NOMA 1) We present the positioning model by the proposed
+       principle [15], [16]. In time domain, the MS-NOMA wave- MS-NOMA waveform and analyze the limitation of
+       form is modulated by the pseudorandom noise sequence to positioning by other existing signals.
+       obtain spreading gains and ensure a continuous transmission. 2) Weanalyzetheinterferencebetweenthecommunication
+       In frequency domain, Orthogonal Frequency Division Multi- and positioning components of the MS-NOMA wave-
+       plexing (OFDM) is employed for different positioning users forminthemulti-cellscenario.BitErrorRate(BER)for
+       as Fig. 1 shows.                       communicationandtherangingaccuracyforpositioning
+        In the proposed MS-NOMA waveform, Δfc and Δfp are derived.                  
+       represent the sub-carrier spacing of communication and posi- 3) We model the power allocation problem for the
+       tioning waveform, respectively. For the maximum spectrum MS-NOMA waveform as a convex optimization prob-
+       effectiveness, they are designed as Δfp = GΔfc,G ∈ N +. lem.Itminimizesthe averagepositioningerrorvariance
+       Define B as the total bandwidth, then there are maximum ofallP-UsersinthenetworkbyconsideringtheQoS,the
+       N = B/Δfc − 1 and M = B/Δfp − 1 sub-carriers powerbudgetandthehearabilityrequirements.Tosolve
+       for communication and positioning purpose, respectively. For this problem, we propose a novel Communication and
+       clear representation, define C-Sub/P-Sub and C-User/P-User PositioningPerformancesconstrainedPositioningPower
+       as the abbreviationsof communication/positioningsub-carrier Allocation (CP4A) algorithm which allocates the power
+       andcommunication/positioninguser,respectively.Noticeeach of all P-Subs iteratively and derive its closed solution.
+       P-Sub may transmit to a single P-User or many P-Users who 4) A series of theoretical and numerical analyses are
+       have similar channel states and positions. To simplify the done to evaluate the performances of positioning by
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 3 =====
+                                                                                    
+                                                                                    
+       YINetal.: DESIGNANDPERFORMANCEANALYSISOFMS-NOMA                      1335    
+                                                                                    
+                                           horizontalpositioningaccuracyofP-Usermcanbeexpressed
+                                           as                                       
+                                                                                   
+                                                                                 
+                                                     Ψ m =   λkmσkm 2       (1)     
+                                                                ρ                   
+                                                          k∈K                       
+                                           where λkm represents the geometric-dilution and σkm repre-
+                                                                        ρ           
+                                           sentstherangingerrorvariance.Detailedderivationof(1)can
+                                           befoundinAppendixA.Please noticethatΨm representsthe
+                                           lower bound of positioning error as well.
+                                                III. FEATURESOF MS-NOMA WAVEFORM    
+                                           A. Interference of Positioning to Communication
+                                            In order to evaluate the interference of positioning to
+                                           communicationmoreaccurately,we assume thatthe inter-cell
+                                           interference between the communication components can be
+                                           ideally eliminated [22]. Then, the BER of C-Sub kn is
+       Fig.2. Systemmodelofpositioning bytheMS-NOMAwaveform.                    
+                      TABLEI                     BER kn =Γerfc                      
+                                                            γ  hk                  
+                                                              c                     
+                                                               n←kn2 PcTc          
+                                                                            (2)     
+            INSTANTANEOUSCHANNELGAINSOFMS-NOMA                                      
+                                                              Ikn+2N0               
+            WAVEFORMINTYPICALPOSITIONINGSCENARIO                                    
+                                           where Γ and γ are determined by the modulation and coding
+                                           schemes [23]. Pc is the power of communication component.
+                                           Tc is the period of communication symbol. N0 is the single-
+                                           sidedPowerSpectralDensity(PSD)oftheenvironmentnoise.
+                                           Ikn represents the interferenceof the positioning components
+                                           to the C-User kn. Notice that the power of the positioning
+                                           componentsfromdifferentBSs maybesimilarbypowerallo-
+                                           cation, the interferencecaused by the positioningcomponents
+                                           from the neighbor BSs can not be ignored. Then, we have
+                                                                                  
+                                                    I kn =    P ¯kn←km     (3)     
+                                                               p                    
+          MS-NOMA waveform. The results show our proposed k∈Km∈M                   
+          MS-NOMA waveform has a great improvement of where P ¯kn←km is the power of the P-Sub km received by
+                                                p                                   
+          ranging/positioning accuracy than traditional PRS, and                    
+                                           C-User kn which satisfies                
+          reduces the resource consumption dramatically which                     
+                                                           2                      
+          means both positioning and communication require- P ¯                     
+                                               p                                    
+                                               kn←km = h k                        
+                                                       p                            
+                                                        n←km P                    
+                                                              p                     
+                                                              km G m               
+                                                                 p                  
+                                                                  (nΔfc )           
+          ments could be satisfied simultaneously.                                
+        Notations: Subscript p and c represent the positioning =  h k             
+                                                       p                            
+                                                        n←km   2 P               
+                                                              p                     
+                                                              km Tpsinc 2 m− n (4) 
+       andcommunication,respectively.·representstheEuclidean          G           
+       distance. The operator cov(·) represents the covariance. M, where Pkm is the power of P-Sub km. Gm(f) is the
+       N, K and Kk represent the set {1,...,M}, {1,...,N}, p          p             
+                                           normalized PSD of P-Sub m which satisfies
+       {1,...,K} and {1,...,k−1,k+1,...,K},respectively.                            
+                                                  G m                               
+                                                   p                                
+                                                    (f)=Tpsinc 2[(f −mΔfp )Tp ] (5) 
+                  II. SYSTEMMODEL                                                   
+                                           where Tp is the period of the positioning symbol.
+        Consider a typical positioning scenario in spatial domain                   
+       with K BSs as Fig. 2 shows. C-Users and P-Users may                          
+       locate at different positions. Let us define hky←kx as the B. Ranging Accuracy of MS-NOMA Waveform
+       instantaneous channel gain of sub-carrier kx received by the ThereceivercoulduseaDelayLockedLoop(DLL)totrack
+       user ky which is known by the BSs through a delay- and the positioning component. Taking the coherent early-late
+       error-free feedback channel. Then, the instantaneous channel discriminator for example [24], the tracking/rangingaccuracy
+       gainsofMS-NOMAwaveformintypicalpositioningscenario of the P-Sub km can be written as (6), as shown at the
+       are listed in Table I. Please notice each C-User connects only bottom of the next page. Where a = BL (1−0.5BLTcoh )
+       one BS and P-User connects multiple BSs, so the indexes of is determined by the loop noise bandwidth BL and the
+       the two kinds of users are kn and m, respectively. coherent integration time Tcoh. B0 is the central frequency
+        If the BSs are perfectly synchronized, the P-Users will use of MS-NOMA waveform. Bfe is the double-sided front-end
+       time-based algorithm to estimate their locations. Then, the bandwidth.D is the early-late spacing of DLL.Gm(f) is the
+                                                                       s            
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 4 =====
+                                                                                    
+                                                                                    
+       1336                          IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022
+                                                                                    
+       PSDofthecommunicationcomponentsreceivedbyP-Userm 2) The Total Power Limitation: The total transmit power is
+       which satisfies                     often limited. In MS-NOMA waveform, we have
+                                                                                
+                            2                                                    
+            G m s (f)=  h m c ←kn PcG n c (f) (7) P p km+NPc ≤P T k , ∀k ∈K (13) 
+                  k∈Kn∈N                                                           
+                                                  m∈M                               
+       c P w o S h m D er p e o o n f G en n c C t - ( s S f f u ) r b o = m n. o T t c G h s e i k q n r m c B 2 ( S f [( s ) f w − is hi n c th h Δ e s f a c P t ) i S s T D fi c e ] s o i f s t t h h e e p n o o s rm iti a o l n iz in e g d p w o h s e it r i e on P i T n k g is p t o h w e e t r ot b a u l d tr g a e n t s o m f it B p S ow k e a r s o P f t B k h S = k. P L T k e − t’s N de P fi c n , e th th en e
+                                        we have                                  
+                          2                                                       
+            G km(f)=  h m←km P km G m(f) (8)                                   
+             q         p     p  p                      P km ≤P k , ∀k ∈K   (14)     
+                  k∈Kk                                 p    th                     
+                                                    m∈M                             
+        By taking (5), (7), (8) into (6) and using some approxima-                  
+       tions,(6)canbesimplifiedto(9),asshownatthebottomofthe 3) The Elimination of Near-Far Effect: To ensure that
+       page, where C/N0, CPR and PPR are the carrier-to-noise P-Userscouldreceiveasmanypositioningsignalsaspossible,
+       ratioofpositioningcomponent,theequivalentcommunication- the power of the received positioning signals from different
+       to-positioning ratio and the positioning-to-positioning ratio BSs must satisfy
+       which are derived in Appendix B. The first item in (9)                       
+       is caused by the noise, the second one is caused by the                      
+                                            |hm                                     
+                                             p                                      
+                                              ←km|2P                                
+                                                   p                                
+                                                   km                               
+                                                     ≥Ω, ∀m∈M,  ∀k ∈K, ∀k  ∈Kk    
+       communication components from all BSs, and the third one |hm←km|2Pkm       
+                                             p     p                                
+       is caused by the other BSs’ positioning components. Because         (15)     
+       the positioning components are designed much weaker than                     
+       communication ones in MS-NOMA, the interference from where Ω is the auto-correlation to cross-correlation ratio of
+       positioningcomponentscouldbe ignored.Then,(9) is further positioning component, which is determined by the pseudo-
+       simplified to                       random code and its length.  is determined by the receiver’s
+                                                                                  
+         km 2                              performance, which is usually larger than 1. For a particular
+        σ                                                                           
+         ρ                                 P-Sub km, if the strongest cross-correlation satisfies (15), all
+          aT2     1       B    (CPR)km←k  ks in (15) will be satisfied. Therefore, (15) can be rewritten
+        ≈   p           +    k∈K                                                   
+           2  BfeTp (C/N0 )km  2B f 2 e    as                                       
+                                   (10) |h m p ←km|2 P p km≥Ω|h m p ←k k m|2 Pp k k m , ∀m∈M, ∀k ∈K
+        We define the rangi  ng-fa  ctor σ ρ km 2 = σ ρ km 2 P p km for (16)     
+       later use. Notice that σkm 2 has no relation to Pkm which                   
+       is a part of the denomina ρ tor in (10). p where k k m represents the index of the strongest sub-carrier
+                                           except the P-Sub km received by the P-User m.
+       IV. THEPOWERALLOCATIONOF MS-NOMA WAVEFORM                                    
+       A. The Constraints                                                           
+                                           B. The Proposed Joint Power Allocation Model
+        1) The BER Threshold Under QoS Constraint: To ensure                        
+                                            Our goal is to obtain the best positioning performance for
+       theQoSofC-Users,theBERsofallC-Usersshouldbelimited                           
+                                           allP-UsersintermsofbothaccuracyandcoverageunderQoS
+       under a certain threshold                                                    
+                                           requirement and total transmit power budget. So, the average
+             BER kn ≤Ξ th, ∀k ∈K, ∀n∈N (11) lower bound of horizontal positioning error1 for all P-Users
+                                           in the network is minimized by finding the optimal power
+       Then, by taking (2) to (11) and rearranging items, we have                   
+                                         values Pkm,∀m ∈ M,∀k ∈ K under the given constraints.
+               I kn ≤ γ                                                             
+                    e                                                               
+                                                                                   
+                    r                                                               
+                    h                                                               
+                     f                                                              
+                     k c                                                            
+                     c                                                              
+                      n                                                             
+                      −                                                             
+                       ←                                                            
+                       1                                                            
+                        k                                                           
+                        (Ξ                                                          
+                        n                                                          
+                         t                                                          
+                         2                                                          
+                          h/                                                        
+                          P                                                         
+                           Γ                                                        
+                           cT                                                       
+                            )                                                       
+                             c −2N0        C                                        
+                                           co                                       
+                                            o                                       
+                                            n                                       
+                                             n                                      
+                                             v                                      
+                                             s                                      
+                                              e                                     
+                                              id                                    
+                                              x                                     
+                                               e                                    
+                                               f                                    
+                                                r                                   
+                                                u                                   
+                                                p in                                
+                                                n                                   
+                                                 g                                  
+                                                 cti                                
+                                                  t                                 
+                                                   o                                
+                                                   h                                
+                                                   n                                
+                                                   e                                
+                                                    is                              
+                                                     fa                             
+                                                      e                             
+                                                      c                             
+                                                      q                             
+                                                      t                             
+                                                       u                            
+                                                       t                            
+                                                        i                           
+                                                        h                           
+                                                        v                           
+                                                        a                           
+                                                         a                          
+                                                         t                          
+                                                         le                         
+                                                          t                         
+                                                          n                         
+                                                          h                         
+                                                           t                        
+                                                           e                        
+                                                            to                      
+                                                            m                       
+                                                             it                     
+                                                             a                      
+                                                              s                     
+                                                              x                     
+                                                               m                    
+                                                               im                   
+                                                                in                  
+                                                                u                   
+                                                                 i                  
+                                                                 m                  
+                                                                 mu                 
+                                                                   n                
+                                                                   m                
+                                                                   eg               
+                                                                    .               
+                                                                     a              
+                                                                     T              
+                                                                     ti             
+                                                                      h             
+                                                                      v             
+                                                                      e             
+                                                                       e            
+                                                                       n,           
+                                                                        v           
+                                                                        t           
+                                                                        a           
+                                                                         h          
+                                                                         l          
+                                                                         e          
+                                                                         ue         
+                                                                          po        
+                                                                           o        
+                                                                            w       
+                                                                            f       
+                                                                             e      
+                                                                             a      
+                                                                             r      
+                 (cid:2) I kn , ∀k ∈K, ∀n∈N (12) allocationproblemcanbeformulatedasaconvexoptimization
+                   th                                                               
+       where Ikn is defined as the interference threshold of C-User                 
+           th                               1Forcalculationconvenience,weusethesquareofthehorizontalpositioning
+       kn, which is determined by the QoS requirement Ξ th. accuracy, i.e.(Ψm)2 .   
+                    σ km  2 = a                                                   
+                     ρ    (cid:0)                                                   
+                           B B 0 0 − + B B f f e e / / 2 2[N0+Gm s (f+mΔfp)+Gk q m(f+mΔfp)]Gm p (f+mΔfp)sin2(πfDTp)df
+                              |hm←km|2Pkm                                           
+                               p    p                                               
+                                     (cid:2)                                        
+                                      2π                                            
+                                       (cid:0)                                      
+                                        B                                           
+                                        B                                           
+                                         0                                          
+                                         0                                          
+                                         −                                          
+                                         +                                          
+                                          B                                         
+                                          B                                         
+                                           f                                        
+                                           f                                        
+                                           e                                        
+                                           e                                        
+                                            /                                       
+                                            /                                       
+                                            2                                       
+                                            2 fGm                                   
+                                               p                                    
+                                               (f+mΔfp)sin(πfDTp)df                 
+                                                           (cid:3)                  
+                                                                            (6)     
+                                                            2                       
+                σ km  2 ≈ aT p 2 1 + B k∈K (CPR)km←k + k∈Kk (PPR)km←km (9)    
+                 ρ     2 BfeTp (C/N0 )km   2B f 2 e       B f 2 e Tp                
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 5 =====
+                                                                                    
+                                                                                    
+       YINetal.: DESIGNANDPERFORMANCEANALYSISOFMS-NOMA                      1337    
+                                                                                    
+       problem as follows                   Similar to OP1, the dual problem of the sub-problems can
+                   1                      be expressed as                          
+          OP1: max−    (Ψ m)2          (17)                                         
+              P p km M m∈M                            min g˜km μ˜kn ,β ˜km (30)     
+              s.t. I  kn ≤I t k h n , ∀n∈N, ∀k ∈K (18) s.t. μ˜kn ≥0, ∀n∈N m (31)   
+                   P p m←km ≤P t k h , ∀k ∈K (19)       β ˜km ≥0           (32)     
+                m∈M                                                                 
+                |h p m←km|2 P p km ≥Ω|h m p ←k k m|2 Pp k k m , c w o h n e s r t e ra μ i ˜ n k t n s ( a 2 n 8 d ) a β ˜ n k d m (2 a 9 re ), t r h e e sp n e o c n ti - v n e e ly g . ative dual variables for
+                         ∀m∈M,  ∀k ∈K  (20) The optimal power allocation solution P ˜km of OP2 can be
+                                                                   p                
+        OP1 can be solved by the Lagrange duality method [25]. obtained by using the Karush-Kuhn-Tucker(KKT) conditions
+       Then, the Lagrange dual function of OP1 is then given by                     
+                                           as(33),asshownatthebottomofthenextpage,whereJkn←m
+                                       can be found in Appendix C.              
+             g(μ,ν,β)=maxL P km ,μ,ν,β (21)                                         
+                          p                                                         
+                     Pkm                                                            
+                     p                                                              
+                                                                                
+                                           C. The Positioning-Communication Joint Power Allocation
+       where L  P p km ,μ,ν,β is the Lagrangian of OP1, Scheme                
+       μ= μkn 0, ν = νk 0 and β = βkm 0 are the                                  
+                                            TheremainingtaskforsolvingOP1istoobtaintheoptimal
+       matrices of dual variables associated with the corresponding                 
+                                           dual variables, which are the same in both OP1 and OP2.
+       constraints given in (12), (14) and (15). Then, the dual                     
+                                           ApplyingthesolutiontoOP2,wecanobtaintheoptimalpower
+       optimization problem can be formulated as                                    
+                                           allocation P                             
+                                                 ˜km                                
+                                                    in OP1. However, it is difficult to solve OP2
+                                                  p                                 
+                  min g(μ,ν,β)         (22) directly because we cannot obtain the closed-form expression
+                  s.t. μ0,ν 0,β 0   (23) of dual variables. The Lagrange dual function (25) is made
+                                                                                
+                                           up of K independent sub-problems. For each sub-problem,
+       It is easy to be proved that L P p km ,μ,ν,β is linear in it is observed that νk is the same for all P-Subs. μkn and
+       μ,ν,β for fixed P p km, and g(μ,ν,β) is the maximum of βkm are different for C-Subs and P-Subs, respectively. Then,
+       linearfunction.Thus,thedualoptimizationproblemisalways                       
+                                           we can solve the optimization problem using the hierarchical
+       convex.Tosolvethisproblem,thedualdecompositionmethod                         
+                                           algorithmbyupdatingthevaluesofthedualvariables{μ,ν,β}
+       introducedin[26 ]isemploy ed.For thispurpose,weintroduce                     
+                                           via subgradient methods, which guarantees the gradient-type
+       atransformation =        todecomposethe                                      
+       Lagrangedualfunct n i ∈ o N nto K× m∈ M M inde n p ∈ e N n m dentsub-problems, algorithm to converge to the optimal solution [27].
+                                            NoticethatthepositionsofP-Usersareunknownwhichare
+       where                               necessary for calculating the geometric-dilutionλkm. We can
+          N m ={(2G−1)(m−1)+1,...,(2G−1)m} (24) minimize the ranging error variance for all P-Users without
+                                           considering the impact of the geometric-dilution at the first
+       Then, we have                                                                
+                                        iteration. Namely, λkm in (1) and (33) is set to 1 in the first
+          g(μ,ν,β) = g k(μ,ν,β)            fix. Then, we can get approximate positions and the initial
+                  k∈K                    allocated power. After severaliterations, the positionsand the
+                                         power will converge to the optimal values.
+                =        g km(μ,ν,β)+ν k P t k h (25) The algorithm to solve OP1 can be summarized as Algo-
+                  k∈K m∈M                  rithm1shows.Wheretandtaretheiterationnumbers.iterN
+       where                               isthemaximumiterationamount.b1,b2 andb3 aretheupdate
+        g                                                                           
+         km(μ,ν,β)                         step sizes. ε>0 is a given small constant.
+                                                                                   
+                1                                                                 
+         =max −   λ km σ                                                            
+                     ρ                                                              
+                     km 2 −ν k P                                                    
+                            p                                                       
+                            km                   V. THEPERFORMANCE EVALUATION       
+          Pkm  M                                                                    
+           p                             Inthissection,weevaluatethecommunicationperformance,
+              +    μ kn I t k h n−I kn +β km resource consumption and ranging accuracy of the proposed
+                n ∈Nm                     MS-NOMA waveform under a single-cell network firstly.
+              × |h m p ←km|2 P p km−Ω|h m p ←k k m|2 Pp k k m Then, we examine the positioning performance in a 4-BSs
+                                           cell by considering the impact of all factors comprehensively.
+                                       (26)                                         
+                                           In the single-cell scenario, the impact of the cross-correlation
+        From (26), it is clear that we can decompose the Lagrange will be vanished and the channel gains of the C-Subs and P-
+       dual function gk(μ,ν,β) to M independentsub-problemsby Subs will be equal. So, the channel gains and index k in (2)
+       giving νk. Each of the sub-problems is given by and (10) can be omitted. Then, we have
+                                                                                  
+                  1                                                               
+         OP2: m P p k a m x− M λ km σ ρ km 2 −ν k P p km (27) BER n = Γerfc In γ + Pc 2 T N c 0 (34)
+             s.t. I |h k m p n ← ≤ km I t k h | n 2 P ,n p km ∈ ≥ N m Ω|h m p ←k k m|2 Pp k k m ( ( 2 2 8 9 ) )  σ ρ m  2 ≈ aT 2 p 2 BfeTp ( 1 C/N0 )m + B( 2 C B P f 2 R e )m (35)
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 6 =====
+                                                                                    
+                                                                                    
+       1338                          IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+       Fig.3. Communication performance.                                            
+                                                                                    
+       Algorithm 1 The Proposed CP4A Algorithm Notice that (34) and (35) reflect the features of MS-NOMA
+       1: Initial the dual variable ν 1 k for all k ∈K in parallel waveform itself without interference from other BSs.
+       2: for t=1 to iterN do               The simulation settings are: The communication and posi-
+       3: Initial μk 1 n,β 1 km for all n∈N and m∈M in parallel tioning components use QPSK and BPSK constellation,
+       4: for t =1 to iterN do            respectively. The carrier frequency is set to 3.5GHz and
+       5:  if The first fix (There is no P-Users’ positions) then Δfc =30kHz. Two scenarios with different total bandwidths
+       6:   For each P-User m, calculate P ˜ p km using (33) by are considered: 1) B =20MHz 2) B =50MHz. The amount
+            setting λkm =1 for all k ∈K and m∈M of P-User is M =20. The power of all C-Users are assumed
+       7:  else                            to be identical. The front-endbandwidthis set as twice of the
+       8:   For each P-User m, calculate P ˜ p km using (33) total bandwidth, i.e. Bfe = 2B. The loop parameters are set
+       1                                                                            
+       9                                                                            
+       0                                                                            
+        :                                                                           
+        :                                                                           
+           e                                                                        
+           U                                                                        
+           n                                                                        
+            p                                                                       
+            d                                                                       
+             da                                                                     
+             if                                                                     
+              te μk t n and β t k  m by their subgradient                         
+                                           as: BL =0.2Hz, Tcoh =0.02s and D =0.02chips.
+       11: if |μ˜k t n +1 −μk t n|≤ε & |β ˜ t k  m +1 −β t k  m|≤ε then A. Communication Performance
+       12:  break                                                                   
+       13: end if                           We firstexaminetheinterferenceofthepositioningcompo-
+       14: end for                         nentto the C-Users. Fig.3a showsthe averageBERs overthe
+       15: Update ν t k +1 by its subgradient whole bandwidth when P p m = Pp,∀m ∈ M. It is clear that
+       16: if |ν˜ t k +1 −ν t k|≤ε then    the average BERs decrease when Eb/N0 and C/N0 increase
+       17: break                           (Eb = PcTc is the energy of the communication symbol).
+       18: end if                          Notice that the BER curves with small CPR will tend to
+       19: end for                                                                
+       20: return P ˆ p = P ˜ p km,∀k∈K,∀m∈M b in e ter fl f a e t re w nc h e en cau E s b e / d N b 0 y b th ec e o p m o e s s iti l o a n r i g n e g r. c T om hi p s on is en b t e d c o au m s i e na t t h e e s
+                                           the BER performance rather than the environment noise (i.e.
+                                           Inismuchlargerthan2N0).Whenthepositioningcomponent
+       where                                                                        
+                                           becomes weaker (CPR becomes larger), the BER curves will
+                    M           n         become flat with larger Eb/N0 and they will become closer
+                 I n = P p m Tpsinc 2 m− (36) to the one that only exists noise (CPR=∞).
+                                 G                                                  
+                    m=1                     Fig. 3b takes an example of BERs over C-Subs in detail.
+             (C/N0 )m = P                                                           
+                     p                                                              
+                     m /N0             (37)                                         
+                                           If the power of the P-Subs is identical, the BERs are approx-
+             (CPR)m = 2GPc/P                                                        
+                         p                                                          
+                         m             (38) imately identical as well. While the BERs are different when
+                                                                                  
+                                                                −1/2               
+                P ˜                                                                 
+                 p                                                                  
+                 km =  λ k m × σ                                                  
+                                                                                   
+                                                                                   
+                                ρ                                                  
+                                k m × M β ˜km|h m                                   
+                                            p                                       
+                                             ←km|2−ν k− μ˜kn J kn←m        (33)     
+                     geometric-dilution                                           
+                                                     n∈Nm                           
+                             ranging-factor                                         
+                                                 constraint-scale                   
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 7 =====
+                                                                                    
+                                                                                    
+       YINetal.: DESIGNANDPERFORMANCEANALYSISOFMS-NOMA                      1339    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+       Fig.4. Comparisonofthepositioning resourceconsumption betweenMS-NOMAandPRS.  
+                                                                                    
+       the powerofP-Subsis allocatedto differentvalues.Then,the                     
+       maximum BER is related to all P-Subs’ power (see (34)) in                    
+       this case. Therefore, the power of P-Subs must be allocated                  
+       carefully to ensure the QoS of each C-Sub. Unsurprisingly,                   
+       the lowest BERs are obtained when there are no positioning                   
+       components.                                                                  
+                                                                                    
+       B. Resource Consumption of Positioning                                       
+                                                                                    
+        Nomatterwhattypeofcommunication-positioningintegra-                         
+       tion signal is used, the exclusive positioning waveform con-                 
+       sumes the resources which should belong to communication.                    
+       It is important that positioning consumes as few resources as                
+       possible to reduce the influence on communication. In this                   
+       subsection, we compare the resource element and energy                       
+       consumption between MS-NOMA and PRS. Some necessary                          
+       parameters for this evaluation are defined as follows:                       
+        Define Ec and Ep as the energy of communication and Fig.5. Therelationship between Tmeas andEc/Ep inPRS.
+       positioning components in a unit time, respectively. Etotal =                
+       Ec +Ep as the total energy. Tmeas as the measuring period identical during the integration time. So,
+       which means the receiver executes measuring every Tmeas NRE,PRS =ΔfpTcoh (40)
+       seconds. The positioning results update every Tmeas seconds                  
+       as well.                            Notice that,                             
+        For MS-NOMA, because it is continuous, its unit energy NRE,total =NTmeas/Tc (41)
+       Ec and Ep are just equal to its power NPc and MPp. For                       
+       PRS, Pp can be as strong as Pc. However, because PRS Then,                   
+       i                                                                            
+       r                                                                            
+       s                                                                            
+       es                                                                           
+        d                                                                           
+        o                                                                           
+         i                                                                          
+         u                                                                          
+         s                                                                          
+          r                                                                         
+          c                                                                         
+          c                                                                         
+          o                                                                         
+           e                                                                        
+           nt                                                                       
+            e                                                                       
+            i                                                                       
+            l                                                                       
+             n                                                                      
+             e                                                                      
+             u                                                                      
+             m                                                                      
+              o                                                                     
+               e                                                                    
+               u                                                                    
+               n                                                                    
+               s                                                                    
+                t                                                                   
+                ,                                                                   
+                s:                                                                  
+                 its energy is determined by the amount of (Ec/Ep )                 
+                                                          PRS                       
+                                                             = N                    
+                                                              G                     
+                                                                T                   
+                                                                T                   
+                                                                m                   
+                                                                 c                  
+                                                                 e                  
+                                                                 o                  
+                                                                  a                 
+                                                                  h                 
+                                                                  s        (42)     
+                                            1) TheResourceElementConsumption: Althoughtheposi-
+        (Ec/Ep )                                                                    
+            PRS                                                                     
+               =NRE,com/NRE,PRS            tioningwaveformofMS-NOMAdoesnotoccupytheresource
+                      Ec                                                           
+                       ≈                                                            
+                        Ep                                                          
+                          NRE,total/NRE,PRS (39)                                    
+                                           e                                        
+                                           ti                                       
+                                            l                                       
+                                            o                                       
+                                            e                                       
+                                            n                                       
+                                             m                                      
+                                             in                                     
+                                              e                                     
+                                              g                                     
+                                              nts                                   
+                                                w                                   
+                                                 d                                  
+                                                 av                                 
+                                                 ir                                 
+                                                  e                                 
+                                                  e                                 
+                                                  f                                 
+                                                   c                                
+                                                   o                                
+                                                   t                                
+                                                    r                               
+                                                    ly                              
+                                                    m                               
+                                                     , t                            
+                                                      c                             
+                                                      h                             
+                                                      o                             
+                                                       e                            
+                                                       ul                           
+                                                        e                           
+                                                        d                           
+                                                        xt                          
+                                                         b                          
+                                                         ra                         
+                                                          e                         
+                                                           B                        
+                                                           se                       
+                                                            E                       
+                                                             e                      
+                                                             R                      
+                                                             n                      
+                                                              l                     
+                                                              a                     
+                                                               o                    
+                                                               s                    
+                                                               ss                   
+                                                                oc                  
+                                                                 p                  
+                                                                  c                 
+                                                                  ro                
+                                                                  u                 
+                                                                   d                
+                                                                   p                
+                                                                    u               
+                                                                    y               
+                                                                    c               
+                                                                    in              
+                                                                     e              
+                                                                     g              
+                                                                      d             
+                                                                       t            
+                                                                       b            
+                                                                       h            
+                                                                       y            
+                                                                        e           
+                                                                         t          
+                                                                         r          
+                                                                         h          
+                                                                         e          
+                                                                          e         
+                                                                          so        
+                                                                           p        
+                                                                           u        
+                                                                            o       
+                                                                            r       
+                                                                            s       
+                                                                            c       
+                                                                             i      
+                                                                             e      
+                                                                             -      
+                                           elements which should belong to communication. Therefore,
+       where NRE is the amount of resource elements during each                     
+                                           (43) is introduced to evaluate its equivalent resource element
+       measuringperiod,subscriptcomandtotalmeanthecommuni-                          
+                                           consumption                              
+       cationcomponentand the communication+PRScomponents,                          
+                                                          1                        
+       respectively.ToobtainthesamespreadinggainsbetweenMS- ΛMS−NOMA = BER n−BER0 (43)
+       NOMAandPRSforcomparison,theircodelengthsshouldbe   N                         
+                                                            n                       
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 8 =====
+                                                                                    
+                                                                                    
+       1340                          IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+       Fig.6. Thepositioning coverage andaccuracy ofMS-NOMAwithdifferent powerallocation algorithms (B=50MHz).
+                                                                                    
+       where BER0 is the BER without positioning component.                         
+       Then,byreplacingPc andPp withEc andEp in(43),wecan                           
+       obtain the relationship between ΛMS−NOMA and the energy.                     
+        PRS occupies the resource elements directly, its resource                   
+       element consumption can be evaluated by                                      
+                                                                                  
+                                 −1                                                 
+             ΛPRS =                                                                 
+                  NRE,PRS                                                           
+                        =                                                           
+                           N Tmeas                                                  
+                                       (44)                                         
+                  NRE,total G Tcoh                                                  
+        Fig. 4a shows the comparison of the resource element                        
+       consumption between MS-NOMA and PRS. It is clear that                        
+       MS-NOMA consumes fewer resource elements than PRS in                         
+       most areas. This means although the positioning waveform                     
+       interferes the communication as Section V-A analyzed, the                    
+       equivalent resource element consumption is still smaller than                
+       PRS. Moreover, when the bandwidth increases, MS-NOMA                         
+       consumes fewer resource elements because of the less posi-                   
+       tioninginterferenceas(36)shows(Tpdecreases).WhenEtotal                       
+       increases,ΛMS−NOMA increasesslightly.Thisisbecausethe                        
+       BER0 decreases slightly when the power of communication                      
+       component increases. For comparison, ΛPRS has no relation                    
+       toB orEtotal.Thisisbecauseneitherofthemhaveimpacton                          
+       the proportionof communicationand positioningcomponents                      
+       in PRS.                                                                      
+                                           Fig. 7. The allocated power and CPRs with different channel
+        On the other hand, ΛPRS increases significantly when                        
+                                           gains(B=50MHz).                          
+       Tmeas decreases. This is unsurprising because it needs more                  
+       PRS frames to ensure frequent measuring which consumes unsurprising that both two kinds of waveform have better
+       a great number of resource elements. On the contrary, the ranging accuracy when they consume more energy. More-
+       resource element consumption of MS-NOMA has no relation over,whentheproportionofpositioningcomponentdecreases
+       toTmeas.ThisisbecauseMS-NOMAwaveformiscontinuous, (i.e. Ec/Ep increases), the ranging accuracy of MS-NOMA
+       receivercoulddo measuringat any time within its calculation decreases gradually. This is because the interference of the
+       capacity. Therefore,PRS can hardly satisfy the frequentposi- communication component increases gradually. For compar-
+       tioning scenarios like automatic driving. ison, the ranging accuracy of PRS does not change when
+        2) The Energy Consumption: By giving certain Etotal and Ec/Ep changes. This is because PRS and communication
+       Ec/Ep , Pc and Pp can be determined as analyzed above. waveformareTDMAwhichmeanstheyusuallyhavethesame
+       Then, the ranging accuracy is compared when MS-NOMA power and differentperiodswhen Ec/Ep changes. Therefore,
+       and PRS consume the same energy as Fig. 4b shows. Where the ranging accuracy will not change when the power keeps
+       the lower bound of PRS is used as introduced in [28]. It is constant.Evenso, the rangingaccuracyof MS-NOMA is still
+       clear that MS-NOMA always has higher ranging accuracy betterthan PRS when the communicationenergyis 100times
+       than PRS under the same energy and bandwidth. Also, it is higher than the positioning one.
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 9 =====
+                                                                                    
+                                                                                    
+       YINetal.: DESIGNANDPERFORMANCEANALYSISOFMS-NOMA                      1341    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+       Fig.8. Detailed illustration ofthepositioning accuracy.                      
+                                                                                    
+        On the other hand, although the ranging accuracy of PRS results by the traditional method as suffering severe near-far
+       does not decrease when Ec/Ep increases, higher Ec/Ep effect.                 
+       resultsinlongerdurationofcommunicationcomponent.Then, Fig. 7 illustrates the relationship between the allocated
+       it results in lower measuring frequency. The relationship power, the channel gains (
+                                                           hm←km2                 
+                                                                 ) and the CPRs of the
+                                                            p                       
+       between Tmeas and Ec/Ep in PRS is shown in Fig. 5. P-Usersbyexaminingonesimulation.Itshowsthatthe worse
+       It is clear that higher measuring frequency consumes more channelstatestendtoallocatestrongerpositioningpower.This
+       energyforpositioningpurpose(i.e.lowerEc/Ep)inPRS.For is exactly what we expected that the P-Users with worse
+       comparison, higher measuring frequency does not consume channel states need stronger power to obtain an accurate
+       more energy in MS-NOMA.             ranging. However, notice that there is a power disparity
+                                           between the 2nd and 3rd P-Users whose channel gains are
+       C. Positioning Performance          similar. This is because the geometric-dilution λ in (1) also
+                                           affects the positioning accuracy which is considered by the
+        For MS-NOMA, although stronger positioning power will                       
+                                           power allocation process. This can be observed in Fig. 6a as
+       have higher measurement accuracy, the maximum power of                       
+                                           well:Thelocationofthe2nd P-User(coordinate:(178,8))isat
+       the positioning components will be limited by the QoS of                     
+       communication as Fig. 3 shows. So, Pms must be allo-                         
+                                           theedgeoftheareacomparedtothecenterlocationofthe3rd
+                               p           P-User(coordinate:(79,77)),sothe2nd P-Userhasastronger
+       cated carefully to acquire the best ranging performanceunder                 
+                                           allocated power because of its bad geometric-dilution.
+       the QoS constraint. In real applications, the communication                  
+                                            Moreover, it is obvious that CPRs have similar tends
+       interference from other BSs must be considered. In this                      
+                                           with the channel gains. It does not seem correct as CPR is
+       subsection, we present the numerical results to evaluate the                 
+                                           inversely proportional to                
+                                                           hm←km2                 
+                                                                as defined in Appendix
+       positioning performance of MS-NOMA waveform by using p                       
+       the proposed CP4A algorithm. The BSs are fixed at (0,0), B. Notice that worse channel states tend to allocate stronger
+       (200,0), (200,200), (0,200) and 20 P-Users are randomly p  h o m si ← tio k n m in 2 g P p k o m w ) er w . A ill s t a en r d es t u o lt, be th fl e a d t e f n o o r m a i l n l a k to m r . o T f h C e P n R , C ( P i.e R .
+       distributed in the coverage area. The free space propagation p p           
+                                                                 2                
+       modelis employedwith 50 Monte Carlo runsin each simula- isapproximatelyproportionaltohm←k .Becausethechan-
+                                                               c                    
+       tion. Without any loss of generality, the parameters are set as nel gains of communication components are approximately
+       P be T k llo = w P : T N = Pc 1 = .1W 1W . , Ξ P th t k h = = 10 P − th 2 = an 0 d .1  W = f 2 o . ranyk ∈K. Then,    e h q m ua ← l k t  o   2 th ≈ at   h o m f ← po k s m it   i 2 o ) n , in it g re c s o u m lts po in ne t n h t a s t f C o P r R P s -U h s a e v r e m sim ( i i l . a e r .
+        Fig. 6 shows the positioning accuracy and coverage of c  p                
+       MS-NOMAwaveformbyusingtheproposedCP4Aalgorithm tends with  hm p ←km2 . In addition, it is observed that the
+       and the traditional equal-power transmission strategy, respec- CPRs have weaker fluctuations than the channel gains, this
+       tively. The positioning error is set to 0 if the P-User cannot reflectsthattheproposedCP4Aalgorithmweakenstheeffects
+       receive more than 3 BSs which means there are not enough of channel attenuation.
+       BSs for positioning. From Fig. 6a, we can see all P-Users The average positioning accuracy of MS-NOMA and PRS
+       have positioning results which means the near-far effect is is shown in Table II. It shows the positioning accuracy of
+       dramatically reduced. While from Fig. 6b, it is clear that MS-NOMA waveform is much higher than that of PRS.
+       a great amount of P-Users (50.8%) do not have positioning Specifically, the improvements of MS-NOMA waveform are
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 10 =====
+                                                                                    
+                                                                                    
+       1342                          IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022
+                                                                                    
+                      TABLEII                            APPENDIX A                 
+            THECOMPARISONBETWEENMS-NOMAANDPRS DERIVATION OF THEHORIZONTAL POSITIONING
+                                                         ACCURACY                   
+                                                                                  
+                                            Define εm = ε1m,ε2m,...,εkm T as the ranging errors
+                                                 ρ    ρ  ρ    ρ                     
+                                           ofP-User m, whereεkm representsthe rangingerrorbetween
+                                                       ρ                            
+                                           BS k and P-User m. Then, the positioning error of P-User m
+                                           is [29]                                  
+       93.0%and93.6%comparedto PRS with 20MHzand 50MHz                              
+                                                              −1                    
+       bandwidth, respectively. Detailed comparisons are presented ε m = (G m)T G m (G m)T ε m
+                                                   X                 ρ              
+       in Fig. 8a. Notice that the positioning accuracy represents the              
+                                                     = H m ε m             (45)     
+       lower bound calculated by (1), so the minimum positioning ρ                  
+       errorinFig.8adoesnotstartfrom0.We cansee nearlyallof                         
+                                           where                                    
+       the error bounds of 20MHz MS-NOMA waveform are even ⎡       ⎤                
+                                                         ι1m ι1m ι1m                
+       smaller than the minimum error bound of 50MHz PRS, this x y z                
+       is mainly because of the following two reasons: G m =                        
+                                                        ⎢                           
+                                                        ⎢ ⎣                         
+                                                         ι2                         
+                                                          x                         
+                                                          m  ι2                     
+                                                              y                     
+                                                              m  ι2                 
+                                                                 z                  
+                                                                  m⎥                
+                                                                   ⎥ ⎦     (46)     
+                                                          ··· ··· ···               
+        1) Most of the ranging error variances of MS-NOMA are                       
+       smaller than those of PRS as shown in Fig. 4b; ⎧                             
+                                                         ιk                         
+                                                          x                         
+                                                          m  ιk                     
+                                                             y                      
+                                                              m  ιk                 
+                                                                 z                  
+                                                                  m                 
+        2)ThelargestrangingerroramountallBSswillworsenthe ⎪⎨ιk x m =(xm p −xk b ) /X b k−X p m
+       p S o o s t i h ti e on p i o n s g it e io rr n o in r g no err m o a r t b te o r u h n o d w so s f m P a R ll S th in e p o e th ri e p r h s e a ra re la ( r s e e a e a 1 r ) e . ⎪⎩ ιk y m =(y p m−y b k) /X b k−X p m (47)
+       higher than those in internal area as Fig. 8b shows (Larger ιk z m =(z p m−z b k) /X b k−X p m
+       path-loss results in larger ranging error variance). Moreover, where X = [x,y,z]T represents the coordinate. Subscript
+       the geometric-dilution λ in peripheral area is usually larger                
+                                           p and b represent P-User and BS, respectively. Because the
+       than internal area which will further worsen the positioning                 
+                                           rangingerrorsfrom the BSs are independent,their covariance
+       accuracy. On the contrary, the proposed CP4A algorithm                       
+                                           matrix is diagonal under the assumption that the range mea-
+       considers the ranging errors and geometric-dilution jointly. suring is unbiased:
+       It averages the ranging errors weighted by the geometric-                
+       dilution via configuring the positioning power of MS-NOMA σ ρ m 2 = c ⎡ o  v ε m ρ  ,ε m ρ ⎤
+       waveform.Therefore,the positioningaccuracyofMS-NOMA σ1m 2 0 ··· 0            
+       a F r i e g. fl 8 a b tt . erthanthoseofPRSascomparedbetweenFig.6aand = ⎢ ⎢ ⎢ ρ 0  σ ρ 2m  2 ··· 0 ⎥ ⎥ ⎥ (48)
+                                                    ⎣  ···   ··· ···  ··· ⎦         
+                                                                                  
+                                                       0     0   ··· σkm 2          
+                   VI. CONCLUSION                                     ρ             
+                                                                                
+        In this paper, we presented a feasibility study for a novel where σkm 2 =cov εkm,εkm represents the ranging error
+                                                ρ        ρ ρ                        
+       multiple access technique called Multi-Scale Non-Orthogonal varianceofP-Subkm.Then,thecovarianceofthepositioning
+       Multiple Access (MS-NOMA) for the next generation error is                   
+       communication-positioning integration system. The MS-                        
+                                                    (σ m)2 = cov(ε m ,ε m)          
+       NOMA waveform superposes power configurable positioning X X X              
+       componentsonthe communicationonestoachievehighrang- = H m σ m 2 (H m)T (49)  
+                                                              ρ                     
+       ing accuracy and little resource consumption. We analyzed                    
+                                           The diagonal elements represent the positioning accuracy of
+       the BER for communication and the ranging accuracy for                       
+                                           each direction. Then, the horizontal positioning accuracy can
+       positioningwhenthetwokindsofcomponentsexistsimultane-                        
+                                           be expressed as                          
+       ously.Theresultsshowtheinteractionisratherlimitedandthe *                    
+                                                     +                            
+       proposedMS-NOMA waveform greatly improvesthe ranging + 2                 
+       accuracy comparing to the traditional PRS waveform. Next, Ψ m = , (m)2 σkm 2 (50)
+                                                              ik   ρ                
+       theresourceelementsandenergyconsumptionwereanalyzed. k∈K i=1                 
+       I                                                                            
+       fe                                                                           
+       t                                                                            
+        w                                                                           
+        is                                                                          
+         er                                                                         
+         ap                                                                         
+           r                                                                        
+           p                                                                        
+           e                                                                        
+           r                                                                        
+            s                                                                       
+            o                                                                       
+            o                                                                       
+             v                                                                      
+             u                                                                      
+             e                                                                      
+              r                                                                     
+              d                                                                     
+              ce                                                                    
+               t                                                                    
+               s                                                                    
+               ha                                                                   
+                 t                                                                  
+                 t                                                                  
+                 h                                                                  
+                  t                                                                 
+                  a                                                                 
+                  h                                                                 
+                  n                                                                 
+                   e p                                                              
+                    P                                                               
+                    r                                                               
+                     R                                                              
+                     o                                                              
+                     S                                                              
+                      po                                                            
+                       e                                                            
+                       se                                                           
+                        sp                                                          
+                        d                                                           
+                         e                                                          
+                         M                                                          
+                         cia                                                        
+                           S                                                        
+                           l                                                        
+                           -                                                        
+                           l                                                        
+                            N                                                       
+                            y                                                       
+                             O                                                      
+                             in                                                     
+                              MA                                                    
+                               fre                                                  
+                                c                                                   
+                                 q                                                  
+                                 o                                                  
+                                 u                                                  
+                                  n                                                 
+                                  e                                                 
+                                  s                                                 
+                                   n                                                
+                                   u                                                
+                                   t                                                
+                                    m                                               
+                                     p                                              
+                                     e                                              
+                                     o                                              
+                                     s                                              
+                                      s                                             
+                                      m                                             
+                                      iti                                           
+                                       u                                            
+                                        o                                           
+                                        c                                           
+                                        n                                           
+                                         h                                          
+                                         -                                          
+                                           where m                                 
+                                                ik                                  
+                                                 s (i- ∈ {1,2,3}) represent the elements of Hm.
+       ing scenarios like automatic driving. At last, we modeled Note λkm = 2 i=1 (m ik )2 as the geometric-dilution, then
+       a multi-user power allocation problem for optimal position- we have (1).     
+       ing accuracy and signal coverage as a convex optimization                    
+       problem under the QoS requirement and other constraints. APPENDIXB         
+       Then, a novel Communication and Positioning Performances DERIVATION OF σ ρ km 2
+       constrained Positioning Power Allocation (CP4A) algorithm Note (51)-(54), as shown at the bottom of the next page.
+       was proposed. The numerical results show our proposed Then, (6) can be written as
+       M                                                                            
+       po                                                                           
+        S                                                                           
+        si                                                                          
+         -                                                                          
+         t                                                                          
+         N                                                                          
+         io                                                                         
+          O                                                                         
+           n                                                                        
+           M                                                                        
+           ing                                                                      
+            A                                                                       
+              a                                                                     
+              w                                                                     
+              cc                                                                    
+               a                                                                    
+               u                                                                    
+                v                                                                   
+                r                                                                   
+                e                                                                   
+                 a                                                                  
+                 f                                                                  
+                 c                                                                  
+                 o                                                                  
+                  y                                                                 
+                  rm                                                                
+                   and                                                              
+                    wi                                                              
+                      s                                                             
+                      t                                                             
+                      i                                                             
+                      h                                                             
+                       gn                                                           
+                        C                                                           
+                        al                                                          
+                         P4                                                         
+                          c                                                         
+                          A                                                         
+                          ove                                                       
+                            a                                                       
+                            r                                                       
+                            l                                                       
+                             a                                                      
+                             g                                                      
+                             g                                                      
+                             o                                                      
+                              e                                                     
+                              rit                                                   
+                               d                                                    
+                               h                                                    
+                                r                                                   
+                                m                                                   
+                                am                                                  
+                                  i                                                 
+                                  a                                                 
+                                  m                                                 
+                                   tic                                              
+                                   p                                                
+                                    a                                               
+                                    ro                                              
+                                     ll                                             
+                                     v                                              
+                                     y                                              
+                                      es                                            
+                                       co                                           
+                                        t                                           
+                                        m                                           
+                                        he                                          
+                                         -                                          
+                                                                                   
+                                                 σ km                               
+                                                                                   
+                                                    2 =                             
+                                                         a(                         
+                                                                                   
+                                                           Am                       
+                                                            1                       
+                                                             +A                     
+                                                                                   
+                                                               m                    
+                                                               2                    
+                                                                 +Am                
+                                                                   3                
+                                                                    )               
+                                                                           (55)     
+       paring to the traditional PRS waveform.    ρ    (2π)2 hm p ←km2 P p km(Am 0 )2
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 11 =====
+                                                                                    
+                                                                                    
+       YINetal.: DESIGNANDPERFORMANCEANALYSISOFMS-NOMA                      1343    
+                                                                                    
+       Notice that there are multiple P-Users, i.e. the bandwidth of expansionaround0.Then,bytaking(5),(7),(8)into(51)-(54)
+       thepositioningwaveformforoneP-Userismuchsmallerthan and rearranging items, we have (56)-(59).
+       the total bandwidth B. Moreover, the front-end bandwidth is Taking (56)-(60),as shown at the bottom of the page, back
+       largerthanB aswell. Sowe haveBfe 2/Tp . Consequently, to (55) and rearranging items, we have (61), as shown at the
+       a DLL’s narrow early-late spacing D can be applied.2 When bottomofthepage,where(62),asshownatthetopofthenext
+       D → 0, sin(πfDTp ) in (51)-(54) can be replaced by Taylor page, is defined as the normalized equivalent channel gain of
+                                           the communication component transmitted by BS k to the
+        2If B fe is not large enough, the DLL correlation peak will be flattened P-User m.
+       whichwilldeteriorate theperformance ofthephasediscriminator.                 
+                                                                                    
+                           B0+.B                                                    
+                              fe                                                    
+                               /2                                                   
+                       A m                                                          
+                        0                                                           
+                         =      fG m                                                
+                                  p                                                 
+                                   (f +mΔfp )sin(πfDTp )df                 (51)     
+                          B0−B                                                      
+                             fe                                                     
+                               /2                                                   
+                           B0+.B                                                    
+                              fe                                                    
+                               /2                                                   
+                       A m                                                          
+                        1                                                           
+                         =      N0G m                                               
+                                   p                                                
+                                    (f +mΔfp )sin 2(πfDTp )df              (52)     
+                          B0−B                                                      
+                             fe                                                     
+                               /2                                                   
+                           B0+.B                                                    
+                              fe                                                    
+                               /2                                                   
+                       A m                                                          
+                        2                                                           
+                         =      G m                                                 
+                                 s                                                  
+                                   (f +mΔfp )G m                                    
+                                           p                                        
+                                            (f +mΔfp )sin 2(πfDTp )df      (53)     
+                          B0−B                                                      
+                             fe                                                     
+                               /2                                                   
+                           B0+.B                                                    
+                              fe                                                    
+                               /2                                                   
+                       A m                                                          
+                        3                                                           
+                         =      G k                                                 
+                                 q                                                  
+                                  m(f +mΔfp )G m                                    
+                                            p                                       
+                                             (f +mΔfp )sin 2(πfDTp )df     (54)     
+                          B0−B                                                      
+                             fe                                                     
+                               /2                                                   
+                     B.fe /2                                                        
+                                    1                                               
+           A m                                                                      
+            0                                                                       
+              = πDT                                                                 
+                   p                                                                
+                   2    f 2 sinc 2(fTp )df =                                        
+                                    2π                                              
+                                     DBfe                                  (56)     
+                    −B /2                                                           
+                      fe                                                            
+           A m                                                                      
+            1                                                                       
+              = πDTpN0A m                                                           
+                      0                                                             
+                                                                           (57)     
+                               B.fe /2                                          
+                             2                                                    
+           A m                                                                      
+            2                                                                       
+              = D 2 Tp   h m                                                       
+                          c                                                         
+                           ←kn PcTc  sinc 2[(f +mΔfp −nΔfc )Tc ]sin 2(fTp )df     
+                    k∈Kn∈N                                                         
+                                  −B /2                                             
+                                    fe                                              
+                                           (Gm−.n+1)Δfc                         
+             G ≈ 1 D 2 TpTcPc  h m                                               
+                             c                                                      
+                              ←kn   2 sin 2 π m− n × sinc 2[(f +mΔfp −nΔfc )Tc ]df
+                                          G                                         
+                       k∈Kn∈N                                                      
+                                                                                
+                                              (Gm−n−1)Δfc                           
+              ≈ D 2 TpPc    h m                                                   
+                            c                                                       
+                             ←kn   2 sin 2 n π                          (58)     
+                                    G                                               
+                     k∈Kn∈N                                                        
+                                B.fe /2                                          
+                             2                                                    
+           A m                                                                      
+            3                                                                       
+              = π 2 D 2 T                                                           
+                    p                                                               
+                     4   h m                                                       
+                          p                                                         
+                           ←km P                                                  
+                                p                                                   
+                                km    f 2 sinc 4(fTp )df                  (59)     
+                     k∈Kk        −B /2                                             
+                                   fe                                             
+                                         A¯                                         
+                                         3                                          
+       where                                                                        
+                   .∞              .∞/                 0                            
+           A ¯ 3 B fe  ≈ 2/Tp sin π 4 4 ( f π 2 f T T 4 p ) df = 4π 1 4T4 4sin 2 f (π 2 fTp ) − sin 2( f 2π 2 fTp ) df = 2π 1 2T3 (60)
+                          p       p                           p                     
+                  −∞ ⎡             −∞                                  ⎤        
+                                                  2               2           
+         σ km  2 ≈ aTp ⎢ ⎣  N0  + 2Pc k∈K  N n=1 hm c ←  kn sin 2 G n π + k∈Kk  hm p ←k  m P p km ⎥ ⎦
+         ρ          2 Bfe  hm                                                      
+                          p                                                         
+                           ←km2 P                                                  
+                                p                                                   
+                                km       B                                          
+                                          f                                         
+                                           2                                        
+                                           e                                        
+                                             hm                                    
+                                             p                                      
+                                              ←km2 P                               
+                                                   p                                
+                                                   km         B                     
+                                                               f                    
+                                                               2                    
+                                                                e                   
+                                                                  hm               
+                                                                  p                 
+                                                                   ←km2 P          
+                                                                        p           
+                                                                        km          
+                      ⎛                                         ⎞               
+                                                 2           2                  
+               =   aT p 2 ⎜ ⎝  N0  + BGPc  k∈K   hm c ←k + k∈Kk  hm p ←km   P p km ⎟ ⎠ (61)
+                    2  BfeTp  hm                                                   
+                            p                                                       
+                             ←km2 P                                                
+                                  p                                                 
+                                  km   B                                            
+                                        f                                           
+                                        2                                           
+                                         e                                          
+                                          hm                                       
+                                           p                                        
+                                            ←km2 P                                 
+                                                 p                                  
+                                                 km   B                             
+                                                       f                            
+                                                       2                            
+                                                        e                           
+                                                         Tp  hm                    
+                                                           p                        
+                                                            ←km2 P                 
+                                                                 p                  
+                                                                  km                
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 12 =====
+                                                                                    
+                                                                                    
+       1344                          IEEEJOURNALONSELECTEDAREASINCOMMUNICATIONS,VOL.40,NO.4,APRIL2022
+                                                                                    
+         h m←k    2 = 2    h m←kn    2 sin 2 n π            (62)     
+        c           c                                                               
+              N             G                                                       
+                n∈N                                                                 
+                                                                                 
+         ∂L˜ = − M 1 ∂  λkmσ ρ km  2 −νkP p km + ∂ n∈Nm μ˜kn I t k h n−Ikn + ∂  β ˜km |hm p ←km|2P p km−Ω|h m p ←k k m|2Pp k k m 
+        ∂Pkm        ∂Pkm             ∂Pkm                   ∂Pkm                    
+          p           p                p                      p                     
+                                                                                  
+            = −                                                                     
+               1  λkmσ                                                             
+                     ρ                                                              
+                     km 2                                                           
+                         −ν k−                                                      
+                                                                                   
+                                 μ˜kn                                               
+                                   ∂Ikn                                             
+                                       +β ˜km|h m←km|2                     (66)     
+               M   Pkm             ∂Pkm     p                                       
+                    p         n∈Nm  p                                             
+                                   Jkn←m                                            
+                                                                                  
+        Let’s define (C/N0 )km =  hm p ←km2 P p km/N0 as the                      
+       carrier-to-noise ratio of P-Sub km, (CPR)km←k =                             
+       2G                                                                           
+        (cid:4) (cid:4) (cid:4)                                                     
+         hm←k                                                                      
+         c                                                                          
+            (cid:4) (cid:4) (cid:4)                                                 
+             2                                                                      
+             Pc asthe equivalentcommunication-to-positioning                        
+       |hm←km|2Pkm                                                                  
+        p    p ratio of communication component transmitted by BS k to             
+       P-Sub km, and (PPR)km←km =                                                  
+                             (cid:4) (cid:4) (cid:4)                                
+                             hm←km                                                 
+                              p                                                     
+                                 (cid:4) (cid:4) (cid:4)                            
+                                            [6] K. McDermott, R. M. Vaghefi, and R. M. Buehrer, “Cooperative
+                                              UTDOApositioninginLTEcellularsystems,”inProc.IEEEGlobecom
+                                              Workshops(GCWkshps),Dec.2015,pp.1–6.  
+                                            [7] Z.Chaloupka, “Technology andstandardization gapsforhighaccuracy
+                                              positioning in 5G,” IEEE Commun. Standards Mag., vol. 1, no. 1,
+                                              pp.59–65,Mar.2017.                    
+                                  2 Pkm    [8] G. Kumar, V. Gupta, and R. Tank, “Phase-based angle estimation
+                                   p  as the  approach in indoor localization system using Bluetooth low energy,”
+                             |hm←km|2Pkm      in Proc. Int. Conf. Smart Electron. Commun. (ICOSEC), Sep. 2020, p p positioning-to-positioning ratio of P-Sub km to P-Sub km. pp.904–912.
+                                            [9] B.Yangetal.,“Edgeintelligenceforautonomousdrivingin6Gwireless
+       Then we have (9).                                                            
+                                              system: Design challenges and solutions,” IEEE Wireless Commun.,
+                                              vol.28,no.2,pp.40–47,Apr.2021.        
+                    APPENDIX C             [10] Y.Xianjia,L.Qingqing,J.P.Queralta,J.Heikkonen,andT.Westerlund,
+                  DERIVATION OFP ˜ p km       “ a A nd pp in li d c u at s i t o ri n a s l o sy f s U te W ms B ,” n i e n tw P o r r o k c s .1 an 0 d th p M os e i d ti i o t. ni C n o g n t f. o E a m ut b o e n d o d m ed ou C s o r m ob p o u t t s .
+                                              (MECO),Jun.2021,pp.1–6.               
+        The KKT conditions of OP2 can be written as                                 
+                                        [11] C.S.G.N.Dev,L.Pathak,G.Ponnamareddy,andD.Das,“NRPos:A
+            μ˜kn I kn−I kn =0          (63)   multi-RACHframeworkfor5GNRpositioning,”inProc.IEEE3rd5G
+                th                            WorldForum(5GWF),Sep.2020,pp.25–30.   
+         n∈Nm                              [12] Service Requirements for the 5G System, Standard 3GPP, TS 22.261
+         β ˜km |h m p ←km|2 P p km−Ω|h m p ←k k m|2 Pp k k m =0 (64) [13] J v . 1 S 7. c 0 h . l 1 o , e 2 m 0 a 1 n 9 n . ,H.S.Dhillon,andR.M.Buehrer,“Atractable analysis
+                                            oftheimprovementinuniquelocalizabilitythroughcollaboration,”IEEE
+         ∂L˜ P p km ,μ˜kn,β ˜km               Trans.Wireless Commun.,vol.15,no.6,pp.3934–3948,Jun.2016.
+                        =0             (65) [14] C.-H.ChenandK.-T.Feng,“Enhanceddistanceandlocationestimation
+               ∂P p km                        forbroadbandwirelessnetworks,”IEEETrans.MobileComput.,vol.14,
+                                              no.11,pp.2257–2271,Nov.2015.          
+       ItisobviousthattheoptimalsolutionP ˜ p km satisfies(65).Thus, [15] Z. Ding, X. Lei, G. K. Karagiannidis, R. Schober, J. Yuan, and
+       (65)canbesimplifiedto(66),asshownatthetopofthepage. V.K.Bhargava, “A survey on non-orthogonal multiple access for 5G
+                                              networks: Research challenges and future trends,” IEEE J. Sel. Areas
+        By taking (3) into (66), we have                                            
+                                              Commun.,vol.35,no.10,pp.2181–2195,Oct.2018.
+          J kn←m =    h k                                                       
+                     p                                                              
+                     n←km    2 Tpsinc 2 m− n (67) [16] Y th . e L p i h u y , si Z ca . l Q la in y , er M se . cu E r l i k ty ash o l f an n , on Y -o . rt G h a o o g , on a a n l d m L u . lti H pl a e nz a o cc , e “ ss En in ha l n a c r i g n e g -
+                                   G          scale networks,” IEEE Trans. Wireless Commun., vol. 16, no. 3,
+                 k∈K                                                               
+                                              pp.1656–1672,Mar.2017.                
+       Then, by setting (66) to 0, we can obtain the optimal power [17] A. K. Karmokar, M. Naeem, and A. Anpalagan, “Energy-efficient
+                                              subcarrierpowerallocationforcognitiveradionetworksusingstatistical
+       allocation solution as (33) shows.                                           
+                                              interferencemodel,”inProc.IEEE26thAnnu.Int.Symp.Pers.,Indoor,
+                                              MobileRadioCommun.(PIMRC),Aug.2015,pp.1121–1126.
+                    REFERENCES             [18] D.XuandQ.Li,“Jointpowercontrolandtimeallocation forwireless
+                                              powered underlay cognitive radio networks,” IEEE Wireless Commun.
+       [1] J. A. del Peral-Rosado, R. Raulefs, J. A. López-Salcedo, and Lett.,vol.6,no.3,pp.294–297,Jun.2017.
+         G.Seco-Granados,“Survey ofcellular mobile radio localization meth- [19] Y. Liu, Z. Ding, M. Elkashlan, and J. Yuan, “Nonorthogonal multiple
+         ods: From 1G to 5G,” IEEE Commun. Surveys Tuts., vol. 20, no. 2, access in large-scale underlay cognitive radio networks,” IEEE Trans.
+         pp.1124–1148,2ndQuart.,2017.         Vehi.Tech.,vol.65,no.12,pp.10152–10157,Dec.2016.
+       [2] N. Zhu, M. Ortiz, and V. Renaudin, “Seamless indoor-outdoor [20] Z. Ding, H. Dai, and H. V. Poor, “Relay selection for cooperative
+         infrastructure-free navigation for pedestrians and vehicles with GNSS- NOMA,” IEEE Wireless Commun. Lett., vol. 5, no. 4, pp.416–419,
+         aidedfoot-mountedIMU,”inProc.Int.Conf.IndoorPositioningIndoor Aug.2016.    
+         Navigat. (IPIN),Sep.2019,pp.1–8.  [21] L. Yin, J. Cao, K. Lin, Z. Deng, and Q. Ni, “A novel positioning-
+       [3] L. Yin, Q. Ni, and Z. Deng, “A GNSS/5G integrated positioning communication integrated signal in wireless communication systems,”
+         methodology in D2D communication networks,” IEEE J. Sel. Areas IEEEWirelessCommun.Lett.,vol.8,no.5,pp.1353–1356,Oct.2019.
+         Commun.,vol.36,no.2,pp.351–362,Feb.2018. [22] F.Maschietti,G.Fodor,D.Gesbert,andP.D.Kerret,“Usercoordination
+       [4] Y. Tao and L. Zhao, “AIPS: An accurate indoor positioning system forfastbeamtraininginFDDmulti-usermassiveMIMO,”IEEETrans.
+         withfingerprintmapadaptation,”IEEEInternetThingsJ.,earlyaccess, Wireless Commun.,vol.20,no.5,pp.2961–2976,May2021.
+         Jul.8,2021,doi:10.1109/JIOT.2021.3095185. [23] Y. Liu, Z. Ding, M. Elkashlan, and H. V. Poor, “Cooperative non-
+       [5] S.Han,Y.Li,W.Meng,C.Li,T.Liu,andY.Zhang,“Indoorlocalization orthogonal multiple access with simultaneous wireless information
+         with asingle Wi-Fi access point based onOFDM-MIMO,”IEEESyst. and power transfer,” IEEE J. Sel. Areas Commun., vol. 34, no. 4,
+         J.,vol.13,no.1,pp.964–972,Mar.2019.  pp.938–953,Apr.2016.                  
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.
+
+===== PDF PAGE 13 =====
+                                                                                    
+                                                                                    
+       YINetal.: DESIGNANDPERFORMANCEANALYSISOFMS-NOMA                      1345    
+                                                                                    
+                                                                                    
+       [24] J. W. Betz and K. R. Kolodziejski, “Generalized theory of code Qiang Ni (Senior Member, IEEE) received the
+         tracking with an early-late discriminator—Part I: Lower bound and B.Sc.,M.Sc.,andPh.D.degreesfromtheHuazhong
+         coherentprocessing,”IEEETrans.Aerosp.Electron.Syst.,vol.45,no.4, University of Science and Technology, China, all
+         pp.1538–1556,Oct.2009.                       in engineering. He is currently a Professor and
+       [25] S. Boyd, S. P. Boyd, and L. Vandenberghe, Convex Optimization. the Head of the InfoLab21, Communication Sys-
+         Cambridge, U.K.:CambridgeUniv.Press,2004.    tems Group, School of Computing and Communi-
+       [26] R. Zhang,“Optimal power control overfading cognitive radio channel cations, Lancaster University, Lancaster, U.K. His
+         by exploiting primary user CSI,” in IEEE Global Commun. Conf. main research interests lie in the area of future
+         (GLOBECOM),Nov.2008,pp.1–5.                  generationcommunicationsandnetworking,includ-
+       [27] L. Li and C. Xu, “On ergodic sum capacity of fading channels in ing green communications and networking, cogni-
+         OFDMA-based cognitive radio networks,” IEEE Trans. Veh. Technol., tiveradionetworksystems,heterogeneousnetworks,
+         vol.63,no.9,pp.4334–4343,Nov.2014. smallcellandultra-densenetworks,5Gand6G,SDN,cloudnetworks,energy
+       [28] J. A. del Peral-Rosado, J. A. Lopez-Salcedo, G. Seco-Granados, harvesting, wireless information and power transfer, the IoT, and vehicular
+         F.Zanier,andM.Crisci,“Achievable localization accuracyoftheposi- networks. He has authored or coauthored over 300 articles in these areas.
+         tioningreferencesignalof3GPPLTE,”inProc.Int.Conf.Localization HewastheIEEE802.11Wireless StandardWorkingGroupVoting Member
+         GNSS,Jun.2012,pp.1–6.             andaContributor totheIEEEWireless Standards.
+       [29] Y.Lu,D.Zhongliang,Z.Di,andH.Enwen,“Qualityassessmentmethod              
+         ofGNSSsignalsbaseonmultivariatedilutionofprecision,”inProc.Eur.            
+         Navigat. Conf.(ENC),May2016,pp.1–6.                                        
+                                                      Yuzheng Ma received the B.S. degree from Jilin
+                                                      University, Jilin, China, in 2019. She is currently
+                  Lu Yin (Member, IEEE) received the B.Sc. and                      
+                                                      pursuing the M.S. degree with the Beijing Uni-
+                  Ph.D. degrees in electrical engineering from the                  
+                                                      versity of Posts and Telecommunications, Beijing,
+                  BeijingUniversityofPostsandTelecommunications                     
+                                                      China.Hercurrentresearchinterestsareintheareas
+                  (BUPT),Beijing,China,in2014.Heiscurrentlyan                       
+                                                      of wireless positioning and protocol for 5G NR
+                  Associate Professor with the School of Electronic                 
+                                                      positioning.                  
+                  Engineering, BUPT. He was an Academic Visitor                     
+                  withLancasterUniversityfrom2016to2017.Heis                        
+                  involved inthe development and standardization of                 
+                  3GPP5GNRpositioning.Hiscurrentresearchinter-                      
+                  ests are in the areas of GNSS, indoor positioning,                
+                  integrated/cooperative positioning, intelligent local-            
+       ization (localization with artificial intelligence), positioning-communication
+       integration systems,andcommunication systems.                                
+                                                      Song Li (Member, IEEE) received the B.Sc. and
+                                                      M.Sc. degrees in communication and information
+                  Jiameng Cao received the B.S. and M.S. degrees system from Tianjin University, Tianjin, China,
+                  from the Beijing University of Posts and Telecom- in 2007 and 2009, respectively, and the Ph.D.
+                  munications, Beijing, China, in 2017 and 2020, degree in signal and information processing from
+                  respectively. He is currently engaged in research the Beijing University of Posts and Telecommu-
+                  on virtualization and docker container orchestra- nications, Beijing, China, in 2012. He was a
+                  tion at the ZTEResearch Institution, Xi’an, China. Visiting Scholar with Lancaster University, U.K.,
+                  His research interests are in the areas of wireless from2016to2017.HeiscurrentlyanAssociatePro-
+                  positioning, inertial navigation, and communication fessor with the School of Information and Control
+                  systems.                            Engineering,ChinaUniversityofMiningandTech-
+                                           nology, Xuzhou, China. His current research interests include B5G wireless
+                                           networks,cyber-physical systems,andtheIndustrial InternetofThings.
+                                                                                    
+                                                                                    
+                                                                                    
+     Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore. Restrictions apply.

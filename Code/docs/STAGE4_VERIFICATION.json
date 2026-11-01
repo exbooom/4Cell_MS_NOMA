@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "basicTests": 17,
+  "precisionTests": 9,
+  "dualTests": 10,
+  "projectedTests": 9,
+  "totalTests": 45,
+  "codeAnalyzerDiagnostics": 0,
+  "sourceFiles": 65,
+  "run50": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_105550_e4c148e5",
+  "run20": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_105616_ab5e4b45",
+  "budgetStressRun": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_105634_98a5eb0f",
+  "scenarios": [
+    {
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "relativeToCentral": 1.4245601365203697E-8,
+      "relativeDualityGap": 1.9998060750660524E-7,
+      "maxNormalizedViolation": 5.085721843656188E-9,
+      "maxRelativeHearabilityViolation": 0,
+      "kktStationarity": 1.147142621648318E-16,
+      "kktComplementarity": 3.1382570830499279E-7,
+      "outerIterations": 0,
+      "innerCalls": 1,
+      "innerIterations": 17442,
+      "elapsedS": 12.5300702
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.1,
+      "relativeToCentral": 1.8589369776833564E-7,
+      "relativeDualityGap": 1.9998781739841788E-7,
+      "maxNormalizedViolation": 2.2443469305244435E-10,
+      "maxRelativeHearabilityViolation": 1.0802771725541934E-14,
+      "kktStationarity": 1.1107920502526647E-16,
+      "kktComplementarity": 3.1992794308614075E-7,
+      "outerIterations": 0,
+      "innerCalls": 1,
+      "innerIterations": 23822,
+      "elapsedS": 7.1277352
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.001,
+      "relativeToCentral": 7.7763850625522934E-7,
+      "relativeDualityGap": 7.8285358929572021E-7,
+      "maxNormalizedViolation": 0,
+      "maxRelativeHearabilityViolation": 0,
+      "kktStationarity": 1.3877787807814457E-17,
+      "kktComplementarity": 9.7760428818563019E-8,
+      "outerIterations": 61,
+      "innerCalls": 76,
+      "innerIterations": 22414,
+      "elapsedS": 6.8406819
+    }
+  ]
+}

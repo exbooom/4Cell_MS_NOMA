@@ -1,0 +1,2030 @@
+===== PDF PAGE 1 =====
+                                                                                    
+                                                                                    
+                                                                          1         
+                                                                                    
+                                                                                    
+                 Design     and   Performance       Analysis    of                  
+                                                                                    
+                                                                                    
+                Multi-scale     NOMA       for  5G   Positioning                    
+                                                                                    
+                                                                                    
+                                                                                    
+             Lu Yin, Member, IEEE, Jiameng Cao, Zhongliang Deng, Qiang Ni, Senior   
+                                                                                    
+              Member, IEEE, Song Li, Member, IEEE, Xinyu Zheng, Hanhua Wang         
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                        Abstract                                    
+                                                                                    
+                This paper presents a feasibility study for a novel positioning-communication integrated signal
+                                                                                    
+             called Multi-Scale Non-Orthogonal Multiple Access (MS-NOMA) for 5G positioning. One of the main
+                                                                                    
+             differences between the MS-NOMA and the traditional positioning signal is MS-NOMA supports
+             configurable powers for different positioning users (P-Users) to obtain better ranging accuracy and
+                                                                                    
+             signal coverage. Our major contributions are: Firstly, we present the MS-NOMA signal and analyze
+             the Bit Error Rate (BER) and ranging accuracy by deriving their simple expressions. The results
+                                                                                    
+             show the interaction between the communication and positioning signals is rather limited, and it is
+             feasible to use the MS-NOMA signal to achieve high positioning accuracy. Secondly, for an optimal
+                                                                                    
+             positioningaccuracyandsignalcoverage,wemodelthepowerallocationproblemforMS-NOMAsignal
+             as a convex optimization problem by satisfying the QoS (Quality of Services) requirement and other
+                                                                                    
+             constraints. Then, we propose a novel Positioning-Communication Joint Power Allocation (PCJPA)
+             algorithm which allocates the powers of all P-Users iteratively. The theoretical and numerical results
+                                                                                    
+             show our proposed MS-NOMA signal has great improvements of ranging/positioning accuracy than
+             traditional PRS (Positioning Reference Signal) in 5G, and improves the coverage dramatically which
+                                                                                    
+             means more P-Users could locate their positions without suffering the near-far effect.
+                                                                                    
+                                                                                    
+           Lu Yin, Jiameng Cao, Zhongliang Deng, Xinyu Zheng, and Hanhua Wang are with the School of Electronic En-
+          gineering, Beijing University of Posts and Telecommunications, Beijing, 100876, China, e-mail: inlu_mail@bupt.edu.cn,
+          caojiameng@bupt.edu.cn, dengzhl@bupt.edu.cn, buptzxy@bupt.edu.cn, whh0710@bupt.edu.cn.
+           Qiang Ni is with the School of Computing and Communications, Lancaster University, InfoLab21, LA1 4WA, U.K. e-mail:
+          q.ni@lancaster.ac.uk.                                                     
+           SongLiiswithSchoolofInformationandControlEngineering,ChinaUniversityofMiningandTechnology,Xuzhou,China.
+          e-mail: lisong@cumt.edu.cn.                                               
+  9102                                                                              
+  tcO                                                                               
+  01                                                                                
+  ]PS.ssee[                                                                         
+  1v05340.0191:viXra                                                                
+
+===== PDF PAGE 2 =====
+                                                                                    
+                                                                                    
+                                                                          2         
+                                                                                    
+                                                                                    
+                                      Index Terms                                   
+                                                                                    
+                                                                                    
+                MS-NOMA, interference, positioning, power allocation.               
+                                                                                    
+                                    I. INTRODUCTION                                 
+                                                                                    
+            Nowadays, the Location Based Services (LBS) are growing rapidly and attracting much
+                                                                                    
+          attention with the proliferation of mobile devices [1], [2]. The well known Global Navigation
+                                                                                    
+          Satellite Systems (GNSS), such as the Global Positioning System (GPS) and the Beidou System
+                                                                                    
+          (BDS) [3], [4], can only be used in open areas as their signals are easily blocked or interfered
+          by buildings [5]. The emerging Wi-Fi, Bluetooth or Wireless Sensor Networks (WSN) based
+                                                                                    
+          positioning have well coverage indoors only with dense placements of the nodes [6], [7], [8].
+                                                                                    
+          And it is costly for collecting and maintaining the fingerprint database as well [9], [10].
+                                                                                    
+            Wireless communication network has a well coverage both indoors and outdoors [11], [12].
+                                                                                    
+          Meanwhile, it is cost-effective to be used for positioning purpose as it is ready-made for
+          communication purpose. However, the positioning accuracy can not meet some high-accuracy
+                                                                                    
+          requirements by using the communication signal directly as the communication system is not
+                                                                                    
+          designed for positioning purpose specifically [13], [14]. For example, the Positioning Reference
+                                                                                    
+          Signal (PRS) in the cellular network cannot fully meet the commercial requirements as the
+          discontinuous signal is hardly tracked which leads to a low range measurement accuracy [15].
+                                                                                    
+          Moreover, there are severe near-far effects between the positioning signals from different gNBs
+                                                                                    
+          (next generation NodeBs or called 5G nodeBs) which makes the signals from far gNBs more
+                                                                                    
+          difficult to be received [16], [17], [18]. Consequently, poor geometric distribution of gNBs is
+          achieved which further worsen the positioning accuracy [19], [20].        
+                                                                                    
+            To this end, we propose a positioning-communication integrated signal, called Multi-Scale
+                                                                                    
+          Non-OrthogonalMultipleAccess(MS-NOMA),whichsuperposesalowpowerpositioningsignal
+                                                                                    
+          to the communication one without much interference based on the NOMA principle. In time
+          domain, the MS-NOMA signal is Code Division Multiple Access (CDMA) to obtain correspond-
+                                                                                    
+          ing spreading gains and ensure a continuous transmission. In frequency domain, Orthogonal
+                                                                                    
+          Frequency Division Multiplexing Access (OFDMA) is employed for different positioning users
+                                                                                    
+          as Fig. 1 shows.                                                          
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 3 =====
+                                                                                    
+                                                                                    
+                                                                          3         
+                                                                                    
+                                                                                    
+                               Signals for communication with OFDM                  
+                                                       Df                           
+                           y          symbols.          c                           
+                           tis                                                      
+                           n e               Sub-carriers {                         
+                           D                                                        
+                           m                                                        
+                           u rtc               (cid:266)(cid:266)                   
+                           e                                                        
+                           p                                                        
+                           S                                                        
+                           r                                                        
+                           e                                                        
+                           w                                                        
+                           o      P-User2                                           
+                           P P-User1   P-User3 (cid:266)(cid:266) P-User M          
+                                   Df      Normalized Frequency (Hz)                
+                                    p                                               
+                               Signals for positioning with pseudorandom symbols.   
+          Fig. 1. The MS-NOMA architecture in frequency and power domains           
+            In the proposed MS-NOMA signal, ∆f and ∆f represent the sub-carrier spacing of commu-
+                                      c     p                                       
+          nication user (C-User) and positioning user (P-User), respectively. For the maximum spectrum
+          effectiveness, they are designed as ∆f = G∆f , G ∈ N . We assume both C-User and P-
+                                     p      c     +                                 
+          User each occupy a separate sub-carrier, so that there are maximum N = B/∆f − 1 and
+                                                                    c               
+          M =  B/∆f − 1 users for communication and positioning purpose, respectively. Where B
+                   p                                                                
+          represents the total bandwidth. The reasons for distinguishing different P-Users are:
+            1) Unlike communication system, it usually needs more than three gNBs to calculate the
+              P-User’s position. As the P-Users are located at different locations, the powers of the
+              positioning signals from far gNBs must be high enough in order to be correctly recognized.
+              Meanwhile, the powers of the positioning signals from near gNBs should be low enough
+                                                                                    
+              to avoid the near-far effect. So different powers for different P-Users are necessary.
+            2) The superposed positioning signal interferes the communication signal like inter-user inter-
+                                                                                    
+              ference occurred in the normal NOMA as well [21], [22]. To reduce this interference, the
+                                                                                    
+              power of the positioning signal must be limited under a certain threshold to satisfy the QoS
+                                                                                    
+              (Quality of Services) requirement of communication. While for P-Users, higher powers
+              are needed for more accurate range measuring [23]. Therefore, the gNBs could transmit
+                                                                                    
+              positioning signals with different powers for different P-Users to meet the requirements
+                                                                                    
+              of both C-Users and P-Users.                                          
+                                                                                    
+          Although the aforementioned problems may be mitigated by varying the bandwidths of the
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 4 =====
+                                                                                    
+                                                                                    
+                                                                          4         
+                                                                                    
+                                                                                    
+          positioning signals as well, it will bring some other problems and make the whole system more
+                                                                                    
+          complicated.Inthispaper,wediscussthescenariothatthebandwidthsofallP-Usersareidentical
+                                                                                    
+          and fixed. Then, to acquire the highest positioning accuracy over the whole network with the
+          hearability and QoS requirements, the powers of different P-Users must be allocated carefully.
+                                                                                    
+            In a conventional OFDM system, it is proved that water-filling over the sub-carriers is the
+                                                                                    
+          optimal power allocation strategy [24], [25]. However, it does not consider the interferences
+                                                                                    
+          between different types of users. In [26], where the second user transmit over spectrum holes
+                                                                                    
+          left in the primary system, an optimal power allocation strategy is proposed. They maximize the
+          down-link capacity of the second user by remaining the interference introduced to the primary
+                                                                                    
+          user within a tolerable range. In the NOMA system, the power allocation is mostly investigated
+                                                                                    
+          for signal demodulation and relay transmission [27], [28]. But these algorithms can not be used
+                                                                                    
+          in our problem that has different models which is more complicated.       
+            To the best of our knowledge, there are few studies about the power allocation in positioning
+                                                                                    
+          systems which makes our study very challenging. A preliminary part of this study was presented
+                                                                                    
+          in a letter paper [23]. In this journal version, as compared to [23], we carry out detailed design
+                                                                                    
+          and conduct more in-depth mathematical performance analysis. The main contributions of this
+          paper are:                                                                
+                                                                                    
+            1) WepresentthesystemmodelofpositioningbytheproposedMS-NOMAsignalandanalyze
+                                                                                    
+              the limitation of positioning by other existing signals.              
+                                                                                    
+            2) We analyze the interferences between the communication and positioning signals of the
+                                                                                    
+              MS-NOMA signal in the multi-cell scenario. Bit Error Rate (BER) for communication and
+              the ranging error for positioning are derived.                        
+                                                                                    
+            3) WemodelthepowerallocationproblemfortheMS-NOMAsignalasaconvexoptimization
+                                                                                    
+              problem. It minimizes the average positioning error of all P-Users in the network by
+                                                                                    
+              considering the QoS, the power budget and the hearability requirements. To solve this
+              problem, we propose a novel Positioning-Communication Joint Power Allocation (PCJPA)
+                                                                                    
+              algorithm which allocates the powers of all P-Users iteratively and derive its solution.
+                                                                                    
+            4) A series of theoretical and numerical analysis are done to evaluate the feasibility of
+                                                                                    
+              positioning by MS-NOMA signal. The results show our proposed MS-NOMA signal has
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 5 =====
+                                                                                    
+                                                                                    
+                                                                          5         
+                                                                                    
+                                                                                    
+              a great improvement of ranging accuracy than PRS in traditional 5G signal, and improves
+                                                                                    
+              the coverage dramatically which means more P-Users could locate their positions without
+                                                                                    
+              suffering the near-far effect.                                        
+                                                                                    
+          Notations: (cid:107)·(cid:107) represents the Euclidean distance. The operator cov(·) represents the covariance.
+          kn and km represent the nth C-User/communication signal and the mth P-User/positioning
+                                                                                    
+          signal served/broadcast by gNB k, respectively. M, N, K and Kk represent the set {1,...,M},
+                                                                                    
+          {1,...,N}, {1,...,K} and {1,...,k −1,k +1,...,K},respectively.            
+                                                                                    
+                                                                                    
+                                   II. SYSTEM MODEL                                 
+                                                                                    
+                                                                                    
+                      gNB1                                gNB3                      
+                                                                                    
+                         Interference                                               
+                                  Communication link Interference                   
+                                   Positioning link                                 
+                                                                                    
+                                                                                    
+                                                                                    
+                                                 C-User 3n                          
+                                    C-User 1n                                       
+                                                                                    
+                                                                                    
+                                                                                    
+                                                  P-User m                          
+                                 P-User 1                                           
+                                  Near-far effect                                   
+                                                                                    
+                                                                                    
+                                                                                    
+                      gNB2                               gNB4                       
+                         h 1 1p                                                     
+                                                          h4m                       
+                                                          p                         
+                            h21                h41                                  
+                             p                  p                                   
+                                                          h 3p m                    
+                                                      h3n                           
+                                                       c                            
+                                                        Interference                
+                                    Interference                                    
+                     P 1p                                                           
+                       P                                                            
+                      1                                                             
+                       1c n                                                         
+                           h                                                        
+                             n 1 h                                                  
+                             c                                                      
+                             ¬ n 1p 2 1                                             
+                          P21                                                       
+                          p                                                         
+                                                   h mc ¬ 3 n                       
+                                                           P                        
+                                                            P                       
+                                                             n 3c                   
+                                                             m 4p                   
+                                                              P 3p m                
+                                                     P41                            
+                                                      p                             
+          Fig. 2. System model of positioning by the MS-NOMA signal                 
+            Consider a typical positioning scenario in spatial domain with K gNBs as Fig. 2 shows. C-
+          Users and P-Users may be located at different locations. Because each C-User connects only
+          one gNB, there are maximum KN C-Users in the network. While a P-User needs as many
+          connections as possible for accurate positioning. So, there are maximum M P-Users in the
+          network under the assumption that all gNBs server the same P-Users.       
+
+===== PDF PAGE 6 =====
+                                                                                    
+                                                                                    
+                                                                          6         
+                                                                                    
+                                                                                    
+            To ensure the P-Users receiving more than one gNB’s signal, the powers of the positioning
+                                                                                    
+          signals should be strong enough. Then, this strong positioning signal may interfere the neighbor
+                                                                                    
+          C-Users. To examine these interferences, let us define hkn and hkm as the instantaneous channel
+                                               c     p                              
+          gains between gNB k and C-User kn/P-User m, respectively. Notice that the communica-
+          tion/positioning signal broadcast from gNB k(cid:48) to the C-User k(cid:48)n/P-User m will received by the
+                                                                                    
+          P-User m/C-User kn as well, we use hm←k(cid:48)n and hkn←k(cid:48)m to represent these two instantaneous
+                                     c       p                                      
+          channel gains, respectively.                                              
+                                                                                    
+            Without any loss of generality, we assume: 1) Each spreading sequence for different P-Users
+          is independent; 2) The powers for all C-Users are identical and the powers for all P-Users are
+                                                                                    
+          to be allocated; and 3) The channel states are available through a delay- and error-free feedback
+                                                                                    
+          channel which are known by the gNBs.                                      
+                                                                                    
+            What we concern is the horizontal positioning accuracy1. If the gNBs are perfectly synchro-
+          nized, the P-Users will use time-based algorithm to fix their locations. Then, the horizontal
+                                                                                    
+          positioning accuracy of P-User m can be expressed as                      
+                                                                                    
+                                      (cid:115)                                     
+                                  Ψm =                                              
+                                        (cid:88)(cid:0)                             
+                                            λkmσkm                                  
+                                                 (cid:1)2                           
+                                                                         (1)        
+                                               ρ                                    
+                                        k∈K                                         
+          where λkm and σkm are given in Appendix A.                                
+                      ρ                                                             
+                            III. FEATURES OF MS-NOMA SIGNAL                         
+          A. Interference of the Positioning Signal to Communication One            
+            For evaluating the interference of the positioning signal to communication one, we assume
+          the inter-cell interference between the communication signals could be ideally eliminated. Then,
+                                                                                    
+          the BER of C-User kn is [30]                                              
+                                                                                    
+                                          (cid:32) γ (cid:12) (cid:12)hkn (cid:12) (cid:12) 2 P T (cid:33)
+                               BERkn = Γerfc  c   c c                    (2)        
+                                            Ikn +2N                                 
+                                                   0                                
+                                                                                    
+           1Theverticalpositioningaccuracyofterrestrialsystemisusuallyverylargerasthelargeverticaldilution[29].Othermethods
+          are usually used to estimate vertical position rather than terrestrial positioning system [6], [17].
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 7 =====
+                                                                                    
+                                                                                    
+                                                                          7         
+                                                                                    
+                                                                                    
+          where Γ and γ are determined by the modulation and coding schemes. P is the power of the
+                                                            c                       
+          communication signal. T is the period of the communication symbol. N is the environment
+                           c                                0                       
+          noise’s single-sided Power Spectral Density (PSD). Ikn represents the interference of the posi-
+          tioning signal to the C-User kn. Notice that the powers of the positioning signals from different
+                                                                                    
+          gNBs may be similar by power allocation, the interferences caused by the positioning signals
+                                                                                    
+          from the neighbor gNBs can not be ignored. Then we have                   
+                                                                                    
+                                      (cid:88) (cid:88)                             
+                                  Ikn =      P ¯kn←k(cid:48)m            (3)        
+                                              p                                     
+                                      k(cid:48)∈Km∈M                                
+          where P ¯kn←k(cid:48)m is the power of the positioning signal k(cid:48)m received by C-User kn which satisfies
+               p                                                                    
+                                                                                    
+                                                                                    
+                                   (cid:12) (cid:12)2                               
+                           P ¯kn←k(cid:48)m = (cid:12)hkn←k(cid:48)m(cid:12) Pk(cid:48)mGm(n∆f )
+                            p      (cid:12) p (cid:12) p p c                        
+                                   (cid:12) (cid:12)2 (cid:16) n(cid:17)            
+                                 = (cid:12)hkn←k(cid:48)m(cid:12) Pk(cid:48)mT sinc2 m− (4)
+                                   (cid:12) p (cid:12) p p G                        
+          where Pk(cid:48)m is the power of positioning signal m broadcast by gNB k(cid:48). Gm(f) is the normalized
+               p                                           p                        
+          PSD of positioning signal m which satisfies                               
+                                                                                    
+                              Gm(f) = T sinc2[(f −m∆f )T ]               (5)        
+                                p     p           p  p                              
+                                                                                    
+          where T is the period of the positioning symbol.                          
+               p                                                                    
+                                                                                    
+          B. Ranging Accuracy of MS-NOMA Signal                                     
+                                                                                    
+            The receiver could use a Delay Locked Loop (DLL) to track the positioning signal. Taking the
+                                                                                    
+          coherent early-late discriminator for example [31], the tracking/ranging error of the positioning
+                                                                                    
+          signal km can be written as                                               
+                                                                                    
+            (cid:0)                                                                 
+            σkm                                                                     
+               (cid:1)2                                                             
+                 =                                                                  
+             ρ                                                                      
+          a                                                                         
+           (cid:82)B0+B                                                             
+                fe                                                                  
+                 /2(cid:2)                                                          
+                   N +Gm(f  +m∆f  )+Gkm(f +m∆f )                                    
+                                                (cid:3)                             
+                                                 Gm(f +m∆f )sin2(πfDT )df           
+            B0−B                                                                    
+               fe                                                                   
+                 /2 0   s        p   q         p  p        p        p               
+                                                                         (6)        
+                    (cid:12)                                                        
+                    (cid:12)hkm                                                     
+                       (cid:12)                                                     
+                       (cid:12)                                                     
+                        2                                                           
+                        Pkm                                                         
+                            (cid:104)                                               
+                             2π                                                     
+                               (cid:82)B0+B                                         
+                                   fe                                               
+                                    /2                                              
+                                      fGm(f +m∆f )sin(πfDT )df                      
+                                                            (cid:105)2              
+                     p    p    B0−B                                                 
+                                   fe                                               
+                                    /2  p       p        p                          
+
+===== PDF PAGE 8 =====
+                                                                                    
+                                                                                    
+                                                                          8         
+                                                                                    
+                                                                                    
+          where a is determined by the loop parameters. B is the central frequency of MS-NOMA signal.
+                                           0                                        
+          B  is the double-sided front-end bandwidth. D is the early-late spacing of DLL. Gm(f) is the
+           fe                                                      s                
+          PSD of the communication signals received by P-User m which satisfies     
+                                                                                    
+                                    (cid:88) (cid:88)(cid:12) (cid:12)2             
+                             Gm(f) =      (cid:12)hm←k(cid:48)n(cid:12) P Gn(f) (7) 
+                              s           (cid:12) c (cid:12) c c                   
+                                    k(cid:48)∈Kn∈N                                  
+          where Gn(f) = T sinc2[(f −n∆f )T ] is the normalized PSD of communication signal n.
+                c      c          c  c                                              
+          Gkm(f) is the PSD of the positioning signals from other gNBs which satisfies
+           q                                                                        
+                                      (cid:88) (cid:12) (cid:12)2                   
+                              Gkm(f) =   (cid:12)hk(cid:48)m(cid:12) Pk(cid:48)mGm(f) (8)
+                               q         (cid:12) p (cid:12) p p                    
+                                      k(cid:48)∈Kk                                  
+            By taking (5), (7)-(8) into (6) and using some approximations, (6) can be simplified to
+                   aT2 (cid:34) 1    B (cid:80) (CPR)km←k(cid:48) (cid:80) (PPR)km←k(cid:48)m (cid:35)
+            (cid:0) σkm (cid:1)2 ≈ p +  k(cid:48)∈K  +  k(cid:48)∈Kk     (9)        
+             ρ      2  B  T (C/N )km       2B2              B2 T                    
+                        fe p   0             fe              fe p                   
+          where (C/N )km, (CPR)km←k(cid:48) and (PPR)km←k(cid:48)m can be found in Appendix B. The first item
+                  0                                                                 
+          in (9) is caused by the noise, the second one is caused by the communication signals from all
+          gNBs, and the third one is caused by the other gNBs’ positioning signals. 
+                                                                                    
+            We define the ranging-factor                                            
+                                (cid:0)                                             
+                                σkm                                                 
+                                   (cid:1)2                                         
+                                     =                                              
+                                       (cid:0)                                      
+                                       σkm                                          
+                                          (cid:1)2                                  
+                                            Pkm as (10) shows for later use.        
+                                (cid:101)ρ ρ p                                      
+             (cid:0) σkm (cid:1)2 = aT p 2 (cid:34) N 0 + BGP c (cid:80) k(cid:48)∈K (cid:12) (cid:12)hm c ←k(cid:48)(cid:12) (cid:12) 2 + (cid:80) k(cid:48)∈Kk (cid:12) (cid:12)hk p (cid:48)m (cid:12) (cid:12) 2 P p k(cid:48)m (cid:35) (10)
+              (cid:101)ρ 2 B fe T p (cid:12) (cid:12)hk p m (cid:12) (cid:12) 2 B f 2 e (cid:12) (cid:12)hk p m (cid:12) (cid:12) 2 B f 2 e T p (cid:12) (cid:12)hk p m (cid:12) (cid:12) 2
+                       IV. THE POWER ALLOCATION OF MS-NOMA SIGNAL                   
+          A. The Constraints                                                        
+                                                                                    
+            1) The BER Threshold under QoS Constraint: To ensure the QoS of the C-Users, the BER
+                                                                                    
+          of all C-Users should be limited under a certain threshold                
+                                                                                    
+                               BERkn ≤ Ξ , ∀k ∈ K,∀n ∈ N                (11)        
+                                       th                                           
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 9 =====
+                                                                                    
+                                                                                    
+                                                                          9         
+                                                                                    
+                                                                                    
+          Then, by taking (2) to (11) and rearranging items, we have                
+                                                                                    
+                                      γ (cid:12) (cid:12)hkn (cid:12) (cid:12) 2 P T
+                                Ikn ≤   c   c c −2N                                 
+                                     erfc−1(Ξ /Γ)  0                                
+                                           th                                       
+                                   (cid:44) Ikn, ∀k ∈ K,∀n ∈ N          (12)        
+                                      th                                            
+          where Ikn is defined as the interference threshold of C-User kn which is determined by the QoS
+               th                                                                   
+          requirement Ξ .                                                           
+                    th                                                              
+            2) The Total Power Limitation: The total transmit power is often limited. In MS-NOMA
+                                                                                    
+          signal, we have                                                           
+                                (cid:88)                                            
+                                   Pkm +NP ≤ Pk, ∀k ∈ K                 (13)        
+                                    p     c   T                                     
+                               m∈M                                                  
+          where Pk is the total transmit power of gNB k. Let’s define the positioning power budget of
+                T                                                                   
+          gNB k as Pk = Pk −NP , then we have                                       
+                  th  T     c                                                       
+                                  (cid:88)                                          
+                                     Pkm ≤ Pk, ∀k ∈ K                   (14)        
+                                      p    th                                       
+                                  m∈M                                               
+            3) The Elimination of Near-far Effect: To guarantee P-Users receive as many positioning
+          signals as possible, the powers of the received positioning signals from different gNBs must
+          satisfy                                                                   
+                          |hkm|2Pkm                                                 
+                            p  p  ≥ (cid:37)Ω, ∀m ∈ M,∀k ∈ K,∀k(cid:48) ∈ Kk (15)   
+                          |hk(cid:48)m|2Pk(cid:48)m                                 
+                           p   p                                                    
+          where Ω is the positioning signal’s auto-correlation to cross-correlation ratio which is determined
+                                                                                    
+          by the pseudorandom code and its length. (cid:37) is determined by the receiver’s performance which
+          is usually larger than 1. For a particular positioning signal km, if the strongest cross-correlation
+                                                                                    
+          satisfies (15), all k(cid:48)s in (15) will be satisfied. So (15) can be rewritten as
+                                                                                    
+                                                                                    
+                          |hkm|2Pkm ≥ (cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m , ∀m ∈ M,∀k ∈ K (16)
+                           p   p      p    p                                        
+                                                                                    
+          where k(cid:48)m represents the index of the strongest signal received by the P-User km except the
+               k                                                                    
+          positioning signal km.                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 10 =====
+                                                                                    
+                                                                                    
+                                                                         10         
+                                                                                    
+                                                                                    
+          B. The Proposed Joint Power Allocation Model                              
+                                                                                    
+            Our goal is to obtain a best positioning performance for all P-Users in terms of both coverage
+                                                                                    
+          and accuracy under QoS requirement and total transmit power budget. So, the average horizontal
+                                                                                    
+          positioning accuracy2 for all P-Users in the network is minimized by finding the power values
+          Pkm,∀m ∈ M,∀k ∈ K under the given constraints. We use the fact that maximization of
+           p                                                                        
+          negative value of a convex function is equivalent to its minimization. Mathematically, the power
+                                                                                    
+          allocation problem can be formulated as a convex optimization problem as follows
+                                                                                    
+                                                                                    
+                                                                                    
+                                 1 (cid:88)                                         
+                        OP1 :max−     (Ψm)2                             (17)        
+                            Pkm  M                                                  
+                             p     m∈M                                              
+                          s.t.Ikn ≤ Ikn, ∀n ∈ N,∀k ∈ K                  (18)        
+                                 th                                                 
+                            (cid:88)                                                
+                               Pkm ≤ Pk, ∀k ∈ K                         (19)        
+                                p     th                                            
+                            m∈M                                                     
+                            |hkm|2Pkm ≥ (cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m , ∀m ∈ M,∀k ∈ K (20)
+                             p   p      p    p                                      
+            OP1 can be solved by the Lagrange duality method [32]. Then the Lagrangian of OP1 can be
+          written as                                                                
+                                                                                    
+                                                                                    
+            L                                                                       
+             (cid:0)(cid:8)                                                         
+               Pkm                                                                  
+                  (cid:9)                                                           
+                   ,µ,ν,β                                                           
+                        (cid:1)                                                     
+                         = −                                                        
+                             1 (cid:88) (cid:88)(cid:0)                             
+                                      λkmσkm                                        
+                                           (cid:1)2                                 
+                                             +                                      
+                                              (cid:88)(cid:88)                      
+                                                    µkn                             
+                                                       (cid:0)                      
+                                                       Ikn −Ikn                     
+                                                              (cid:1)               
+                p            M           ρ              th                          
+                               m∈Mk∈K         k∈Kn∈N                                
+                        (cid:32)    (cid:33)                                        
+                  + (cid:88) νk Pk − (cid:88) Pkm + (cid:88) (cid:88) βkm (cid:16) |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (cid:17) (21)
+                          th      p               p   p       p   p                 
+                   k∈K       m∈M       m∈Mk∈K                                       
+          where µ, ν and β are the matrices of dual variables associated with the corresponding constraints
+          given in (12), (14) and (15)                                              
+                            µ = (cid:8) µkn,∀k ∈ K,∀n ∈ N (cid:9) ∈ CK×N (cid:23) 0 (22)
+                                ν = (cid:8) νk,∀k ∈ K (cid:9) ∈ C1×K (cid:23) 0 (23)
+                           β = (cid:8) βkm,∀k ∈ K,∀m ∈ M (cid:9) ∈ CK×M (cid:23) 0 (24)
+           2For calculation convenience, we use the square of the horizontal positioning accuracy, i.e. (Ψm)2
+
+===== PDF PAGE 11 =====
+                                                                                    
+                                                                                    
+                                                                         11         
+                                                                                    
+                                                                                    
+            The Lagrange dual function of OP1 is then given by                      
+                                                                                    
+                                                                                    
+                                           (cid:0)(cid:8) (cid:9) (cid:1)           
+                              g(µ,ν,β) = maxL Pkm ,µ,ν,β                (25)        
+                                              p                                     
+                                       Pkm                                          
+                                        p                                           
+          The dual optimization problem can be formulated as                        
+                                  ming(µ,ν,β)                           (26)        
+                                                                                    
+                                   s.t.µ (cid:23) 0, ν (cid:23) 0, β (cid:23) 0 (27)
+                                                                                    
+                                                                                    
+                   (cid:0)(cid:8) (cid:9) (cid:1)                                   
+          Obviously, L Pkm ,µ,ν,β is linear in µ,ν,β for fixed Pkm, and g(µ,ν,β) is the maximum
+                      p                            p                                
+          of linear functions. Thus, the dual optimization problem is always convex. In the following,
+          the dual decomposition method introduced in [33] is employed to solve this problem. For this
+                                      (cid:80) (cid:80) (cid:80)                    
+          purpose, we introduce a transformation =      to decompose the Lagrange   
+                                       n∈N    m∈M   n∈N m                           
+          dual function to K ×M independent sub-problems, where                     
+                                                                                    
+                          N  = {(2G−1)(m−1)+1,...,(2G−1)m}              (28)        
+                            m                                                       
+                                                                                    
+          Then we have                                                              
+                                                                                    
+                                                                                    
+                                                                                    
+                                   (cid:88)(cid:2) (cid:3)                          
+                          g(µ,ν,β) =  gk(µ,ν,β)                         (29)        
+                                   k∈K                                              
+                                      (cid:40)           (cid:41)                   
+                                   (cid:88) (cid:88)                                
+                                 =         gkm(µ,ν,β)+νkPk              (30)        
+                                                        th                          
+                                   k∈K m∈M                                          
+          where                                                                     
+                               (cid:40)                                             
+                  gkm(µ,ν,β) = max −                                                
+                                   1 (cid:0)                                        
+                                     λkmσkm                                         
+                                           (cid:1)2                                 
+                                            −νkPkm +                                
+                                                     (cid:88)                       
+                                                        µkn                         
+                                                           (cid:0)                  
+                                                           Ikn −Ikn                 
+                                                                  (cid:1)           
+                            Pkm   M      ρ       p          th                      
+                             p                       n∈N                            
+                                                       m                            
+                                 (cid:16)             (cid:17)(cid:111)             
+                             +βkm |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (31)
+                                    p   p      p    p                               
+          From (31), it is clear that we can decompose the Lagrange dual function gk(µ,ν,β) to M
+
+===== PDF PAGE 12 =====
+                                                                                    
+                                                                                    
+                                                                         12         
+                                                                                    
+                                                                                    
+          independent sub-problems by giving νk. Each of the sub-problems is given by
+                                                                                    
+                                       1                                            
+                             OP2 :max−                                              
+                                         (cid:0)                                    
+                                          λkmσkm                                    
+                                               (cid:1)2                             
+                                                 −νkPkm                 (32)        
+                                  Pkm  M     ρ       p                              
+                                  p                                                 
+                                s.t.Ikn ≤ Ikn, n ∈ N                    (33)        
+                                       th     m                                     
+                                 |hkm|2Pkm ≥ (cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (34)
+                                   p   p      p    p                                
+            The Lagrangian of OP2 is                                                
+                 L ˜ (cid:16) (cid:8) Pkm (cid:9) ,µ˜kn,β ˜km (cid:17) = − 1 (cid:0) λkmσkm (cid:1)2 −νkPkm + (cid:88) µ˜kn (cid:0) Ikn −Ikn (cid:1)
+                     p             M      ρ       p          th                     
+                                                      n∈N                           
+                                                        m                           
+                                       (cid:16)             (cid:17)                
+                                   +β ˜km |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (35)
+                                          p   p      p   p                          
+          where µ˜kn and β ˜km are the non-negative dual variables for constraints (33) and (34), respectively.
+            The Lagrange dual function of OP2 is given by                           
+                              (cid:16) (cid:17) (cid:16) (cid:17)                   
+                           g˜km µ˜kn,β ˜km = maxL ˜ (cid:8) Pkm (cid:9) ,µ˜kn,β ˜km (36)
+                                               p                                    
+                                        Pkm                                         
+                                         p                                          
+          The dual problem is then expressed as                                     
+                                        (cid:16) (cid:17)                           
+                                   ming˜km µ˜kn,β ˜km                   (37)        
+                                   s.t.µ˜kn ≥ 0, ∀n ∈ N                 (38)        
+                                                 m                                  
+                                     β                                              
+                                     ˜km                                            
+                                        ≥ 0                             (39)        
+            The optimal power allocation solution P                                 
+                                       ˜km                                          
+                                          of OP2 can be obtained by using the Karush-
+                                        p                                           
+          Kuhn-Tucker (KKT) conditions as (40) shows.                               
+                                     (cid:34) (cid:32)          (cid:33)(cid:35)−1/2
+                                                      (cid:88)                      
+             P ˜km = λkm   ×  σkm  ×  M  β ˜km|hkm|2 −νk − µ˜knJkn←m    (40)        
+              p               (cid:101)ρ     p                                      
+                     (cid:124)(cid:123)(cid:122)(cid:125)                           
+                  geometric-dilution rang (cid:124) in (cid:123) g (cid:122) -f (cid:125) actor (cid:124) (cid:123)(cid:122) n∈N m (cid:125)
+                                                 constraint-scale                   
+          where Jkn←m can be found in Appendix C.                                   
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 13 =====
+                                                                                    
+                                                                                    
+                                                                         13         
+                                                                                    
+                                                                                    
+          C. Remarks                                                                
+                                                                                    
+            From (40), it is observed that the optimal power allocation solution is determined by the
+                                                                                    
+          geometric-dilution, ranging-factor and constraint-scale. It is necessary to have a clear under-
+                                                                                    
+          standing of these factors that affect the allocated power.                
+            The geometric-dilution λkm associates with the relative positions between the P-User and all
+                                                                                    
+          gNBs. This means the power allocation procedure does not only minimize the ranging accuracy,
+                                                                                    
+          but also considers the geometric distribution which affects the positioning accuracy as well.
+                                                                                    
+            The ranging-factor σkm reflects the ranging ability of P-User as (10) shows. If the loop
+                         (cid:101)ρ                                                 
+          parameters are fixed, σ (cid:101)ρ km is determined by the channel gains of a certain P-User m, i.e. (cid:12) (cid:12)hk p m (cid:12) (cid:12) 2 ,
+          (cid:12) (cid:12)hm←k(cid:48)(cid:12) (cid:12) 2 and (cid:12) (cid:12)hk(cid:48)m (cid:12) (cid:12) 2 which reflect the attenuation of the positioning signal, the communication
+           c         p                                                              
+          signals and the other positioning signals, respectively. If the positioning signal’s attenuation is
+                                                                                    
+          large,i.e. (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 issmall,itwillallocateastrongerpositioningpower,andviceversa.Conversely,
+                  p                                                                 
+          if the communication signals’ attenuation is large, i.e.                  
+                                               (cid:12) (cid:12)hm←k(cid:48)(cid:12)
+                                                    (cid:12)                        
+                                                    2                               
+                                                     is small, it will allocate a weak
+                                                c                                   
+          positioning power because of the small interference from the communication signals, and vice
+          versa. Please notice that (cid:80) k(cid:48)∈K (cid:12) (cid:12)h c m←k(cid:48)(cid:12) (cid:12) 2 in σ (cid:101)ρ km will converge to (cid:12) (cid:12)hm c ←k (cid:12) (cid:12) 2 if the communication
+          signals from all other gNBs (except gNB k) are weak enough. However, different from (cid:12) (cid:12)hkm (cid:12) (cid:12) 2
+                                                                        p           
+          and (cid:12) (cid:12)hm←k(cid:48)(cid:12) (cid:12) 2 , there is no monotonic relation between the allocated power and (cid:12) (cid:12)hk(cid:48)m (cid:12) (cid:12) 2 as (cid:12) (cid:12)hk(cid:48)m (cid:12) (cid:12) 2
+              c                                                 p      p            
+          will be weighted by the powers of the positioning signals broadcast by the other gNBs, i.e.
+          Pk(cid:48)ms.                                                             
+           p                                                                        
+            The constraint-scale reflects the impact of the constraints:            
+            µ˜kn is the dual variable associated with the BER threshold of C-User kn. If C-User kn can
+          accommodate a higher BER, µ˜kn will be smaller, and thus result in a higher constraint-scale, and
+          vice versa. In the extreme case that C-User kn cannot accommodate any additional interference,
+          µ˜kn will be infinity, and thus the constraint-scale will be zero, which indicates that the positioning
+                                                                                    
+          signal over C-User kn’s band is not permitted. On the contrary, if C-User kn has no requirement
+          on the BER, µ˜kn will be zero, and thus the power-scale will be only determined by the other
+                                                                                    
+          constraints.                                                              
+                                                                                    
+            Jkn←m is determined by the channel gains of positioning signals k(cid:48)m (k(cid:48) ∈ K) at C-User kn as
+                                                                                    
+          (67)shows.Itisclearthatasmaller (cid:80) (cid:12) (cid:12)hkn←k(cid:48)m (cid:12) (cid:12) 2 willresultinahigherconstraint-scale.This
+                                    k(cid:48)∈K p                                   
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 14 =====
+                                                                                    
+                                                                                    
+                                                                         14         
+                                                                                    
+                                                                                    
+          is intuitively correct because the P-Users’ transmissions from all gNBs will not cause too much
+                                                                                    
+          interference when (cid:80) (cid:12) (cid:12)hkn←k(cid:48)m (cid:12) (cid:12) 2 is small. In the real scenarios, if (cid:80) (cid:12) (cid:12)hkn←k(cid:48)m (cid:12) (cid:12) 2 → 0,
+                        k(cid:48)∈K p                       k(cid:48)∈K p           
+          which means C-User kn is too far from all gNBs to receive any communication/positioning
+          signal, the P-Users will not cause any interferences to this C-User no matter how strong its
+                                                                                    
+          transmit power is. If C-User kn is far from all gNBs except its own cell, i.e. (cid:80) (cid:12) (cid:12)hkn←k(cid:48)m (cid:12) (cid:12) 2 →
+                                                              k(cid:48)∈K p         
+          hkn←km ≈ hkn, the positioning signals from other gNBs will not interference the C-Users.
+           p      c                                                                 
+            νk is the dual variable associated with the transmit power budget. A larger power budget
+                                                                                    
+          results in a smaller νk, and thus results in a lower ranging error, and vice versa.
+            β                                                                       
+            ˜km                                                                     
+               is a parameter related to the P-User’s receiver performance. It reflects the influence of the
+          cross-correlation (i.e. (15)) on the constraint-scale. There will be a higher β
+                                                              ˜km                   
+                                                                 with a smaller     
+          (cid:37). Namely, if the receiver has a better anti-cross-correlation performance, there will be a higher
+          ranging accuracy and better coverage, vice versa.                         
+                                                                                    
+          D. The Positioning-Communication Joint Power Allocation Scheme            
+                                                                                    
+            The remaining task for solving OP1 is to obtain the optimal dual variables, which are the
+                                                                                    
+          same in both OP1 and OP2. Applying the solution to OP2, we can obtain the optimal power
+          allocation P                                                              
+                 ˜km                                                                
+                     in OP1. However, it is difficult to solve OP2 directly because we cannot obtain
+                  p                                                                 
+          the closed-form expression for dual variables. The Lagrange dual function (29) is made up of
+          K independent sub-problems. For each sub-problem, it is observed that νk is the same for all
+          P-Users. µkn and βkm are different for C-Users and P-Users, respectively. Then, we can solve the
+          optimization problem using hierarchical algorithm by updating the values of the dual variables
+                                                                                    
+          {µ,ν,β} via subgradient methods, which guarantees the gradient-type algorithm to converge to
+                                                                                    
+          the optimal solution [34].                                                
+                                      (cid:16) (cid:17)                             
+            Proposition: The subgradients of g˜km µ˜kn,β ˜km are given by µ`kn = Ikn −Ikn and β `km =
+                                                             th                     
+          |hkm|2Pkm − (cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m . Then, P ˜km is the optimal solution obtained at µ˜kn and β ˜km.
+           p   p       p   p         p                                              
+                                                          (cid:88)                  
+          Next, νk is updated by its subgradient, which is given by ν`k = Pk − Pkm. Finally, P ˆ =
+                                                       th     p         p           
+                                                          m∈M                       
+          (cid:110)        (cid:111)                                                
+           P ˜km,∀k ∈ K,∀m ∈ M is the optimal solution obtained at νk under the given µkn and βkm.
+            p                                                                       
+            Proof: Please see the Appendix D.                                       
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 15 =====
+                                                                                    
+                                                                                    
+                                                                         15         
+                                                                                    
+                                                                                    
+            Using the above gradient, we can obtain the optimal power allocation by iterative Lagrangian
+                                                                                    
+          multiplier {µ,ν,β}. Notice that the positions and powers of P-Users are unknown which are
+                                                                                    
+          necessary for calculating the geometric-dilution λkm and the ranging factor σkm, respectively.
+                                                               (cid:101)ρ           
+          We can minimize the ranging error for all positioning users without considering the impact of
+          the geometric-dilution and the impact of multiple access at the first iteration. Then, we can get
+                                                                                    
+          approximate positions and initial allocated powers. After several iterations, the positions and the
+                                                                                    
+          powers will be converge to the optimal values.                            
+                                                                                    
+            The algorithm to solve OP1 can be summarized as Algorithm 1 shows. Where t and t(cid:48) are
+          the iteration numbers. iterN is the maximum iteration amount. b , b and b are the update step
+                                                      1 2    3                      
+          sizes. ε > 0 is a given small constant.                                   
+                                                                                    
+          Algorithm 1 The proposed PCJPA algorithm                                  
+                                                                                    
+           1: Initial the dual variable νk for all k ∈ K in parallel                
+                              1                                                     
+           2: for t = 1 to iterN do                                                 
+           3: Initial µkn,βkm,Pk(cid:48)m for all n ∈ N, m ∈ M and k(cid:48) ∈ Kk in parallel
+                    1  1   p                                                        
+           4: for t(cid:48) = 1 to iterN do                                         
+           5:   For each P-User m, calculate P                                      
+                                     ˜km                                            
+                                        using (40)                                  
+                                      p                                             
+           6:   Update µkn and βkm by their subgradient:                            
+                      t(cid:48) t(cid:48)                                           
+           7:   i) µ˜k t(cid:48) n +1 = µk t(cid:48) n −b 2 µ`kn                    
+           8:   ii) β ˜ t k (cid:48) m +1 = β t k (cid:48) m −b 3 β `km             
+           9:   Update Pkm=P ˜km for all k ∈ K and m ∈ M                            
+                      p   p                                                         
+          10:   if |µ˜kn −µkn| ≤ ε & |β ˜km −βkm| ≤ ε then                          
+                    t(cid:48)+1 t(cid:48) t(cid:48)+1 t(cid:48)                     
+          11:     break                                                             
+          12:   end if                                                              
+          13: end for                                                               
+          14: Update νk by its subgradient:                                         
+                     t+1                                                            
+              ν˜k = νk −b ν`k                                                       
+               t+1  t   1                                                           
+          15: if |ν˜k −νk| ≤ ε then                                                 
+                  t+1  t                                                            
+          16:   break                                                               
+          17: end if                                                                
+          18: end for (cid:110)        (cid:111)                                    
+          19: return P ˆ p = P ˜ p km,∀k ∈ K,∀m ∈ M                                 
+                             V. THE PERFORMANCE EVALUATION                          
+            In this section, we evaluate the communication and ranging performances of the proposed MS-
+          NOMA signal under a single cell network firstly. Then, we examine the positioning performance
+                                                                                    
+
+===== PDF PAGE 16 =====
+                                                                                    
+                                                                                    
+                                                                         16         
+                                                                                    
+                                                                                    
+          in a 4-gNBs cell by considering the impact of all factors comprehensively. In the single cell
+                                                                                    
+          scenario, the impact of the cross-correlation will be vanished and the channel gains of the
+                                                                                    
+          communication and positioning signals will be seen as equal. Then, (2) and (9) become
+                                                                                    
+                                           (cid:18) (cid:19)                        
+                                             γP T                                   
+                                BERn = Γerfc   c c                      (41)        
+                                            In +2N                                  
+                                                  0                                 
+                                    (cid:34)              (cid:35)                  
+                                aT2       1       B(CPR)m                           
+                          (cid:0) σm (cid:1)2 ≈ p +                     (42)        
+                            ρ    2   B T (C/N )m    2B2                             
+                                      fe p   0        fe                            
+          where                                                                     
+                                    M                                               
+                                   (cid:88)   (cid:16) n(cid:17)                    
+                                In =  PmT sinc2 m−                      (43)        
+                                       p  p       G                                 
+                                   m=1                                              
+                                    (C/N )m = Pm/N                      (44)        
+                                       0     p  0                                   
+                                   (CPR)m = 2GP /Pm                     (45)        
+                                              c  p                                  
+          Notice that (41) and (42) reflect the features of MS-NOMA signal itself without interferences
+                                                                                    
+          from other gNBs.                                                          
+                                                                                    
+            The simulation settings are: The communication and positioning signals use QPSK and BPSK
+          constellation, respectively. The carrier frequency is set to 3.5GHz and ∆f = 30kHz. Two
+                                                              c                     
+          scenarios with different bandwidths of positioning signals are considered: 1) B = 20MHz 2)
+                                                                                    
+          B = 50MHz. The amount of P-User is M = 20, i.e. the positioning signal is 30/80 times faster
+                                                                                    
+          than the communication one under 20/50MHz bandwidth, respectively. The powers of all C-
+          Users are assumed as identical. The front-end bandwidth is set to twice of the total bandwidth,
+                                                                                    
+          i.e. B = 2B. The loop parameters are set as: B = 0.2Hz, T = 0.02s and D = 0.02chips,
+              fe                            L        coh                            
+          where B is the code loop noise bandwidth and T is the predetection integration time.
+                L                           coh                                     
+                                                                                    
+          A. Communication Performance                                              
+                                                                                    
+            We firstly examine the interference of the positioning signal to the C-Users. Fig. 3a shows
+                                                                                    
+          the average BERs over the whole bandwidth when Pm = P , ∀m ∈ M. It is clear that the
+                                               p    p                               
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 17 =====
+                                                                                    
+                                                                                    
+                                                                         17         
+                                                                                    
+                                                                                    
+          average BERs decrease with the increasing of E /N as well as C/N (E = P T is the energy
+                                          b  0           0 b   c c                  
+          of the communication symbol). Notice that the BER curves with small CPR will tend to be flat
+                                                                                    
+          when E /N becomes larger. This is because the interference caused by the positioning signal
+               b  0                                                                 
+          dominates the BER performance rather than the environment noise (i.e. In is much larger than
+          2N ). When the positioning signal becomes weaker (CPR becomes larger), the BER curves will
+            0                                                                       
+          become flat with larger E /N and they will become closer to the one that only exists noise
+                            b 0                                                     
+          (CPR = ∞).                                                                
+                                                                                    
+            Fig. 3b detailed shows the BERs for each C-User. If the powers of the P-Users are identical
+          (IPp), the BERs are approximately identical as well. While the BERs are different when the
+                                                                                    
+          P-Users’ powers are different (DPp). Then, the maximum BER is related to all P-Users’ powers
+                                                                                    
+          (see (41)) in this case. Of course, both of the IPp and DPp are higher than the scenario that do
+                                                                                    
+          not exist positioning signals (NP).                                       
+                                                                                    
+                                                                                    
+                                                                                    
+              10-1                                                                  
+                                                                                    
+                                                                                    
+              10-3                                                                  
+                                                                                    
+                                                                                    
+                                                                                    
+              10-5                                                                  
+                                                                                    
+                                                                                    
+              10-7                                                                  
+               0   5   10  15  20  25   30                                          
+                         E /N (dB)                                                  
+                          b 0                                                       
+            REB                                                                     
+            egarevA                                                                 
+                        C/N +CPR (dB·Hz)                                            
+                          0                                                         
+               62  67  72  77  82  87   92                                          
+                                   CPR=15dB  0.03                                   
+                                   CPR=17dB                                         
+                                   CPR=20dB                                         
+                                   CPR=30dB                                         
+                                   CPR=      0.025                                  
+                                             0.02                                   
+                                             0.015                                  
+                                             0.01                                   
+                                             0.005                                  
+                                                  100 200 300 400 500 600           
+                                                     Communication sub-carriers     
+                 (a) Average BER in different scenarios                             
+                                            REB                                     
+                                                                   IPp              
+                                                                   DPp              
+                                                                   NP               
+                                          (b) BER of the communication signal. E /N = 5dB,
+                                                                 b 0                
+                                          CPR=15dB                                  
+          Fig. 3. Communication Performance                                         
+          B. Ranging Performance                                                    
+            We then examine the range measurement accuracy of the MS-NOMA signal. The ranging
+          accuracy of the MS-NOMA and PRS signal are compared. Where the lower bound of PRS is
+          used as introduced in [35].                                               
+
+===== PDF PAGE 18 =====
+                                                                                    
+                                                                                    
+                                                                         18         
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                            102                                                     
+                                                                                    
+                                                                                    
+                            101                                                     
+                                                                                    
+                            100                                                     
+                                                                                    
+                                                                                    
+                            10-1                                                    
+                                                                                    
+                                                                                    
+                            10-2                                                    
+                             10 12 14 16 18 20 22 24 26 28 30                       
+                                         CPR (dB)                                   
+                          )m(                                                       
+                                     E /N (20MHz), E/N (50MHz)+5 (dB)               
+                                     b 0   b 0                                      
+                             -7 -5 -3 -1 1 3  5  7 9  11 13                         
+                                              20MHz  e                              
+                                              50MHz                                 
+                                                     a                              
+                                                     PRS                            
+                                                     e (no com.)                    
+          Fig. 4. Range measurement accuracy at C/N =45dB·Hz                        
+                                 0                                                  
+            Fig. 4 shows the range measurement accuracy when C/N = 45dB·Hz. Where superscript e
+                                                   0                                
+          and a represent the exact and approximate results, respectively. It is clear that the measurement
+          errors of the MS-NOMA signal are always smaller than the ones of the PRS signal when
+          CPR<30dB. And the ranging accuracy of the 20MHz MS-NOMA signal is even much higher
+          than the one of the 50MHz PRS signal. The accuracy gap between the two signals becomes
+          larger when CPR decreases. It is because when the power of the communication signal decreases,
+          its interference to the positioning one becomes weaker. While the measurement accuracy of PRS
+          becomes worse due to the lower signal-to-noise ratio of the communication signal.
+                                                                                    
+            Please notice that the curves of the MS-NOMA signal will not change if the communication
+                                                                                    
+          power is fixed and the positioning one is variable. For example, if E /N = 0dB and C/N
+                                                          b  0            0         
+          varies from 32 to 52dB·Hz (i.e. 10dB<CPR<30dB) with 20MHz bandwidth, the measurement
+          accuracy of PRS is fixed at 9.29m and the accuracy of MS-NOMA is the same as Fig. 4 shows.
+                                                                                    
+          Then, the measurement error will decreases when the power of the positioning signal increases.
+                                                                                    
+            Although stronger positioning power will have higher measurement accuracy, the maximum
+                                                                                    
+          power of the positioning signals will be limited by the QoS of communication as Fig. 3 shows.
+          So, Pms must be allocated carefully to acquire the best ranging performance under the QoS
+              p                                                                     
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 19 =====
+                                                                                    
+                                                                                    
+                                                                         19         
+                                                                                    
+                                                                                    
+          constraint. In the real application, both of the communication and positioning interferences from
+                                                                                    
+          other gNBs, must be considered which will be evaluated next subsection.   
+                                                                                    
+            Fig. 4 also confirms that the approximations of σ (see (42)) correspond to the exact one (see
+                                             ρ                                      
+          (6)) very well. And all of them are decimeter or centimeter level which ensures sub-meter level
+          positioning accuracy compare to the meter level positioning accuracy of PRS. Meanwhile, the
+                                                                                    
+          measurement error is only a little larger than the one that without communication signal, which
+                                                                                    
+          means the effect of the communication signal is limit to the range measuring.
+                                                                                    
+                                                                                    
+          C. Positioning Performance                                                
+                                                                                    
+            Inthissection,wepresentthenumericalresultstoevaluatethepositioningperformanceofMS-
+          NOMA  signal by using the proposed PCJPA algorithm. The gNBs are fixed at (0,0), (0,200),
+                                                                                    
+          (200,200), (200,0) and 20 P-Users are randomly distributed in the coverage area. The free space
+                                                                                    
+          propagation model is employed with 50 Monte Carlo runs in each simulation. Without any loss
+                                                                                    
+          of generality, we set Pk = P for any k ∈ K and (cid:37) = 2.              
+                         th   th                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+              1.5                                                                   
+                                                                                    
+              1                                                                     
+                                                                                    
+              0.5                                                                   
+                                                                                    
+              0                                                                     
+             200                                                                    
+             )m(rorre                                                               
+             gninoitisop                                                            
+             egarevA                                                                
+              2                       2.2                                           
+                                      2                                             
+                                      1.8                                           
+                             The 2nd                                                
+                     The 3rd P-User   1.6                                           
+                     P-User  in Fig.8 in Fig.8 1.4                                  
+                                            0.2                                     
+                                      1.2                                           
+                                      1     0.1                                     
+                                      0.8    0                                      
+                                      0.6   200                                     
+                                              150                200                
+                                      0.4                                           
+               Y (m 10 ) 0 0 0 50 X (m 1 ) 00 150 200 0.2                           
+                  (a) The proposed PCJPA algorithm                                  
+                                           )m(                                      
+                                           rorre                                    
+                                           gninoitisop                              
+                                           egarevA                                  
+                                                                    0.35            
+                                                                    0.3             
+                                            0.4                                     
+                                                                    0.25            
+                                            0.3                                     
+                                                                    0.2             
+                                                                    0.15            
+                                                                    0.1             
+                                                                    0.05            
+                                                                    0               
+                                                                    -0.05           
+                                                100            150                  
+                                                            100     -0.1 50 50 Y (m) 0 0 X (m)
+                                            (b) The traditional method without power allocation
+          Fig. 5. The positioning signal’s coverage and positioning accuracy (B =50MHz, P =0.8W, β =8×10−3)
+                                                     th     th                      
+            Fig. 5 shows the positioning signal’s coverage and positioning accuracy of MS-NOMA signal
+          by using the proposed PCJPA algorithm and the traditional equal-power transmission strategy,
+          respectively. The positioning error is set to 0 if the P-User can not receive more than 3 gNBs
+          which means there are no enough gNBs to position. From Fig. 5a, we can see all P-Users have
+          positioning results which means the near-far effect is dramatically reduced. While from Fig.
+
+===== PDF PAGE 20 =====
+                                                                                    
+                                                                                    
+                                                                         20         
+                                                                                    
+                                                                                    
+          5b, it is clear that a great amount of P-Users (50.8%) do not have positioning results by the
+                                                                                    
+          traditional method as suffering severe near-far effect.                   
+                                                                                    
+            Detailed comparisons are presented in Table I. The positioning accuracy of MS-NOMA signal
+          is much higher than the one of PRS. Specifically, the improvements of MS-NOMA signal
+                                                                                    
+          (using the proposed PCJPA algorithm) are 93.7% and 93.1% compared to PRS with 20MHz
+                                                                                    
+          and 50MHz bandwidth, respectively. Notice that the positioning error of PCJPA is a little higher
+                                                                                    
+          than the equal-power strategy. This is because the edge of the coverage area have poor geometric
+                                                                                    
+          distribution which lead to poor positioning accuracy, while these low accuracy P-Users are not
+          averaged in the equal-power strategy as they have no positioning results. In fact, the positioning
+                                                                                    
+          errorsofthePCJPAalgorithmaresmallerthantheonesoftheequal-powerstrategybyexamining
+                                                                                    
+          the same area as Fig. 6 shows (0.17m v.s. 0.20m at 50MHz (15% improvement) and 0.41m
+                                                                                    
+          v.s. 0.54m at 20MHz (24% improvement)). Only 10% P-Users’ positioning errors by PCJPA
+          algorithm are larger than the ones by equal-power strategy. While more than 50% P-Users
+                                                                                    
+          do not have positioning results if power allocation is not executed. Therefore, the proposed
+                                                                                    
+          PCJPA algorithm has excellent performances in both coverage and positioning accuracy than the
+                                                                                    
+          traditional scheme.                                                       
+                                                                                    
+                                        TABLE I                                     
+              THECOMPARISONBETWEENDIFFERENTSIGNALSBYUSINGDIFFERENTPOWERALLOCATIONSTRATEGIES
+                                                                                    
+                           Signal          MS-NOMA         PRS                      
+                    Power allocation strategy PCJPA Equal power Equal power         
+                                 20MHz  0.57m   0.54m     8.44m                     
+                    Positioning Error                                               
+                                 50MHz  0.21m   0.20m     3.17m                     
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+            Fig. 7illustrated theimpact ofdifferent constraintsand parameters onthe positioningaccuracy.
+                                                                                    
+          From Fig. 7a, it is clear that the average positioning errors decrease with the increasing of the
+                                                                                    
+          tolerable BER. Meanwhile, there is higher positioning accuracy with larger bandwidth. Notice
+          that the curves tend to constant values when the tolerable BER increases. It is because the power
+                                                                                    
+          budget limits the improvement of the performance. And it is clear that higher power budget can
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 21 =====
+                                                                                    
+                                                                                    
+                                                                         21         
+                                                                                    
+                                                                                    
+                                                                                    
+                              1                                                     
+                             0.9                                                    
+                             0.8                                                    
+                             0.7                                                    
+                             0.6                                                    
+                             0.5                                                    
+                                                                                    
+                             0.4                                                    
+                             0.3                                                    
+                             0.2                                                    
+                             0.1                                                    
+                              0                                                     
+                              0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1                 
+                                    Lower bound of pisitioning error (m)            
+                            )%(                                                     
+                            ytilibaborP                                             
+                                               CPJPA (B=50MHz)                      
+                                               Equla power (B=50MHz)                
+                                               CPJPA (B=20MHz)                      
+                                               Equla power (B=20MHz)                
+          Fig. 6. The CDF of the MS-NOMA signal with different power allocation strategies (P =0.8W, β =8×10−3)
+                                                       th     th                    
+          obtain a lower positioning error bound. On the other hand, the curve with a smaller bandwidth
+          converges slowly. It is because the power of the positioning signal with a small bandwidth will
+          concentrated in a narrower range. Consequently, there will be more powers of P-Users leak to
+          the neighbor C-Users as (3) and (4) show which leads to more interferences.
+            Fig. 7b shows that the average positioning error decreases with the increasing of the power
+          budget. Similar to Fig. 7a, the curves tend to constant values when the power budget increases
+                                                                                    
+          as well. This means the QoS constraint becomes dominant and the average positioning errors
+                                                                                    
+          do not decrease although the total power increases. If we have a strict QoS constraint (smaller
+                                                                                    
+          Ξ ), the positioning error bound will be higher.                          
+           th                                                                       
+            Fig. 8 illustrates the relationship between the allocated powers and the channel gains of the
+          P-Users by examining one simulation. It shows that the worse channel states tend to allocate
+                                                                                    
+          stronger positioning signals. This is exactly what we expected that the P-Users with worse
+                                                                                    
+          channel states need stronger powers to obtain an accurate ranging. However, notice that there
+          is a power disparity between the 2ed and 3rd P-Users whose channel gains are similar. This is
+                                                                                    
+          because the geometric-dilution λ in (1) also affects the positioning accuracy which is considered
+                                                                                    
+          by the power allocation process. This can be observed in Fig. 5a as well: The location of the
+                                                                                    
+          2ed P-User (coordinate: (178,8)) is at the edge of the area compared to the center location of
+                                                                                    
+          the 3rd P-User (coordinate: (79,77)), so the former one has a stronger allocated power.
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 22 =====
+                                                                                    
+                                                                                    
+                                                                         22         
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+               1.6                                                                  
+               1.4                                                                  
+               1.2                                                                  
+               1                                                                    
+                                                                                    
+               0.8                                                                  
+               0.6                                                                  
+               0.4                                                                  
+               0.2                                                                  
+                                                                                    
+               0                                                                    
+               6.5 7  7.5 8 8.5 9  9.5 10                                           
+                          BER        10-3                                           
+              )m(                                                                   
+              rorre                                                                 
+              gninoitisop                                                           
+              egarevA                                                               
+                                             1.1                                    
+                                B=20M: Pth=1W 1                                     
+                                B=50M: Pth=1W                                       
+                                B=20M: Pth=0.2W 0.9 B=50M: Pth=0.2W                 
+                                             0.8                                    
+                                             0.7                                    
+                                             0.6                                    
+                                             0.5                                    
+                                             0.4                                    
+                                             0.3                                    
+                                             0.2                                    
+                                             0.1                                    
+                                              0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1 1.1 1.2
+                                                       Power budget (W)             
+           (a) Average positioning errors under different QoS require-              
+           ments                                                                    
+                                            )m(                                     
+                                            rorre                                   
+                                            gninoitisop                             
+                                            egarevA                                 
+                                                               B=20M: th=1×10-2     
+                                                               B=20M: th=8×10-3     
+                                                               B=50M: th=1×10-2     
+                                                               B=50M: th=8×10-3     
+                                          (b)Averagepositioningerrorsunderdifferentpowerbudgets
+          Fig. 7. The impact of different constraints and parameters                
+                             0.1                                                    
+                            0.05                                                    
+                             0                                                      
+                                2 4  6 8  10 12 14 16 18 20                         
+                                         P-User                                     
+                          rewop                                                     
+                          detacollA                                                 
+                             1                                                      
+                             0.5                                                    
+                             0                                                      
+                                2 4  6 8  10 12 14 16 18 20                         
+                                         P-User                                     
+                           niag                                                     
+                           lennahc                                                  
+                           ehT                                                      
+                               10-6                                                 
+          Fig.8. Theallocatedpowerswithdifferentchannelgains(DifferentlinesrepresentdifferentgNBs)(B =50MHz,P =0.8W,
+                                                                     th             
+          β =8×10−3)                                                                
+           th                                                                       
+                                   VI. CONCLUSIONS                                  
+            Inthispaper,wepresentedafeasibilitystudyforanovelpositioning-communicationintegrated
+          signal called Multi-Scale Non-Orthogonal Multiple Access (MS-NOMA) for 5G positioning. The
+          MS-NOMA signalsuperposes power configurable positioningsignals on the communication ones
+          to achieve high ranging accuracy and excellent signal coverage (less near-far effect). Like the
+          normal NOMA signal, there are interferences between the commutation and positioning signals.
+          So, we analyzed the BER for communication and the ranging error for positioning when two
+
+===== PDF PAGE 23 =====
+                                                                                    
+                                                                                    
+                                                                         23         
+                                                                                    
+                                                                                    
+          kinds of signals exist simultaneously. The results show the interaction is rather limited and the
+                                                                                    
+          proposed MS-NOMA signal greatly improves the ranging accuracy than traditional 5G signal. In
+                                                                                    
+          addition, because the positioning signals in the proposed MS-NOMA are power controllable and
+          multipleaccessible,wemodeledamulti-userpowerallocationproblemforanoptimalpositioning
+                                                                                    
+          accuracy and signal coverage as a convex optimization problem under the QoS requirement and
+                                                                                    
+          other constraints. Then, a novel Positioning-Communication Joint Power Allocation (PCJPA)
+                                                                                    
+          algorithm was proposed for solving this problem. The numerical results show our proposed MS-
+                                                                                    
+          NOMA  signal with PCJPA algorithm improves the positioning accuracy and signal coverage
+          dramatically than the traditional 5G signal with equal power transmission strategy.
+                                                                                    
+                                                                                    
+                                       APPENDIX                                     
+                                                                                    
+          A. Derivation of the Horizontal Positioning Accuracy                      
+                                                                                    
+            Define εm =                                                             
+                     (cid:2)                                                        
+                     ε1m,ε2m,...,εkm                                                
+                                (cid:3)T                                            
+                                  as the ranging errors of P-User m, where εkm represents the
+                 ρ    ρ  ρ    ρ                                ρ                    
+          ranging error between gNB k and P-User m. Then, the positioning error of P-User m is [36]
+                                    (cid:104) (cid:105)−1                           
+                                εm = (Gm)T Gm (Gm)T εm                              
+                                X                   ρ                               
+                                  = Hmεm                                (46)        
+                                       ρ                                            
+          where                                                                     
+                                                                                  
+                                        ι1m ι1m ι1m                                 
+                                        x   y   z                                   
+                                                                                  
+                                                                                  
+                                       ι2m ι2m ι2m                                
+                                 Gm =  x   y   z                      (47)        
+                                                                                  
+                                       ··· ··· ···                                
+                                                                                  
+                                                                                  
+                                        ιkm ιkm ιkm                                 
+                                        x   y   z                                   
+                                                                                   
+                                    ιk x m = (xm p −xk b )/(cid:107)X b k−X p m(cid:107)
+                                                                                   
+                                   ιk y m = (y p m−y b k)/(cid:107)X b k−X p m(cid:107) (48)
+                                                                                   
+                                                                                   
+                                                                                   
+                                  ιk z m = (z p m−z b k)/(cid:107)X b k−X p m(cid:107)
+          where X = [x,y,z]T represents the coordinate. Subscript p and b represent P-User and gNB,
+          respectively. Because the ranging errors from the gNBs are independent, their covariance matrix
+
+===== PDF PAGE 24 =====
+                                                                                    
+                                                                                    
+                                                                         24         
+                                                                                    
+                                                                                    
+          is diagonal under the assumption that the range measuring is unbiased:    
+                                                                                    
+                                                                                    
+                           (cid:0)                                                  
+                            σm                                                      
+                              (cid:1)2                                              
+                                = cov                                               
+                                    (cid:0)                                         
+                                     εm,εm                                          
+                                         (cid:1)                                    
+                             ρ       ρ  ρ                                           
+                                                                                  
+                                   (cid:0)                                          
+                                    σ1m                                             
+                                       (cid:1)2                                     
+                                           0    ···  0                              
+                                     ρ                                              
+                                                                                  
+                                                                                   
+                                    0                                              
+                                         (cid:0)                                    
+                                          σ2m                                       
+                                             (cid:1)2                               
+                                                ···  0                              
+                                                                                   
+                                                                                   
+                                =         ρ                           (49)        
+                                                                                  
+                                    ···   ···  ··· ···                            
+                                                                                  
+                                                                                  
+                                     0     0    ···                                 
+                                                   (cid:0)                          
+                                                    σkm                             
+                                                      (cid:1)2                      
+                                                    ρ                               
+          where                                                                     
+               (cid:0)                                                              
+               σkm                                                                  
+                  (cid:1)2                                                          
+                    = cov                                                           
+                         (cid:0)                                                    
+                          εkm,εkm                                                   
+                               (cid:1)                                              
+                                 represents the ranging error of the kmth positioning signal.
+                ρ          ρ  ρ                                                     
+          Then, the covariance of the positioning error is                          
+                                 (σm)2 = cov(εm,εm)                                 
+                                   X       X  X                                     
+                                      = Hm (cid:0) σm (cid:1)2 (Hm)T    (50)        
+                                            ρ                                       
+          The diagonal elements represent the positioning accuracy of each direction. Then, the horizontal
+          positioning accuracy can be expressed as                                  
+                                  (cid:118)                                         
+                                  (cid:117) (cid:40)(cid:34) 2 (cid:35) (cid:41)    
+                              Ψm = (cid:117) (cid:116) (cid:88) (cid:88) ((cid:126)m)2 (cid:0) σkm (cid:1)2 (51)
+                                             ik   ρ                                 
+                                    k∈K  i=1                                        
+                                                            (cid:113)               
+          where (cid:126)ms (i ∈ {1,2,3}) represent the elements of Hm. Note λkm = (cid:80)2 ((cid:126)m)2 as the
+                ik                                             i=1 ik               
+          geometric-dilution, then we have (1).                                     
+          B. Derivation of                                                          
+                      (cid:0)                                                       
+                       σkm                                                          
+                         (cid:1)2                                                   
+                       ρ                                                            
+            Note                                                                    
+                               B0+                                                  
+                                (cid:90)                                            
+                                 B                                                  
+                                  fe                                                
+                                   /2                                               
+                          Am =      fGm(f +m∆f  )sin(πfDT )df           (52)        
+                           0          p        p        p                           
+                              B0−B                                                  
+                                 fe                                                 
+                                  /2                                                
+                              B0+                                                   
+                               (cid:90)                                             
+                                B                                                   
+                                 fe                                                 
+                                  /2                                                
+                         Am =      N Gm(f +m∆f  )sin2(πfDT )df          (53)        
+                          1          0 p       p        p                           
+                             B0−B                                                   
+                                fe                                                  
+                                 /2                                                 
+
+===== PDF PAGE 25 =====
+                                                                                    
+                                                                                    
+                                                                         25         
+                                                                                    
+                                                                                    
+                         B0+                                                        
+                           (cid:90)                                                 
+                           B                                                        
+                            fe                                                      
+                              /2                                                    
+                    Am =       Gm(f +m∆f )Gm(f +m∆f )sin2(πfDT )df      (54)        
+                     2          s       p  p        p        p                      
+                        B0−B                                                        
+                            fe                                                      
+                             /2                                                     
+                         B0+                                                        
+                          (cid:90)                                                  
+                           B                                                        
+                            fe                                                      
+                             /2                                                     
+                    Am =      Gkm(f +m∆f )Gm(f +m∆f  )sin2(πfDT )df     (55)        
+                     3          q        p  p       p        p                      
+                        B0−B                                                        
+                           fe                                                       
+                            /2                                                      
+          Then, (6) can be written as                                               
+                                       a(Am +Am +Am)                                
+                               (cid:0) σkm (cid:1)2 = 1 2 3             (56)        
+                                ρ     (2π)2(cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm(Am)2
+                                           p   p    0                               
+          Notice that there are multiple P-Users, i.e. the bandwidth of the positioning signal for one P-User
+          is much smaller than the total bandwidth B. Moreover, the front-end bandwidth is larger than
+          B as well. So we have B fe (cid:29) 2/ Tp . Consequently, a DLL’s narrow early-late spacing D can be
+          applied3. When D → 0, sin(πfDT ) in (52)-(55) can be replaced by Taylor expansion around
+                                  p                                                 
+          0. Then, by taking (5), (7)-(8) into (52)-(55) and rearranging items, we have
+                                    B /2                                            
+                                    (cid:90)fe                                      
+                                                     1                              
+                          Am = πDT2    f2sinc2(fT )df = DB              (57)        
+                           0      p            p     2π  fe                         
+                                   −B /2                                            
+                                    fe                                              
+                                    Am = πDT N Am                       (58)        
+                                     1      p 0 0                                   
+                                       B /2                                         
+                      (cid:88) (cid:88)(cid:12) (cid:12)2                           
+                                       (cid:90)fe                                   
+             Am = D2T      (cid:12)hm←k(cid:48)n(cid:12) P T sinc2[(f +m∆f −n∆f )T ]sin2(fT )df
+              2      p     (cid:12) c (cid:12) c c   p     c c      p               
+                      k(cid:48)∈Kn∈N                                                
+                                     −B /2                                          
+                                       fe                                           
+                G ≈ (cid:29)1 D2T T P (cid:88) (cid:88)(cid:12) (cid:12)hm←k(cid:48)n (cid:12) (cid:12) 2 sin2 (cid:104) π (cid:16) m− n(cid:17)(cid:105)
+                      p c c     (cid:12) c (cid:12) G                               
+                          k(cid:48)∈Kn∈N                                            
+                        (Gm−                                                        
+                           (cid:90)                                                 
+                           n+1)∆fc                                                  
+                      ×         sinc2[(f +m∆f −n∆f )T ]df                           
+                                           p     c c                                
+                       (Gm−n−1)∆fc                                                  
+                       (cid:88) (cid:88)(cid:12) (cid:12)2 (cid:16)n (cid:17)       
+                ≈ D2T P      (cid:12)hm←k(cid:48)n(cid:12) sin2 π       (59)        
+                     p c     (cid:12) c (cid:12) G                                  
+                       k(cid:48)∈Kn∈N                                               
+           3If B is not large enough, the DLL correlation peak will be flattened which will deteriorate the performance of the phase
+              fe                                                                    
+          discriminator.                                                            
+
+===== PDF PAGE 26 =====
+                                                                                    
+                                                                                    
+                                                                         26         
+                                                                                    
+                                                                                    
+                                               B /2                                 
+                                  (cid:88) (cid:12) (cid:12)2                       
+                                               (cid:90)fe                           
+                       Am = π2D2T4   (cid:12)hk(cid:48)m(cid:12) Pk(cid:48)m f2sinc4(fT )df (60)
+                         3       p   (cid:12) p (cid:12) p p                        
+                                  k(cid:48)∈Kk                                      
+                                             −B /2                                  
+                                               fe                                   
+                                              (cid:124) (cid:123)(cid:122) (cid:125)
+                                                     A¯                             
+                                                     3                              
+          where                                                                     
+                                  ∞                                                 
+                         ¯                                                          
+                           B                                                        
+                            fe                                                      
+                             (cid:29)2/Tp (cid:90) sin4(πfT                         
+                                          p                                         
+                                           )                                        
+                         A    ≈             df                                      
+                          3          π4f2T4                                         
+                                         p                                          
+                                 −∞                                                 
+                                   ∞                                                
+                               1  (cid:90) (cid:20) 4sin2(πfT ) sin2(2πfT ) (cid:21)
+                                            p          p                            
+                           =                  −           df                        
+                             4π4T4       f2         f2                              
+                                 p                                                  
+                                  −∞                                                
+                               1                                                    
+                           =                                            (61)        
+                             2π2T3                                                  
+                                 p                                                  
+          Taking (57)-(61) back to (56) and rearranging items, we have              
+                     (cid:34)                                                       
+                   aT      N                                                        
+           (cid:0) σkm (cid:1)2 ≈ p 0                                               
+             ρ     2   B (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm               
+                        fe p   p                                                    
+                        2P (cid:80) (cid:80)N (cid:12) (cid:12)hm←k(cid:48)n (cid:12) (cid:12) 2 sin2 (cid:0) nπ (cid:1) (cid:80) (cid:12) (cid:12)hk(cid:48)m (cid:12) (cid:12) 2 Pk(cid:48)m (cid:35)
+                      +   c k(cid:48)∈K n=1 c G   +  k(cid:48)∈Kk p p               
+                               B2 (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm B2 (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm
+                                fe p    p             fe p    p                     
+                   aT2 (cid:32) N     BGP (cid:80) (cid:12) (cid:12)hm←k(cid:48)(cid:12) (cid:12) 2 (cid:80) (cid:12) (cid:12)hk(cid:48)m (cid:12) (cid:12) 2 Pk(cid:48)m (cid:33)
+                 =  p        0      +    c  k(cid:48)∈K c + k(cid:48)∈Kk p p (62)   
+                   2   B  T (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm B2 (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm B2 T (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm
+                        fe p p   p       fe p   p        fe p p   p                 
+          where (cid:12) (cid:12)hm←k(cid:48)(cid:12) (cid:12) 2 = 2 (cid:80) (cid:12) (cid:12)hm←k(cid:48)n (cid:12) (cid:12) 2 sin2 (cid:0) nπ (cid:1) is defined as the normalized equivalent channel
+                c      N  n∈N c         G                                           
+          gain of the communication signal broadcast by gNB k(cid:48) to the P-User m.
+            Let’s define (C/N )km = (cid:12) (cid:12)hkm (cid:12) (cid:12) 2 Pkm/N as the carrier-to-noise ratio of the kmth positioning
+                        0      p   p   0                                            
+          signal, (CPR)km←k(cid:48) = 2G                                            
+                             (cid:12)                                               
+                             (cid:12) (cid:12) hm c                                 
+                               ←k(cid:48)(cid:12)                                   
+                                 (cid:12) (cid:12)                                  
+                                 2                                                  
+                                  Pc as the equivalent communication-to-positioning ratio of
+                            |hkm|2                                                  
+                                Pkm                                                 
+                             p  p                                                   
+          communication signal broadcast by gNB k(cid:48) to positioning signal km, and (PPR)km←k(cid:48)m =
+          (cid:12) (cid:12)hk(cid:48)m (cid:12) (cid:12) 2 Pk(cid:48)m              
+          (cid:12) p (cid:12) p as the positioning-to-positioning ratio of the k(cid:48)mth to the kmth positioning signal.
+          |hkm|2                                                                    
+              Pkm                                                                   
+            p  p                                                                    
+          Then we have (9).                                                         
+
+===== PDF PAGE 27 =====
+                                                                                    
+                                                                                    
+                                                                         27         
+                                                                                    
+                                                                                    
+          C. Derivation of P                                                        
+                      ˜km                                                           
+                       p                                                            
+            The KKT conditions of OP2 can be written as                             
+                                       (cid:88) (cid:0) (cid:1)                     
+                                         µ˜kn Ikn −Ikn = 0              (63)        
+                                              th                                    
+                                      n∈N                                           
+                                        m                                           
+                              (cid:16)             (cid:17)                         
+                           β ˜km |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m = 0 (64)
+                                 p   p      p    p                                  
+                                      (cid:16)     (cid:17)                         
+                                    ∂L ˜ (cid:8) Pkm (cid:9) ,µ˜kn,β ˜km            
+                                         p                                          
+                                                      = 0               (65)        
+                                          ∂Pkm                                      
+                                            p                                       
+          It is obvious that the optimal solution P                                 
+                                    ˜km                                             
+                                        satisfies (65). Thus, take (35) into (65), we have
+                                     p                                              
+                                                  (cid:88) (cid:0) (cid:1)          
+                                                 ∂   µ˜kn Ikn −Ikn                  
+                     ∂L ˜ = − M 1 ∂ (cid:0) λkmσ ρ km (cid:1)2 −νkP p km + n∈N m th 
+                    ∂Pkm           ∂Pkm               ∂Pkm                          
+                      p              p                  p                           
+                              (cid:110) (cid:16)       (cid:17)(cid:111)            
+                             ∂  β ˜km |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m
+                                     p   p      p    p                              
+                            +                                                       
+                                         ∂Pkm                                       
+                                           p                                        
+                               (cid:32) (cid:33)2                                   
+                         =  − 1  λkmσ (cid:101)ρ km −νk − (cid:88) µ˜kn ∂Ikn +β ˜km|hkm|2 (66)
+                             M    Pkm               ∂Pkm      p                     
+                                   p          n∈N                                   
+                                                m   (cid:124) (cid:123)(cid:122)    
+                                                      p                             
+                                                       (cid:125)                    
+                                                    Jkn←m                           
+          By taking (3) into (66), we have                                          
+                                  (cid:88) (cid:12) (cid:12)2 (cid:16) n(cid:17)    
+                           Jkn←m =   (cid:12)hkn←k(cid:48)m(cid:12) T sinc2 m− (67) 
+                                     (cid:12) p (cid:12) p G                        
+                                  k(cid:48)∈K                                       
+          Then, by setting (66) to 0, we can obtain the optimal power allocation solution as (40) shows.
+          D. Subgradient Method of the Lagrange Dual Function                       
+                             (cid:110) (cid:111)                                    
+            For a set of dual variable µ˜,ν˜,β ˜ , it is known that if gk (cid:0) µ˜kn (cid:1) ≥ gk (cid:0) µkn (cid:1) +s (cid:0) µ˜kn −µkn (cid:1)
+                                                     (cid:0) (cid:1)                
+          holds for any feasible µ˜kn, then s must be the subgradient of gk µkn at µkn. Then the Lagrange
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 28 =====
+                                                                                    
+                                                                                    
+                                                                         28         
+                                                                                    
+                                                                                    
+          dual function of sub-problem (29) is                                      
+                                                                                    
+            (cid:16) (cid:17) (cid:16) (cid:17)                                     
+          gk µ˜,ν˜,β ˜ = maxL (cid:8) Pkm (cid:9) ,µ˜,ν˜,β ˜                        
+                              p                                                     
+                       Pkm                                                          
+                        p                                                           
+                          (cid:34)                                                  
+                    =  max −                                                        
+                             1 (cid:88)                                             
+                                  λkm                                               
+                                     (cid:0)                                        
+                                      σkm                                           
+                                        (cid:1)2                                    
+                                          +                                         
+                                            (cid:88)                                
+                                               µ˜kn                                 
+                                                 (cid:0)                            
+                                                  Ikn −Ikn                          
+                                                         (cid:1)                    
+                       Pkm  M         (cid:101)ρ   th                               
+                        p     m∈M           n∈N                                     
+                          (cid:32)    (cid:33)                       (cid:35)       
+                       +ν˜k Pk − (cid:88) Pkm + (cid:88) β ˜km (cid:16) |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (cid:17)
+                            th      p             p   p      p    p                 
+                               m∈M       m∈M                                        
+                    ≥  −                                                            
+                        1  (cid:88)                                                 
+                              λkm                                                   
+                                 (cid:0)                                            
+                                 σkm                                                
+                                    (cid:1)2                                        
+                                      +                                             
+                                        (cid:88)                                    
+                                          µ˜kn                                      
+                                             (cid:0)                                
+                                              Ikn −Ikn                              
+                                                    (cid:1)                         
+                        M        (cid:101)ρ    th                                   
+                          m∈M           n∈N                                         
+                          (cid:32)    (cid:33)                                      
+                       +ν˜k Pk − (cid:88) Pkm + (cid:88) β ˜km (cid:16) |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (cid:17)
+                            th      p             p   p      p    p                 
+                               m∈M       m∈M                                        
+                                       (cid:32)    (cid:33)                         
+                                (cid:0) (cid:1) (cid:88) (cid:88)(cid:0) (cid:1)(cid:0) (cid:1)
+                    =  gk(µ,ν,β)+ ν˜k −νk Pk −  Pkm  +    µ˜kn −µkn Ikn −Ikn        
+                                         th      p                 th               
+                                            m∈M       n∈N                           
+                       + (cid:88) (cid:16) β ˜km −βkm (cid:17)(cid:16) |hkm|2Pkm −(cid:37)Ω|h k k (cid:48)m |2P k k (cid:48)m (cid:17) (68)
+                                        p   p      p   p                            
+                        m∈M                                                         
+                                      REFERENCES                                    
+           [1] J.A.delPeral-Rosado,R.Raulefs,J.A.Lopez-Salcedo,andG.Seco-Granados,“Surveyofcellularmobileradiolocalization
+             methods: from 1G to 5G,” IEEE Communications Surveys and Tutorials, vol. PP, no. 99, pp. 1–1, 2018.
+           [2] M.Shojafar,N.Cordeschi,andE.Baccarelli,“Energy-efficientadaptiveresourcemanagementforreal-timevehicularcloud
+             services,” IEEE Transactions on Cloud Computing, vol. PP, no. 99, pp. 1–1, 2016.
+           [3] H. Liang, G. X. Gao, T. Walter, and P. Enge, “Automated verification of potential GPS signal-in-space anomalies using
+             ground observation data,” in Position Location and Navigation Symposium, 2012.
+           [4] L.DengandS.Ye,“VehicleinformationsystemdesignbasedonBeidounavigationsatellitesystem,”inIEEEInternational
+             Conference on Information and Automation, Aug 2015, pp. 867–870.       
+           [5] L. Yin, Q. Ni, and Z. Deng, “A GNSS/5G integrated positioning methodology in D2D communication networks,” IEEE
+             Journal on Selected Areas in Communications, vol. 36, no. 2, pp. 351–362, 2018.
+           [6] J. Jeon, Y. Kong, Y. Nam, and K. Yim, “An indoor positioning system using Bluetooth RSSI with an accelerometer and
+             a barometer on a smartphone,” in International Conference on Broadband and Wireless Computing, Communication and
+             Applications, 2016, pp. 528–531.                                       
+           [7] S. Tomic, M. Beko, and D. Rui, “RSS-based localization in wireless sensor networks using convex relaxation: Noncoop-
+             erative and cooperative schemes,” IEEE Transactions on Vehicular Technology, vol. 64, no. 5, pp. 2037–2050, 2014.
+           [8] L. Yin, Q. Ni, and Z. Deng, “Intelligent multisensor cooperative localization under cooperative redundancy validation,”
+             IEEE Transactions on Cybernetics, pp. 1–13, 2019.                      
+
+===== PDF PAGE 29 =====
+                                                                                    
+                                                                                    
+                                                                         29         
+                                                                                    
+                                                                                    
+           [9] H. Zou, M. Jin, H. Jiang, L. Xie, and C. J. Spanos, “WinIPS: WiFi-based non-intrusive indoor positioning system with
+                                                                                    
+             online radio map construction and adaptation,” IEEE Transactions on Wireless Communications, vol. 16, no. 12, pp.
+             8118–8130, Dec 2017.                                                   
+          [10] H. Shuai, Z. Gong, W. Meng, L. Cheng, D. Zhang, and W. Tang, “Automatic precision control positioning for wireless
+                                                                                    
+             sensor network,” IEEE Sensors Journal, vol. 16, no. 7, pp. 2140–2150, 2016.
+          [11] J. Chen, X. Ge, and Q. Ni, “Coverage and handoff analysis of 5G fractal small cell networks,” IEEE Transactions on
+             Wireless Communications, vol. 18, no. 2, pp. 1263–1276, Feb 2019.      
+                                                                                    
+          [12] Y. Zhou, V. W. S. Wong, and R. Schober, “Coverage and rate analysis of millimeter wave NOMA networks with beam
+             misalignment,” IEEE Transactions on Wireless Communications, vol. 17, no. 12, pp. 1–1, 2018.
+          [13] R. M. Vaghefi and R. M. Buehrer, “Cooperative UTDOA positioning in LTE cellular systems,” in Globecom Workshops,
+                                                                                    
+             2016.                                                                  
+          [14] X.Cui,A.Gulliver,H.Song,andJ.Li,“Real-timepositioningbasedonmillimeterwavedevicetodevicecommunications,”
+             IEEE Access, vol. 4, no. 99, pp. 5520–5530, 2017.                      
+                                                                                    
+          [15] 3GPPTR38.855v.16.0.0, “Study on NR positioning support,” 2019.       
+          [16] J.Schloemann,H.S.Dhillon,andR.M.Buehrer,“Atractableanalysisoftheimprovementinuniquelocalizabilitythrough
+             collaboration,” IEEE Transactions on Wireless Communications, vol. 15, no. 6, pp. 3934–3948, 2015.
+                                                                                    
+          [17] Z. Deng, Y. U. Yanpei, Y. Xie, and N. Wan, “Situation and development tendency of indoor positioning,” China
+             Communications, vol. 10, no. 3, pp. 42–55, 2013.                       
+          [18] T. Manna and A. Kole, “Performance analysis of secure DSSS multiuser detection under near-far environment,” in
+                                                                                    
+             International Conference on Intelligent Control Power and Instrumentation, 2016.
+          [19] J. Schloemann, H. S. Dhillon, and R. M. Buehrer, “A tractable metric for evaluating base station geometries in cellular
+             network localization,” IEEE Wireless Communications Letters, vol. 5, no. 2, pp. 140–143, 2015.
+                                                                                    
+          [20] C. H. Chen and K. T. Feng, “Enhanced distance and location estimation for broadband wireless networks,” IEEE
+             Transactions on Mobile Computing, vol. 14, no. 11, pp. 1–1, 2015.      
+          [21] W.Yu,L.Musavian,andQ.Ni,“Link-layercapacityofNOMAunderstatisticaldelayQoSguarantees,”IEEETransactions
+                                                                                    
+             on Communications, vol. 66, no. 10, pp. 4907–4922, Oct 2018.           
+          [22] Y.Liu,Z.Qin,M.Elkashlan,Z.Ding,A.Nallanathan,andL.Hanzo,“Nonorthogonalmultipleaccessfor5Gandbeyond,”
+             Proceedings of the IEEE, vol. 105, no. 12, pp. 2347–2381, 2017.        
+                                                                                    
+          [23] L.Yin,J.Cao,K.Lin,Z.Deng,andQ.Ni,“Anovelpositioning-communicationintegratedsignalinwirelesscommunication
+             systems,” IEEE Wireless Communications Letters, pp. 1–1, 2019.         
+          [24] A. K. Karmokar, M. Naeem, and A. Anpalagan, “Energy-efficient subcarrier power allocation for cognitive radio
+                                                                                    
+             networks using statistical interference model,” in IEEE International Symposium on Personal, Indoor, and Mobile Radio
+             Communications, 2015.                                                  
+          [25] N. Forouzan and S. A. Ghorashi, “New algorithm for joint subchannel and power allocation in multi-cell OFDMA-based
+                                                                                    
+             cognitive radio networks,” IET Communications, vol. 8, no. 4, pp. 508–515, March 2014.
+          [26] X. Ding and Q. Li, “Joint power control and time allocation for wireless powered underlay cognitive radio networks,”
+             IEEE Wireless Communications Letters, vol. PP, no. 99, pp. 1–1, 2017.  
+                                                                                    
+          [27] C.Yan,A.Bayesteh,Y.Wu,B.Ren,S.Kang,S.Sun,X.Qi,Q.Chen,B.Yu,andZ.Ding,“Towardthestandardizationof
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+
+===== PDF PAGE 30 =====
+                                                                                    
+                                                                                    
+                                                                         30         
+                                                                                    
+                                                                                    
+             non-orthogonal multiple access for next generation wireless networks,” IEEE Communications Magazine, vol. 56, no. 3,
+                                                                                    
+             pp. 19–27, 2018.                                                       
+          [28] J. Zhao, Y. Liu, K. K. Chai, A. Nallanathan, Y. Chen, and Z. Han, “Spectrum allocation and power control for non-
+             orthogonal multiple access in HetNets,” IEEE Transactions on Wireless Communications, vol. 16, no. 9, pp. 5825–5837,
+                                                                                    
+             Sep. 2017.                                                             
+          [29] E. J. Zhong and T. Z. Huang, “Geometric dilution of precision in navigation computation,” in International Conference
+             on Machine Learning and Cybernetics, 2009.                             
+                                                                                    
+          [30] Y. Liu, Z. Ding, M. Elkashlan, and H. V. Poor, “Cooperative non-orthogonal multiple access with simultaneous wireless
+             information and power transfer,” IEEE Journal on Selected Areas in Communications, vol. 34, no. 4, pp. 938–953, 2016.
+          [31] J. W. Betz and K. R. Kolodziejski, “Generalized theory of code tracking with an early-late discriminator Part I: Lower
+                                                                                    
+             boundandcoherentprocessing,”IEEETransactionsonAerospaceandElectronicSystems,vol.45,no.4,pp.1538–1556,
+             2009.                                                                  
+          [32] Boyd, Vandenberghe, and Faybusovich, Convex Optimization, 2004.      
+                                                                                    
+          [33] R. Zhang, “Optimal power control over fading cognitive radio channel by exploiting primary user CSI,” in IEEE Global
+             Communications Conference (GLOBECOM), Nov 2008, pp. 1–5.               
+          [34] L. Li and C. Xu, “On ergodic sum capacity of fading channels in OFDMA-based cognitive radio networks,” IEEE
+                                                                                    
+             Transactions on Vehicular Technology, vol. 63, no. 9, pp. 4334–4343, Nov 2014.
+          [35] J. A. del Peral-Rosado, J. A. Lopez-Salcedo, G. Seco-Granados, F. Zanier, and M. Crisci, “Joint channel and time
+             delay estimation for LTE positioning reference signals,” in ESA Workshop on Satellite Navigation Technologies European
+                                                                                    
+             Workshop on GNSS Signals and Signal Processing, Dec 2012, pp. 1–8.     
+          [36] Y.Lu,Z.Deng,Z.Di,andE.Hu,“QualityassessmentmethodofGNSSsignalsbaseonmultivariatedilutionofprecision,”
+             in European Navigation Conference, 2016.                               
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    
+                                                                                    

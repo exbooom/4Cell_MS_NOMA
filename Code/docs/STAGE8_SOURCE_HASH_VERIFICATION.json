@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "totalTests": 112,
+  "matlabSources": 112,
+  "runs": [
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125140_8ca850bb",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 14,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125228_a750b5aa",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 13,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125306_14b5e24b",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 13,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125515_c67a79f2",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 14,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125638_e655714d",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 14,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125728_4a1d7ea5",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 14,
+      "imagesDecodeSuccessfully": true
+    },
+    {
+      "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_125930_36c3eb87",
+      "sourceCount": 112,
+      "allSourceHashesMatch": true,
+      "pngCount": 14,
+      "imagesDecodeSuccessfully": true
+    }
+  ],
+  "visualReview": {
+    "status": "reviewed_legible_no_clipped_titles",
+    "allDefaultFigures": true,
+    "newFiguresAllSevenScenarios": true,
+    "reviewImages": [
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_1_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_2_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_3_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_4_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_5_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_6_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_scenario_7_review.png",
+      "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_default_all_figures_review.png"
+    ]
+  },
+  "additionalFeedbackLimitSensitivity": {
+    "run": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_130239_5d09fd17",
+    "sourceCount": 112,
+    "allSourceHashesMatch": true,
+    "pngCount": 14,
+    "imagesDecodeSuccessfully": true,
+    "visualReview": "reviewed_legible_no_clipped_titles",
+    "reviewImage": "C:\\Users\\YanxingZ\\Documents\\Codex\\2026-10-31\\new-chat\\work\\stage8_extra_feedback_review.png"
+  }
+}

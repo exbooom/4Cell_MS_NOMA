@@ -1,0 +1,1944 @@
+===== PDF PAGE 1 =====
+IEEE JOURNAL ON SELECTED AREAS IN COMM UNICA TIONS, VOL. 40, NO. 4, APRIL 2022 1333
+Design and Performance Analysis of Multi-Scale
+NOMA for Future Communication-Positioning
+Integration System
+Lu Yin , Member , IEEE, Jiameng Cao, Qiang Ni , Senior Member , IEEE,
+Y uzheng Ma, and Song Li , Member , IEEE
+Abstract— This paper presents a feasibility study of a
+novel multiple access technique called Multi-Scale Non-
+Orthogonal Multiple Access (MS-NOMA) for the next generation
+communication-positioning integration system. Different from the
+traditional positioning signals which are mostly Time Division
+Multiple Access with communication signals and are broadcast to
+all users, MS-NOMA supports continuous positioning waveform
+and ﬂexible conﬁgurations for different positioning users to
+obtain higher ranging accuracy, lower positioning latency, less
+resource consumption and better signal coverage. Our major
+contributions are: Firstly, we present the MS-NOMA waveform
+and evaluate its performances by theoretical and simulation
+analyses. The results show it is feasible to use the MS-NOMA
+waveform to achieve high positioning accuracy and low Bit Error
+Rate with little resource consump tion simultaneously. Secondly,
+to achieve optimal positioning accuracy and signal coverage, we
+model the power allocation problem for MS-NOMA as a convex
+optimization problem satisfying the Quality of Services require-
+ment and other constraints. Then, we propose a novel Commu-
+nication and Positioning Performances constrained Positioning
+Power Allocation (CP4A) algorithm which allocates the power
+of all P-Users iteratively. The theoretical and numerical results
+show our proposed MS-NOMA waveform with CP4A algorithm
+has great improvements of ranging/positioning accuracy than
+traditional Positioning Reference Signal in cellular network.
+Index Terms — MS-NOMA, communication-positioning
+integration, positioning, power allocation.
+I. I NTRODUCTION
+N
+OW ADA YS, the Location Based Services (LBS) are
+growing rapidly and attracting much attention with the
+Manuscript received August 17, 2021; revised November 15, 2021; accepted
+December 17, 2021. Date of publication January 14, 2022; date of current
+version March 17, 2022. This work was supported in part by the National
+Natural Science Foundation of Chi na under Grant 61801041, in part by the
+Beijing Municipal Natural Scienc e Foundation under Grant L191003, and in
+part by the State Key Laboratory of I nformation Photonics and Optical Com-
+munications (BUPT) under Grant IPOC2019ZT09. (Corresponding author:
+Lu Yin.)
+Lu Yin, Jiameng Cao, and Y uzheng Ma are with the School of Electronic
+Engineering, Beijing University of Posts and Telecommunications, Beijing
+100876, China (e-mail: inlu_mail@bupt.edu.cn; caojiameng@bupt.edu.cn;
+mayuzhengjoy@gmail.com).
+Qiang Ni is with the InfoLab21, School of Computing and Com-
+munications, Lancaster University, Lancaster LA1 4W A, U.K. (e-mail:
+q.ni@lancaster.ac.uk).
+Song Li is with the School of Information and Control Engineering,
+China University of Mining and Technology, Xuzhou 221008, China (e-mail:
+lisong@cumt.edu.cn).
+Color versions of one or more ﬁgures in this article are available at
+https://doi.org/10.1109/JSAC.2022.3143223.
+Digital Object Identiﬁer 10.1109/JSAC.2022.3143223
+proliferation of mobile devices [1]. Besides the well known
+Global Navigation Satellite Systems (GNSS) which can only
+be used in open areas as their signals are easily blocked
+or interfered by buildings [2], communication-based position-
+ing methods (5G, Bluetooth, Wi-Fi, etc.) have been greatly
+developed in recent years as the ready-made communication
+networks have natural advantages of wide coverage, easy
+deployment and low-cost [3]–[5].
+There are mainly two categories of communication-based
+positioning: 1) Based on the existing communication compo-
+nents, such as positioning by ﬁngerprint matching or Sounding
+Reference Signal (SRS) [4], [6]; 2) Based on the redesigned
+new waveform, such as positioning by Positioning Reference
+Signal (PRS) in cellular network or Constant Tone Extensions
+(CTE) in Bluetooth Low Energy 5.1 (BLE 5.1) [7], [8].
+The positioning performance of the 1
+st category is always
+unsatisfactory as the communication system is not designed
+for positioning purpose speciﬁcally. Better performance is
+usually obtained by the 2nd category because of the exclusive
+positioning waveform.
+In the upcoming B5G (beyond-5G) and 6G eras, emerg-
+ing industries will demand highe r positioning re quirements.
+For example, higher positioning accuracy, measuring fre-
+quency and reliability should be satisﬁed in the scenarios
+like automatic driving and industrial equipment/robotic control
+[9], [10]. However, most of the traditional methods are just
+combinations of communication and positioning components
+by Time Division Multiple Access (TDMA) and often neglect
+their interference. For example, PRS will occupy a great
+number of resource blocks to obtain better positioning per-
+formance. While communication p erformance will degrade
+signiﬁcantly without these resource blocks. Even so, PRS can
+not meet the accuracy and latency requirements simultane-
+ously [11]. It is because the discontinuous PRS is hardly
+tracked which leads to low ranging accuracy, and there is a
+long interval between two PRS frames which leads to low
+measuring frequency [12]. On the other hand, to obtain higher
+measuring accuracy, positioni ng components should be trans-
+mitted continuously from different base stations (BS). Then,
+severe near-far effect between these positioning components
+make the signals from far BSs more difﬁcult to be accessed
+[11], [13]. Consequently, poor geometric distribution of BSs is
+achieved which further worsens the positioning accuracy and
+reliability [14].
+0733-8716 © 2022 I EEE. Personal u se is perm itted, but republication/redistri bution requires IEEE permission.
+See https://www.ieee.org/publications/rights/index.html for more information.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 2 =====
+1334 IEEE JOURNAL ON S ELECTED AREAS IN COMMUNICA TI ONS, VOL. 40, NO. 4, APRIL 2022
+Fig. 1. The MS-NOMA architecture.
+To this end, a novel communication-positioning integration
+waveform has to be designed which must satisfy the following
+requirements:
+1) The interference between the positioning and communi-
+cation components must be weak enough. i.e. The posi-
+tioning component must consume as few communication
+resources as possible to ensure the Quality of Services
+(QoS) requirements of communication. Meanwhile, the
+positioning performance should be good enough to sat-
+isfy the future requirements under massive communica-
+tion resources.
+2) The positioning components should be continuous. i.e.
+The receiver can track the signal for better measurement
+accuracy and higher measuring frequency.
+3) In the down-link use case, the positioning components
+for different users must be conﬁgurable to reduce the
+near-far effect. i.e. Different users should obtain different
+signal strengths or gains from the same BS.
+To satisfy the above requirements, we propose a novel multiple
+access technique for the next ge neration communication-
+positioning integration system, called Multi-Scale Non-
+Orthogonal Multiple Access (MS-NOMA), which superposes
+a signiﬁcant low-power positioning component to the commu-
+nication one without much interference based on the NOMA
+principle [15], [16]. In time domain, the MS-NOMA wave-
+form is modulated by the pseudorandom noise sequence to
+obtain spreading gains and ensure a continuous transmission.
+In frequency domain, Orthogonal Frequency Division Multi-
+plexing (OFDM) is employed for different positioning users
+as Fig. 1 shows.
+In the proposed MS-NOMA waveform, Δf
+c and Δf p
+represent the sub-carrier spacing of communication and posi-
+tioning waveform, respectively. For the maximum spectrum
+effectiveness, they are designed as Δf p = GΔfc,G ∈ N+.
+Deﬁne B as the total bandwidth, then there are maximum
+N = B/Δfc − 1 and M = B/Δfp − 1 sub-carriers
+for communication and positioning purpose, respectively. For
+clear representation, deﬁne C-Sub/P-Sub and C-User/P-User
+as the abbreviations of communication/positioning sub-carrier
+and communication/pos itioning user, respectively. Notice each
+P-Sub may transmit to a single P-User or many P-Users who
+have similar channel states and positions. To simplify the
+problem and without any loss of generality, we assume each
+C-Sub/P-Sub is occupied by a C-User/P-User. And all C-Subs
+have the same power. Then, to acquire the highest positioning
+accuracy over the whole network under the hearability and
+QoS requirements, the parameters of different P-Subs should
+be allocated carefully. In this paper, we focus on the power
+allocation of the P-Subs and assume other parameters are
+constant. It is worth noting that MS-NOMA waveform has
+the potential to allocate all kinds of resources for better
+performances of both positioning and communication, such
+as the power, the bandwidth, the spreading code, etc.
+In a conventional OFDM system, it is proved that water-
+ﬁlling over the sub-carriers is the optimal power allocation
+strategy [17]. However, it does not consider the interference
+between different types of users. In [18], where the sec-
+ond user transmits over spectrum holes left in the primary
+system, an optimal power allocation strategy is proposed.
+They maximize the down-link capacity of the second user
+by remaining the interference introduced to the primary user
+within a tolerable range. In the NOMA system, the power
+allocation is mostly investigated for signal demodulation and
+relay transmission [19], [20]. But these algorithms can not be
+used in our problem that has different models which is more
+complicated.
+To the best of our knowledge, it is the ﬁrst time that pro-
+poses a methodology which employs conﬁgurable waveform to
+different P-Users by allocating their power in order to improve
+the coverage and accuracy perfo rmances which is an essential
+difference with the traditi onal positioning methods. Because
+there are few studies about the waveform design and power
+allocation algorithm of communication-positioning integration
+system, it makes our study very challenging. A preliminary
+part of this study was presented in a letter paper [21] which
+focuses on the basic characteristics of MS-NOMA based
+on single-cell scenario. In this journal version, as compared
+to [21], we study realistic positioning problem based on multi-
+cell scenario and carry out detailed designs by conducting
+more in-depth mathematical an alyses. The main contributions
+of this paper are:
+1) We present the positioning model by the proposed
+MS-NOMA waveform and analyze the limitation of
+positioning by other existing signals.
+2) We analyze the interference between the communication
+and positioning components of the MS-NOMA wave-
+form in the multi-cell scenario. Bit Error Rate (BER) for
+communication and the ranging accuracy for positioning
+are derived.
+3) We model the power allocation problem for the
+MS-NOMA waveform as a convex optimization prob-
+lem. It minimizes the average positioning error variance
+of all P-Users in the network by considering the QoS, the
+power budget and the hearability requirements. To solve
+this problem, we propose a novel Communication and
+Positioning Performances constrained Positioning Power
+Allocation (CP4A) algorithm which allocates the power
+of all P-Subs iteratively and derive its closed solution.
+4) A series of theoretical and numerical analyses are
+done to evaluate the performances of positioning by
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 3 =====
+YIN et al. : DESIGN AND PERFORMANCE ANAL YSIS OF MS-NOMA 1335
+Fig. 2. System model of positioning by the MS-NOMA waveform.
+TABLE I
+INST ANT ANEOUS CHANNEL GAINS OF MS-NOMA
+WAV E F O R M I NTYPICAL POSITIONING SCENARIO
+MS-NOMA waveform. The results show our proposed
+MS-NOMA waveform has a great improvement of
+ranging/positioning accuracy than traditional PRS, and
+reduces the resource consumption dramatically which
+means both positioning and communication require-
+ments could be satisﬁed simultaneously.
+Notations: Subscript p and c represent the positioning
+and communication, respectively. · represents the Euclidean
+distance. The operator cov (·) represents the covariance. M,
+N , K and K
+k represent the set {1,...,M }, {1,...,N },
+{1,...,K } and {1,...,k − 1,k +1 ,...,K },respectively.
+II. S YSTEM MODEL
+Consider a typical positioning scenario in spatial domain
+with K B S sa sF i g .2s h o w s .C - U s e r sa n dP - U s e r sm a y
+locate at different positions. Let us deﬁne hky← kx as the
+instantaneous channel gain of sub-carrier kx received by the
+user ky which is known by the BSs through a delay- and
+error-free feedback channel. Then, the instantaneous channel
+gains of MS-NOMA waveform in typical positioning scenario
+are listed in Table I. Please notice each C-User connects only
+one BS and P-User connects multiple BSs, so the indexes of
+the two kinds of users are kn and m, respectively.
+If the BSs are perfectly synchronized, the P-Users will use
+time-based algorithm to estimate their locations. Then, the
+horizontal positioning accuracy of P-User m can be expressed
+as
+Ψ
+m =
+
+
+k∈K
+
+λkmσkmρ
+2
+(1)
+where λkm represents the geometric-dilution and σkm
+ρ repre-
+sents the ranging error variance. Detailed derivation of (1) can
+be found in Appendix A. Please notice that Ψ
+m represents the
+lower bound of positioning error as well.
+III. F EA TURES OF MS-NOMA W AV E F O R M
+A. Interference of Positioning to Communication
+In order to evaluate the interference of positioning to
+communication more accurately, w e assume that the inter-cell
+interference between the communication components can be
+ideally eliminated [22]. Then, the BER of C-Sub kn is
+BERkn =Γ erfc
+
+γ
+hkn← kn
+c
+2
+PcTc
+Ikn +2 N0
+
+(2)
+where Γ and γ are determined by the modulation and coding
+schemes [23]. Pc is the power of communication component.
+Tc is the period of communication symbol. N0 is the single-
+sided Power Spectral Density (PSD) of the environment noise.
+Ikn represents the interference of the positioning components
+to the C-User kn. Notice that the power of the positioning
+components from different BSs may be similar by power allo-
+cation, the interference caused by the positioning components
+from the neighbor BSs can not be ignored. Then, we have
+Ikn =
+
+k ∈K
+
+m∈M
+¯Pkn← km
+p (3)
+where ¯Pkn← km
+p is the power of the P-Sub km received by
+C-User kn which satisﬁes
+¯Pkn← km
+p =
+hkn← km
+p
+
+2
+Pkm
+p Gm
+p
+(nΔf c)
+=
+hkn← km
+p
+
+2
+Pkm
+p Tpsinc2
+	
+m − n
+G
+
+(4)
+where Pkm
+p is the power of P-Sub km. Gm
+p (f) is the
+normalized PSD of P-Sub m which satisﬁes
+Gm
+p (f)= Tpsinc2 [(f − mΔfp)Tp] (5)
+where Tp is the period of the positioning symbol.
+B. Ranging Accuracy of MS-NOMA W aveform
+The receiver could use a Delay Locked Loop (DLL) to track
+the positioning component. Taking the coherent early-late
+discriminator for example [24] , the tracking/ranging accuracy
+of the P-Sub km can be written as (6), as shown at the
+bottom of the next page. Where a = BL (1 − 0.5BLTcoh)
+is determined by the loop noise bandwidth BL and the
+coherent integration time Tcoh. B0 is the central frequency
+of MS-NOMA waveform. Bfe is the double-sided front-end
+bandwidth. D is the early-late spacing of DLL. Gm
+s (f) is the
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 4 =====
+1336 IEEE JOURNAL ON S ELECTED AREAS IN COMMUNICA TI ONS, VOL. 40, NO. 4, APRIL 2022
+PSD of the communication components received by P-User m
+which satisﬁes
+Gm
+s (f)=
+
+k ∈K
+
+n∈N
+hm← kn
+c
+
+2
+PcGn
+c (f) (7)
+where Gn
+c (f)= Tcsinc2 [(f − nΔfc)Tc] is the normalized
+PSD of C-Sub n. Gkm
+q (f) is the PSD of the positioning
+components from other BSs which satisﬁes
+Gkm
+q (f)=
+
+k ∈Kk
+
+h
+m← km
+p
+
+
+2
+Pkm
+p Gm
+p
+(f) (8)
+By taking (5), (7), (8) into (6) and using some approxima-
+tions, (6) can be simpliﬁed to (9), as shown at the bottom of the
+page, where C/N0, CPR and PPR are the carrier-to-noise
+ratio of positioning component, the equivalent communication-
+to-positioning ratio and the positioning-to-positioning ratio
+which are derived in Appendix B. The ﬁrst item in (9)
+is caused by the noise, the second one is caused by the
+communication components from all BSs, and the third one
+is caused by the other BSs’ pos itioning components. Because
+the positioning components are designed much weaker than
+communication ones in MS-NOMA, the interference from
+positioning components could be ignored. Then, (9) is further
+simpliﬁed to
+
+σ
+km
+ρ
+2
+≈ aT2
+p
+2
+
+1
+Bfe Tp (C/N0)km + B
+k ∈K(CPR )km← k
+2B2
+fe
+
+(10)
+We deﬁne the ranging-factor
+
+σkm
+ρ
+2
+=
+
+σkm
+ρ
+2
+Pkm
+p for
+later use. Notice that
+
+σkm
+ρ
+2
+h a sn or e l a t i o nt oPkm
+p which
+is a part of the denominator in (10).
+IV . T HE POWER ALLOCA TION OF MS-NOMA W AV E F O R M
+A. The Constraints
+1) The BER Threshold Under QoS Constraint: To ensure
+the QoS of C-Users, the BERs of all C-Users should be limited
+under a certain threshold
+BERkn ≤ Ξth, ∀k ∈K , ∀n ∈N (11)
+Then, by taking (2) to (11) and rearranging items, we have
+Ikn ≤ γ
+hkn← kn
+c
+2
+PcTc
+erfc−1 (Ξth/Γ) − 2N0
+≜ Ikn
+th , ∀k ∈K , ∀n ∈N (12)
+where Ikn
+th is deﬁned as the interference threshold of C-User
+kn, which is determined by the QoS requirement Ξth.
+2) The T otal Power Limitation: The total transmit power is
+often limited. In MS-NOMA waveform, we have
+
+m∈M
+Pkm
+p + NPc ≤ Pk
+T , ∀k ∈K (13)
+where Pk
+T is the total transmit power of BS k. Let’s deﬁne the
+positioning power budget of BS k as Pk
+th = Pk
+T − NPc,t h e n
+we have
+
+m∈M
+Pkm
+p ≤ Pk
+th, ∀k ∈K (14)
+3) The Elimination of Near-Far Effect: To ensure that
+P-Users could receive as many positioning signals as possible,
+the power of the received positioning signals from different
+BSs must satisfy
+|hm← km
+p |2Pkm
+p
+|hm← kmp |2Pkmp
+≥ Ω, ∀m ∈M , ∀k ∈K , ∀k ∈K k
+(15)
+where Ω is the auto-correlation to cross-correlation ratio of
+positioning component, which is determined by the pseudo-
+random code and its length.  is determined by the receiver’s
+performance, which is usually larger than 1. For a particular
+P-Sub km, if the strongest cross-correlation satisﬁes (15), all
+k
+s in (15) will be satisﬁed. Therefore, (15) can be rewritten
+as
+|hm← km
+p |2Pkm
+p ≥ Ω|hm← k
+km
+p |2Pk
+km
+p , ∀m ∈M , ∀k ∈K
+(16)
+where k
+km represents the index of the strongest sub-carrier
+except the P-Sub km received by the P-User m.
+B. The Proposed Joint Power Allocation Model
+Our goal is to obtain the best positioning performance for
+all P-Users in terms of both accuracy and coverage under QoS
+requirement and total transmit power budget. So, the average
+lower bound of horizontal positioning error
+1 for all P-Users
+in the network is minimized by ﬁnding the optimal power
+values Pkm
+p , ∀m ∈M , ∀k ∈K under the given constraints.
+Considering the fact that the maximum negative value of a
+convex function is equivalent to its minimum. Then, the power
+allocation problem can be formul ated as a convex optimization
+1 For calculation convenience, we use the square of the horizontal positioning
+accuracy, i.e. (Ψm )2.
+
+σkm
+ρ
+2
+=
+a
+/CA
+B0+Bfe /2
+B0 − Bfe /2 [N0+Gm
+s (f+mΔ fp)+Gkm
+q (f+mΔ fp)]Gm
+p (f+mΔ fp)sin2(πfDT p)df
+|hm← kmp |
+2
+P kmp
+/AK
+2π
+/CA
+B0+Bfe /2
+B0 − Bfe /2 fG mp (f+mΔ fp)sin(πfDT p)df
+/AL
+2 (6)
+
+σkm
+ρ
+2
+≈ aT2
+p
+2
+
+1
+Bfe Tp (C/N0)km + B
+k ∈K(CPR )km← k
+2B2
+fe
++
+
+k ∈Kk (PPR )km← km
+B2
+fe Tp
+
+(9)
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 5 =====
+YIN et al. : DESIGN AND PERFORMANCE ANAL YSIS OF MS-NOMA 1337
+problem as follows
+OP1 : max
+P kmp
+− 1
+M
+
+m∈M
+(Ψm)2 (17)
+s.t. Ikn ≤ Ikn
+th , ∀n ∈N , ∀k ∈K (18)
+m∈M
+Pm← km
+p ≤ Pk
+th, ∀k ∈K (19)
+|hm← km
+p |2Pkm
+p ≥ Ω|hm← k
+km
+p |2Pk
+km
+p ,
+∀m ∈M , ∀k ∈K (20)
+OP1 can be solved by the Lagrange duality method [25].
+Then, the Lagrange dual function of OP1 is then given by
+g (μ, ν, β)=m a x
+P kmp
+L
+
+Pkm
+p
+
+,μ ,ν,β
+
+(21)
+where L
+
+Pkm
+p
+
+,μ ,ν,β
+
+is the Lagrangian of OP1,
+μ =
+
+μkn
+ 0, ν =
+
+νk
+ 0 and β =
+
+βkm
+ 0 are the
+matrices of dual variables associated with the corresponding
+constraints given in (12), (14) and (15). Then, the dual
+optimization problem can be formulated as
+min g (μ, ν, β) (22)
+s.t. μ  0,ν  0,β  0 (23)
+I ti se a s yt ob ep r o v e dt h a tL
+
+Pkm
+p
+
+,μ ,ν,β
+
+is linear in
+μ, ν, βfor ﬁxed Pkm
+p ,a n d g (μ, ν, β) is the maximum of
+linear function. Thus, the dual optimization problem is always
+convex. To solve this problem, the dual decomposition method
+introduced in [26] is employed. For this purpose, we introduce
+a transformation 
+n∈N =
+m∈M
+
+n∈Nm to decompose the
+Lagrange dual function to K ×M independent sub-problems,
+where
+Nm = {(2G − 1)(m − 1) + 1,..., (2G − 1)m} (24)
+Then, we have
+g (μ, ν, β)=
+
+k∈K
+
+gk (μ, ν, β)
+
+=
+
+k∈K
+ 
+m∈M
+gkm (μ, ν, β)+ νkPk
+th
+
+(25)
+where
+gkm (μ, ν, β)
+=m a x
+P kmp
+
+− 1
+M
+
+λkmσkm
+ρ
+2
+− νkPkm
+p
++
+
+n∈Nm
+μkn 
+Ikn
+th − Ikn
++ βkm
+×
+	
+|hm← km
+p |2Pkm
+p − Ω|hm← k
+km
+p |2Pk
+km
+p
+
+
+(26)
+From (26), it is clear that we can decompose the Lagrange
+dual function gk (μ, ν, β) to M independent sub-problems by
+giving νk. Each of the sub-problems is given by
+OP2 : max
+P kmp
+− 1
+M
+
+λkmσkm
+ρ
+2
+− νkPkm
+p (27)
+s.t. Ikn ≤ Ikn
+th ,n ∈ Nm (28)
+|hm← km
+p |2Pkm
+p ≥ Ω|hm← k
+km
+p |2Pk
+km
+p (29)
+Similar to OP1, the dual problem of the sub-problems can
+be expressed as
+min ˜gkm
+	
+˜μkn, ˜βkm
+
+(30)
+s.t. ˜μkn ≥ 0, ∀n ∈ Nm (31)
+˜βkm ≥ 0 (32)
+where ˜μkn and ˜βkm are the non-negative dual variables for
+constraints (28) and (29), respectively.
+The optimal power allocation solution ˜Pkm
+p of OP2 can be
+obtained by using the Karush-Kuhn-Tucker (KKT) conditions
+as (33), as shown at the bottom of the next page, where J
+kn← m
+can be found in Appendix C.
+C. The Positioning-Communication Joint Power Allocation
+Scheme
+The remaining task for solving OP1 is to obtain the optimal
+dual variables, which are the same in both OP1 and OP2.
+Applying the solution to OP2, we can obtain the optimal power
+allocation ˜Pkm
+p in OP1. However, it is difﬁcult to solve OP2
+directly because we cannot obtai n the closed-form expression
+of dual variables. The Lagrange dual function (25) is made
+up of K independent sub-problem s. For each sub-problem,
+it is observed that νk is the same for all P-Subs. μkn and
+βkm are different for C-Subs and P -Subs, respectively. Then,
+we can solve the optimization pr oblem using the hierarchical
+algorithm by updating the values of the dual variables {μ, ν, β}
+via subgradient methods, which guarantees the gradient-type
+algorithm to converge to the optimal solution [27].
+Notice that the positions of P-Users are unknown which are
+necessary for calculating t he geometric-dilution λ
+km. We can
+minimize the ranging error variance for all P-Users without
+considering the impact of the geometric-dilution at the ﬁrst
+iteration. Namely, λ
+km in (1) and (33) is set to 1 in the ﬁrst
+ﬁx. Then, we can get approximate positions and the initial
+allocated power. After several iterations, the positions and the
+power will converge to the optimal values.
+The algorithm to solve OP1 can be summarized as Algo-
+rithm 1 shows. Where t and t
+ are the iteration numbers. iterN
+is the maximum iteration amount. b1, b2 and b3 are the update
+step sizes. ε> 0 is a given small constant.
+V. T HE PERFORMANCE EVA L UAT I O N
+In this section, we evaluate the communication performance,
+resource consumption and ranging accuracy of the proposed
+MS-NOMA waveform under a single-cell network ﬁrstly.
+Then, we examine the positioning performance in a 4-BSs
+cell by considering the impact of all factors comprehensively.
+In the single-cell scenario, the impact of the cross-correlation
+will be vanished and the channel gains of the C-Subs and P-
+Subs will be equal. So, the channel gains and index k in (2)
+and (10) can be omitted. Then, we have
+BERn =Γ erfc
+ γPcTc
+In +2 N0
+
+(34)
+
+σm
+ρ
+2
+≈ aT2
+p
+2
+
+1
+Bfe Tp (C/N0)m + B (CPR )m
+2B2
+fe
+
+(35)
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 6 =====
+1338 IEEE JOURNAL ON S ELECTED AREAS IN COMMUNICA TI ONS, VOL. 40, NO. 4, APRIL 2022
+Fig. 3. Communication performance.
+Algorithm 1 The Proposed CP4A Algorithm
+1: Initial the dual variable νk
+1 for all k ∈K in parallel
+2: for t =1 to iterN do
+3: Initial μkn
+1 ,βkm
+1 for all n ∈N and m ∈M in parallel
+4: for t =1 to iterN do
+5: if The ﬁrst ﬁx (There is no P-Users’ positions) then
+6: For each P-User m, calculate ˜Pkm
+p using (33) by
+setting λkm =1 for all k ∈K and m ∈M
+7: else
+8: For each P-User m, calculate ˜Pkm
+p using (33)
+9: end if
+10: Update μkn
+t and βkm
+t by their subgradient
+11: if |˜μkn
+t+1 − μkn
+t |≤ ε & |˜βkm
+t+1 − βkm
+t |≤ ε then
+12: break
+13: end if
+14: end for
+15: Update νk
+t+1 by its subgradient
+16: if |˜νk
+t+1 − νk
+t |≤ ε then
+17: break
+18: end if
+19: end for
+20: return ˆPp =
+
+˜Pkm
+p , ∀k ∈K , ∀m ∈M
+
+where
+In =
+M
+m=1
+Pm
+p Tpsinc2
+	
+m − n
+G
+
+(36)
+(C/N0)m = Pm
+p /N0 (37)
+(CPR )m =2 GPc/Pm
+p (38)
+Notice that (34) and (35) reﬂect the features of MS-NOMA
+waveform itself without interference from other BSs.
+The simulation settings are: The communication and posi-
+tioning components use QPSK and BPSK constellation,
+respectively. The carrier frequency is set to 3.5GHz and
+Δf c =3 0kHz. Two scenarios with different total bandwidths
+are considered: 1) B =2 0MHz 2) B =5 0MHz. The amount
+of P-User is M =2 0. The power of all C-Users are assumed
+to be identical. The front-end bandwidth is set as twice of the
+total bandwidth, i.e. B
+fe =2 B. The loop parameters are set
+as: BL =0 .2Hz, Tcoh =0 .02s and D =0 .02chips.
+A. Communication Performance
+We ﬁrst examine the interference of the positioning compo-
+nent to the C-Users. Fig. 3a shows the average BERs over the
+whole bandwidth when P
+m
+p = Pp, ∀m ∈M . It is clear that
+the average BERs decrease when Eb/N0 and C/N0 increase
+(Eb = PcTc is the energy of the communication symbol).
+Notice that the BER curves with small CPR will tend to
+be ﬂat when Eb/N0 becomes larger. This is because the
+interference caused by the positioning component dominates
+the BER performance rather than the environment noise (i.e.
+In is much larger than 2N0). When the positioning component
+becomes weaker (CPR becomes larger), the BER curves will
+become ﬂat with larger Eb/N0 and they will become closer
+to the one that only exists noise (CPR = ∞ ).
+Fig. 3b takes an example of BERs over C-Subs in detail.
+If the power of the P-Subs is identical, the BERs are approx-
+imately identical as well. While the BERs are different when
+˜Pkm
+p = λkm
+
+geometric-dilution
+× σkm
+ρ
+
+
+
+ranging-factor
+×
+
+M
+
+˜βkm|hm← km
+p |2 − νk −
+
+n∈Nm
+˜μknJkn← m
+−1/2
+
+ 
+ 
+constraint-scale
+(33)
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 7 =====
+YIN et al. : DESIGN AND PERFORMANCE ANAL YSIS OF MS-NOMA 1339
+Fig. 4. Comparison of the positioning resour ce consumption between MS-NOMA and PRS.
+the power of P-Subs is allocated to different values. Then, the
+maximum BER is related to all P-Subs’ power (see (34)) in
+this case. Therefore, the pow er of P-Subs must be allocated
+carefully to ensure the QoS of each C-Sub. Unsurprisingly,
+the lowest BERs are obtained when there are no positioning
+components.
+B. Resource Consumption of Positioning
+No matter what type of communication-positioning integra-
+tion signal is used, the exclusive positioning waveform con-
+sumes the resources which should belong to communication.
+It is important that positioning consumes as few resources as
+possible to reduce the inﬂuence on communication. In this
+subsection, we compare the resource element and energy
+consumption between MS-NOMA and PRS. Some necessary
+parameters for this evaluation are deﬁned as follows:
+Deﬁne E
+c and Ep as the energy of communication and
+positioning components in a unit time, respectively. Etotal =
+Ec + Ep as the total energy. Tmeas as the measuring period
+which means the receiver executes measuring every Tmeas
+seconds. The positioning results update every Tmeas seconds
+as well.
+For MS-NOMA, because it is continuous, its unit energy
+Ec and Ep are just equal to its power NPc and MPp.F o r
+PRS, Pp can be as strong as Pc. However, because PRS
+is discontinuous, its energy is determined by the amount of
+resource elements:
+(Ec/Ep)PRS = NRE,com/NRE,PRS
+EcEp
+≈ NRE,total/NRE,PRS (39)
+where NRE is the amount of resource elements during each
+measuring period, subscript com and total mean the communi-
+cation component and the communication+PRS component s,
+respectively. To obtain the same spreading gains between MS-
+NOMA and PRS for comparison, their code lengths should be
+Fig. 5. The relationship between Tmeas and Ec/Ep in PRS.
+identical during the integration time. So,
+NRE,PRS = Δf pTcoh (40)
+Notice that,
+NRE,total = NTmeas/Tc (41)
+Then,
+(Ec/Ep)PRS = N
+G
+Tmeas
+Tcoh
+(42)
+1) The Resource Element Consumption: Although the posi-
+tioning waveform of MS-NOMA does not occupy the resource
+elements directly, the extra BER loss produced by the posi-
+tioning waveform could be seen as occupying the resource
+elements which should belong to communication. Therefore,
+(43) is introduced to evaluate its equivalent resource element
+consumption
+Λ
+MS −NOMA = 1
+N
+
+n
+BERn − BER0 (43)
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 8 =====
+1340 IEEE JOURNAL ON S ELECTED AREAS IN COMMUNICA TI ONS, VOL. 40, NO. 4, APRIL 2022
+Fig. 6. The positioning coverage and accuracy of MS-NOMA with different power allocation algorithms ( B =5 0MHz).
+where BER0 is the BER without pos itioning component.
+Then, by replacing Pc and Pp with Ec and Ep in (43), we can
+obtain the relationship between ΛMS −NOMA and the energy.
+PRS occupies the resource elements directly, its resource
+element consumption can be evaluated by
+ΛPRS = NRE,PRS
+NRE,total
+=
+N
+G
+Tmeas
+Tcoh
+−1
+(44)
+Fig. 4a shows the comparison of the resource element
+consumption between MS-NOMA and PRS. It is clear that
+MS-NOMA consumes fewer resource elements than PRS in
+most areas. This means although the positioning waveform
+interferes the communication a s Section V -A analyzed, the
+equivalent resource element consumption is still smaller than
+PRS. Moreover, when the ba ndwidth increases, MS-NOMA
+consumes fewer resource elements because of the less posi-
+tioning interference as (36) shows ( T
+p decreases). When Etotal
+increases, ΛMS −NOMA increases slightly. This is because the
+BER0 decreases slightly when th e power of communication
+component increases. For comparison, ΛPRS has no relation
+to B or Etotal. This is because neither of them have impact on
+the proportion of communicatio n and positioning components
+in PRS.
+On the other hand, ΛPRS increases signiﬁcantly when
+Tmeas decreases. This is unsurprising because it needs more
+PRS frames to ensure frequent measuring which consumes
+a great number of resource elements. On the contrary, the
+resource element consumption of MS-NOMA has no relation
+to T
+meas. This is because MS-NOMA waveform is continuous,
+receiver could do measuring at a ny time within its calculation
+capacity. Therefore, PRS can hardly satisfy the frequent posi-
+tioning scenarios like automatic driving.
+2) The Energy Consumption: By giving certain E
+total and
+Ec/Ep, Pc and Pp can be determined as analyzed above.
+Then, the ranging accuracy is compared when MS-NOMA
+and PRS consume the same energy as Fig. 4b shows. Where
+the lower bound of PRS is used as introduced in [28]. It is
+clear that MS-NOMA always has higher ranging accuracy
+than PRS under the same energy and bandwidth. Also, it is
+Fig. 7. The allocated power and CPRs with different channel
+gains (B =5 0MHz).
+unsurprising that both two kinds of waveform have better
+ranging accuracy when they consume more energy. More-
+over, when the proportion of positioning component decreases
+(i.e. E
+c/Ep increases), the ranging accuracy of MS-NOMA
+decreases gradually. This is because the interference of the
+communication component increases gradually. For compar-
+ison, the ranging accuracy of PRS does not change when
+E
+c/Ep changes. This is because PRS and communication
+waveform are TDMA which means they usually have the same
+power and different periods when Ec/Ep changes. Therefore,
+the ranging accuracy will not change when the power keeps
+constant. Even so, the ranging accuracy of MS-NOMA is still
+better than PRS when the communication energy is 100 times
+higher than the positioning one.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 9 =====
+YIN et al. : DESIGN AND PERFORMANCE ANAL YSIS OF MS-NOMA 1341
+Fig. 8. Detailed illustration of the positioning accuracy.
+On the other hand, although the ranging accuracy of PRS
+does not decrease when Ec/Ep increases, higher Ec/Ep
+results in longer duration of communication component. Then,
+it results in lower measuring frequency. The relationship
+between Tmeas and Ec/Ep in PRS is shown in Fig. 5.
+It is clear that higher measuring frequency consumes more
+energy for positioning purpose (i.e. lower Ec/Ep)i nP R S .F o r
+comparison, higher measuring frequency does not consume
+more energy in MS-NOMA.
+C. Positioning Performance
+For MS-NOMA, although stronger positioning power will
+have higher measurement accuracy, the maximum power of
+the positioning components will be limited by the QoS of
+communication as Fig. 3 shows. So, P
+m
+p s must be allo-
+cated carefully to acquire the best ranging performance under
+the QoS constraint. In real applications, the communication
+interference from other BSs must be considered. In this
+subsection, we present the numerical results to evaluate the
+positioning performance of MS-NOMA waveform by using
+the proposed CP4A algorithm. The BSs are ﬁxed at (0, 0),
+(200, 0), (200, 200), (0, 200) and 20 P-Users are randomly
+distributed in the coverage area. The free space propagation
+model is employed with 50 Monte Carlo runs in each simula-
+tion. Without any loss of generality, the parameters are set as
+bellow: NP
+c =1 W, Pk
+th = Pth =0 .1Wf o ra n yk ∈K . Then,
+Pk
+T = PT =1 .1W. Ξth =1 0−2 and  =2 .
+Fig. 6 shows the positioning accuracy and coverage of
+MS-NOMA waveform by using the proposed CP4A algorithm
+and the traditional equal-power transmission strategy, respec-
+tively. The positioning error is set to 0 if the P-User cannot
+receive more than 3 BSs which means there are not enough
+BSs for positioning. From Fig. 6a, we can see all P-Users
+have positioning results which means the near-far effect is
+dramatically reduced. While from Fig. 6b, it is clear that
+a great amount of P-Users (50.8%) do not have positioning
+results by the traditional method as suffering severe near-far
+effect.
+Fig. 7 illustrates the relationship between the allocated
+power, the channel gains (
+h
+m← km
+p
+2
+) and the CPRs of the
+P-Users by examining one simulation. It shows that the worse
+channel states tend to allocate stronger positioning power. This
+is exactly what we expected that the P-Users with worse
+channel states need stronger power to obtain an accurate
+ranging. However, notice that there is a power disparity
+between the 2
+nd and 3rd P-Users whose channel gains are
+similar. This is because the geometric-dilution λ in (1) also
+affects the positioning accuracy which is considered by the
+power allocation process. This can be observed in Fig. 6a as
+well: The location of the 2
+nd P-User (coordinate: (178, 8))i sa t
+the edge of the area compared to the center location of the 3rd
+P-User (coordinate: (79, 77)), so the 2nd P-User has a stronger
+allocated power because of its bad geometric-dilution.
+Moreover, it is obvious that CPRs have similar tends
+with the channel gains. It does not seem correct as CPR is
+inversely proportional to
+hm← km
+p
+2
+as deﬁned in Appendix
+B. Notice that worse channel states tend to allocate stronger
+positioning power. As a result, the denominator of CPR (i.e.hm← km
+p
+2
+Pkm
+p ) will tend to be ﬂat for all km. Then, CPR
+is approximately proportional to
+
+h
+m← k
+c
+
+
+2
+. Because the chan-
+nel gains of communication components are approximately
+equal to that of positioning components for P-User m (i.e.
+h
+m← k
+c
+
+
+2
+≈
+hm← km
+p
+2
+), it results in that CPRs have similar
+tends with
+hm← km
+p
+2
+. In addition, it is observed that the
+CPRs have weaker ﬂuctuations than the channel gains, this
+reﬂects that the proposed CP4A algorithm weakens the effects
+of channel attenuation.
+The average positioning accuracy of MS-NOMA and PRS
+is shown in Table II. It shows the positioning accuracy of
+MS-NOMA waveform is much higher than that of PRS.
+Speciﬁcally, the improvements of MS-NOMA waveform are
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 10 =====
+1342 IEEE JOURNAL ON S ELECTED AREAS IN COMMUNICA TI ONS, VOL. 40, NO. 4, APRIL 2022
+TABLE II
+THE COMPARISON BETWEEN MS-NOMA AND PRS
+93.0% and 93.6% compared to PRS with 20MHz and 50MHz
+bandwidth, respectively. Detailed comparisons are presented
+in Fig. 8a. Notice that the positioning accuracy represents the
+lower bound calculated by (1) , so the minimum positioning
+error in Fig. 8a does not start from 0. We can see nearly all of
+the error bounds of 20MHz MS-NOMA waveform are even
+smaller than the minimum error bound of 50MHz PRS, this
+is mainly because of the following two reasons:
+1) Most of the ranging error variances of MS-NOMA are
+smaller than those of PRS as shown in Fig. 4b;
+2) The largest ranging error amount all BSs will worsen the
+positioning error no matter how small the others are (see 1).
+So the positioning error bounds of PRS in peripheral area are
+higher than those in internal area as Fig. 8b shows (Larger
+path-loss results in larger ranging error variance). Moreover,
+the geometric-dilution λ in peripheral area is usually larger
+than internal area which will further worsen the positioning
+accuracy. On the contrary, the proposed CP4A algorithm
+considers the ranging errors and geometric-dilution jointly.
+It averages the ranging errors weighted by the geometric-
+dilution via conﬁguring the positioning power of MS-NOMA
+waveform. Therefore, the pos itioning accuracy of MS-NOMA
+are ﬂatter than those of PRS as compared between Fig. 6a and
+Fig. 8b.
+VI. C
+ONCLUSION
+In this paper, we presented a feasibility study for a novel
+multiple access technique called M ulti-Scale Non-Orthogonal
+Multiple Access (MS-NOMA) for the next generation
+communication-positioning integration system. The MS-
+NOMA waveform superposes power conﬁgurable positioning
+components on the communication ones to achieve high rang-
+ing accuracy and little resource consumption. We analyzed
+the BER for communication and the ranging accuracy for
+positioning when the two kinds of components exist simultane-
+ously. The results show the interaction is rather limited and the
+proposed MS-NOMA waveform greatly improves the ranging
+accuracy comparing to the traditional PRS waveform. Next,
+the resource elements and energ y consumption were analyzed.
+It is approved that the proposed MS-NOMA consumes much
+fewer resources than PRS especially in frequent position-
+ing scenarios like automatic driving. At last, we modeled
+a multi-user power allocation problem for optimal position-
+ing accuracy and signal coverage as a convex optimization
+problem under the QoS requirement and other constraints.
+Then, a novel Communication and Positioning Performances
+constrained Positioning Power Allocation (CP4A) algorithm
+was proposed. The numerical results show our proposed
+MS-NOMA waveform with CP4A algorithm improves the
+positioning accuracy and signal c overage dramatically com-
+paring to the traditional PRS waveform.
+A
+PPENDIX A
+DERIV A TION OF THE HORIZONTAL POSITIONING
+ACCURACY
+Deﬁne εm
+ρ =
+
+ε1m
+ρ ,ε2m
+ρ ,...,ε km
+ρ
+T
+as the ranging errors
+of P-User m,w h e r eεkm
+ρ represents the ranging error between
+BS k and P-User m. Then, the positioning error of P-User m
+is [29]
+εm
+X =
+
+(Gm)T Gm
+−1
+(Gm)T εm
+ρ
+= Hmεm
+ρ (45)
+where
+Gm =
+⎡
+⎢⎢⎣
+ι1m
+x ι1m
+y ι1m
+z
+ι2m
+x ι2m
+y ι2m
+z
+··· ··· ···
+ιkm
+x ιkm
+y
+ιkm
+z
+⎤
+⎥⎥⎦ (46)
+⎧
+⎪⎨
+⎪⎩
+ιkm
+x = (xm
+p −xk
+b )/Xk
+b −Xm
+p 
+ιkm
+y = (ym
+p −yk
+b )/Xk
+b −Xm
+p 
+ιkm
+z = (zm
+p −zk
+b )/Xk
+b −Xm
+p 
+(47)
+where X =[ x, y, z]T represents the coordinate. Subscript
+p and b represent P-User and BS, respectively. Because the
+ranging errors from the BSs are independent, their covariance
+matrix is diagonal under the assumption that the range mea-
+suring is unbiased :
+
+σ
+m
+ρ
+2
+= cov
+
+εm
+ρ ,εm
+ρ
+
+=
+⎡
+⎢⎢
+⎢⎣
+
+σ
+1m
+ρ
+2
+0 ··· 0
+0
+
+σ2m
+ρ
+2
+··· 0
+··· ··· ··· ···
+00 ···
+
+σkm
+ρ
+2
+⎤
+⎥⎥
+⎥⎦ (48)
+where
+
+σ
+km
+ρ
+2
+= cov
+
+εkm
+ρ ,εkm
+ρ
+
+represents the ranging error
+variance of P-Sub km. Then, the covariance of the positioning
+error is
+(σm
+X )2 = cov(εm
+X,εm
+X
+)
+= Hm
+σm
+ρ
+2
+(Hm)T (49)
+The diagonal elements represe nt the positioning accuracy of
+each direction. Then, the horizontal positioning accuracy can
+be expressed as
+Ψm =
+*++
+,
+
+k∈K
+ 2
+i=1
+(m
+ik)2
+
+
+σkmρ
+2
+
+(50)
+where m
+ik s( i ∈{ 1, 2, 3}) represent the elements of Hm.
+Note λkm =
+-
+2
+i=1 (m
+ik)2 as the geometric-dilution, then
+we have (1).
+APPENDIX B
+DERIV A TION OF
+
+σkm
+ρ
+2
+Note (51)-(54), as shown at the bottom of the next page.
+Then, (6) can be written as
+
+σkm
+ρ
+2
+= a (Am
+1 + Am
+2 + Am
+3 )
+(2π)2hm← kmp
+2
+Pkmp (Am
+0 )2 (55)
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 11 =====
+YIN et al. : DESIGN AND PERFORMANCE ANAL YSIS OF MS-NOMA 1343
+Notice that there are multiple P-Users, i.e. the bandwidth of
+the positioning waveform for one P-User is much smaller than
+the total bandwidth B. Moreover, the front-end bandwidth is
+larger than B as well. So we have Bfe 
+ 2/Tp . Consequently,
+a DLL ’s narrow early-late spacing D can be applied. 2 When
+D → 0,s i n(πfDTp) in (51)-(54) can be replaced by Taylor
+2If Bfe is not large enough, the DLL correlation peak will be ﬂattened
+which will deteriorate the perform ance of the phase discriminator.
+expansion around 0. Then, by taking (5), (7), (8) into (51)-(54)
+and rearranging items, we have (56)-(59).
+Taking (56)-(60), as shown at the bottom of the page, back
+to (55) and rearranging items, we have (61), as shown at the
+bottom of the page, where (62), as shown at the top of the next
+page, is deﬁned as the normalized equivalent channel gain of
+the communication component transmitted by BS k to the
+P-User m.
+Am
+0 =
+B0+Bfe /2.
+B0−Bfe /2
+fGm
+p (f + mΔfp) sin (πfDTp)df (51)
+Am
+1 =
+B0+Bfe /2.
+B0−Bfe /2
+N0Gm
+p (f + mΔfp) sin2 (πfDTp)df (52)
+Am
+2 =
+B0+Bfe /2.
+B0−Bfe /2
+Gm
+s (f + mΔfp)Gm
+p (f + mΔfp) sin2 (πfDTp)df (53)
+Am
+3 =
+B0+Bfe /2.
+B0−Bfe /2
+Gkm
+q (f + mΔfp) Gm
+p (f + mΔfp) sin2 (πfDTp) df (54)
+Am
+0 = πDT2
+p
+Bfe /2.
+−Bfe /2
+f2sinc2 (fTp)df = 1
+2πDBfe (56)
+Am
+1 = πDTpN0Am
+0 (57)
+Am
+2 = D2Tp
+
+k ∈K
+
+n∈N
+
+h
+m← kn
+c
+
+
+2
+PcTc
+Bfe /2.
+−Bfe /2
+sinc2 [(f + mΔfp − nΔfc)Tc] sin2 (fTp)df
+G1
+≈ D2TpTcPc
+
+k ∈K
+
+n∈N
+
+h
+m← kn
+c
+
+
+2
+sin2
+
+π
+	
+m − n
+G
+
+
+×
+(Gm−n+1)Δ fc.
+(Gm−n−1)Δ fc
+sinc2 [(f + mΔfp − nΔfc)Tc]df
+≈ D2TpPc
+
+k ∈K
+
+n∈N
+
+h
+m← kn
+c
+
+
+2
+sin2
+	 n
+Gπ
+
+(58)
+Am
+3 = π2D2T4
+p
+
+k ∈Kk
+
+h
+m← km
+p
+
+
+2
+Pkm
+p
+Bfe /2.
+−Bfe /2
+f2sinc4 (fTp)df
+
+ 
+ 
+¯A3
+(59)
+where
+¯A3
+Bfe 2/Tp
+≈
+∞.
+−∞
+sin4 (πfTp)
+π4f2T4p
+df = 1
+4π4T4p
+∞.
+−∞
+/4sin2 (πfTp)
+f2 − sin2 (2πfTp)
+f2
+0
+df = 1
+2π2T3p
+(60)
+
+σkm
+ρ
+2
+≈ aTp
+2
+⎡
+⎢⎣ N0
+Bfe
+hm← kmp
+2
+Pkmp
++
+2Pc
+
+k ∈K
+N
+n=1
+hm← kn
+c
+
+2
+sin2 n
+G π
+
+B2
+fe
+hm← kmp
+2
+Pkmp
++
+
+k ∈Kk
+hm← km
+p
+
+2
+Pkm
+p
+B2
+fe
+hm← kmp
+2
+Pkmp
+⎤
+⎥⎦
+= aT2
+p
+2
+⎛
+⎜⎝ N0
+Bfe Tp
+hm← kmp
+2
+Pkmp
++
+BGPc
+
+k ∈K
+hm← k
+c
+
+2
+B2
+fe
+hm← kmp
+2
+Pkmp
++
+
+k ∈Kk
+hm← km
+p
+
+2
+Pkm
+p
+B2
+fe Tp
+hm← kmp
+2
+Pkmp
+⎞
+⎟⎠ (61)
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 12 =====
+1344 IEEE JOURNAL ON S ELECTED AREAS IN COMMUNICA TI ONS, VOL. 40, NO. 4, APRIL 2022
+hm← k
+c
+
+2
+= 2
+N
+
+n∈N
+hm← kn
+c
+
+2
+sin2
+	 n
+Gπ
+
+(62)
+∂˜L
+∂Pkmp
+= − 1
+M ∂
+
+λkmσkm
+ρ
+2
+− νkPkm
+p
+∂Pkmp
++
+∂
+
+n∈Nm
+˜μkn 
+Ikn
+th − Ikn
+∂Pkmp
++
+∂
+
+˜βkm
+	
+|hm← km
+p |2Pkm
+p − Ω|hm← k
+km
+p |2Pk
+km
+p
+
+
+∂Pkmp
+= − 1
+M
+
+λkmσkm
+ρ
+Pkmp
+2
+− νk −
+
+n∈Nm
+˜μkn ∂Ikn
+∂Pkmp
+ 
+ 
+Jkn← m
++ ˜βkm|hm← km
+p |2 (66)
+Let’s deﬁne (C/N0)km =
+hm← km
+p
+2
+Pkm
+p /N0 as the
+carrier-to-noise ratio of P-Sub km, (CPR )km← k
+=
+2G
+/AC
+/AC
+/AC
+hm← k
+c
+/AC
+/AC
+/AC
+2
+Pc
+|hm← kmp |
+2
+P kmp
+as the equivalent communication-to-positioning
+ratio of communication component transmitted by BS k to
+P-Sub km,a n d (PPR )km← km =
+/AC
+/AC
+/AC
+hm← km
+p
+/AC
+/AC
+/AC
+2
+P k m
+p
+|hm← kmp |
+2
+P kmp
+as the
+positioning-to-positioning ratio of P-Sub km to P-Sub km.
+Then we have (9).
+APPENDIX C
+DERIV A TION OF ˜Pkm
+p
+The KKT conditions of OP2 can be written as
+
+n∈Nm
+˜μkn
+Ikn
+th − Ikn
+=0 (63)
+˜βkm
+	
+|hm← km
+p |2Pkm
+p − Ω|hm← k
+km
+p |2Pk
+km
+p
+
+=0 (64)
+∂˜L
+	
+Pkm
+p
+
+, ˜μkn, ˜βkm
+
+∂Pkmp
+=0 (65)
+It is obvious that the optimal solution ˜Pkm
+p satisﬁes (65). Thus,
+(65) can be simpliﬁed to (66), as shown at the top of the page.
+By taking (3) into (66), we have
+Jkn← m =
+
+k ∈K
+
+h
+kn← km
+p
+
+
+2
+Tpsinc2
+	
+m − n
+G
+
+(67)
+Then, by setting (66) to 0, we can obtain the optimal power
+allocation solution as (33) shows.
+REFERENCES
+[1] J. A. del Peral-Rosado, R. Raulefs, J. A. López-Salcedo, and
+G. Seco-Granados, “Survey of cellula r mobile radio localization meth-
+ods: From 1G to 5G,” IEEE Commun. Surveys Tuts. , vol. 20, no. 2,
+pp. 1124–1148, 2nd Quart., 2017.
+[2] N. Zhu, M. Ortiz, and V . Rena udin, “Seamless indoor-outdoor
+infrastructure-free navigation for pedestrians and vehicles with GNSS-
+aided foot-mounted IMU,” in Proc. Int. Conf. Indoor Positioning Indoor
+Navigat. (IPIN) , Sep. 2019, pp. 1–8.
+[3] L. Yin, Q. Ni, and Z. Deng, “A GNSS/5G integrated positioning
+methodology in D2D communication networks,” IEEE J. Sel. Areas
+Commun., vol. 36, no. 2, pp. 351–362, Feb. 2018.
+[4] Y . Tao and L. Zhao, “AIPS: An accurate indoor positioning system
+with ﬁngerprint map adaptation,” IEEE Internet Things J. , early access,
+Jul. 8, 2021, doi: 10.1109/JIOT.2021.3095185.
+[5] S. Han, Y . Li, W. Meng, C. Li, T. Liu, and Y . Zhang, “Indoor localization
+with a single Wi-Fi access point based on OFDM-MIMO,” IEEE Syst.
+J., vol. 13, no. 1, pp. 964–972, Mar. 2019.
+[6] K. McDermott, R. M. V agheﬁ, and R. M. Buehrer, “Cooperative
+UTDOA positioning in LTE cellular systems,” in Proc. IEEE Globecom
+Workshops (GC Wkshps) , Dec. 2015, pp. 1–6.
+[7] Z. Chaloupka, “Technology and sta ndardization gaps for high accuracy
+positioning in 5G,” IEEE Commun. Standards Mag. , vol. 1, no. 1,
+pp. 59–65, Mar. 2017.
+[8] G. Kumar, V . Gupta, and R. Tank, “Phase-based angle estimation
+approach in indoor localization system using Bluetooth low energy,”
+in Proc. Int. Conf. Smart Electron. Commun. (ICOSEC) , Sep. 2020,
+pp. 904–912.
+[9] B. Y ang et al., “Edge intelligence for autonomous driving in 6G wireless
+system: Design challenges and solutions,” IEEE Wireless Commun. ,
+vol. 28, no. 2, pp. 40–47, Apr. 2021.
+[10] Y . Xianjia, L. Qingqing, J. P . Quer alta, J. Heikkonen, and T. Westerlund,
+“Applications of UWB networks a nd positioning to autonomous robots
+and industrial systems,” in Proc. 10th Medit. Conf. Embedded Comput.
+(MECO), Jun. 2021, pp. 1–6.
+[11] C. S. G. N. Dev, L. Pathak, G. Ponnamareddy, and D. Das, “NRPos: A
+multi-RACH framework for 5G NR positioning,” in Proc. IEEE 3rd 5G
+World F orum (5GWF), Sep. 2020, pp. 25–30.
+[12] Service Requirements for the 5G System , Standard 3GPP , TS 22.261
+v17.0.1, 2019.
+[13] J. Schloemann, H. S. Dhillon, and R. M. Buehrer, “A tractable analysis
+of the improvement in unique localizability through collaboration,” IEEE
+Trans. Wireless Commun. , vol. 15, no. 6, pp. 3934–3948, Jun. 2016.
+[14] C.-H. Chen and K.-T. Feng, “Enhanced distance and location estimation
+for broadband wireless networks,” IEEE Trans. Mobile Comput., vol. 14,
+no. 11, pp. 2257–2271, Nov. 2015.
+[15] Z. Ding, X. Lei, G. K. Karagi annidis, R. Schober, J. Y uan, and
+V . K. Bhargava, “A survey on non-orthogonal multiple access for 5G
+networks: Research challenges and future trends,” IEEE J. Sel. Areas
+Commun., vol. 35, no. 10, pp. 2181–2195, Oct. 2018.
+[16] Y . Liu, Z. Qin, M. Elkashlan, Y . Gao, and L. Hanzo, “Enhancing
+the physical layer security of non-orthogonal multiple access in large-
+scale networks,” IEEE Trans. Wireless Commun. , vol. 16, no. 3,
+pp. 1656–1672, Mar. 2017.
+[17] A. K. Karmokar, M. Naeem, and A. Anpalagan, “Energy-efﬁcient
+subcarrier power allocation for cognitive radio networks using statistical
+interference model,” in Proc. IEEE 26th Annu. Int. Symp. Pers., Indoor ,
+Mobile Radio Commun. (PIMRC) , Aug. 2015, pp. 1121–1126.
+[18] D. Xu and Q. Li, “Joint power cont rol and time allocation for wireless
+powered underlay cognitive radio networks,” IEEE Wireless Commun.
+Lett., vol. 6, no. 3, pp. 294–297, Jun. 2017.
+[19] Y . Liu, Z. Ding, M. Elkashlan, and J. Y uan, “Nonorthogonal multiple
+access in large-scale underlay cognitive radio networks,” IEEE Trans.
+Vehi. Tech., vol. 65, no. 12, pp. 10152–10157, Dec. 2016.
+[20] Z. Ding, H. Dai, and H. V . Poor, “ Relay selection for cooperative
+NOMA,” IEEE Wireless Commun. Lett. , vol. 5, no. 4, pp. 416–419,
+Aug. 2016.
+[21] L. Yin, J. Cao, K. Lin, Z. Deng, and Q. Ni, “A novel positioning-
+communication integrated signal in wireless communication systems,”
+IEEE Wireless Commun. Lett. , vol. 8, no. 5, pp. 1353–1356, Oct. 2019.
+[22] F. Maschietti, G. Fodor, D. Gesbert, and P . D. Kerret, “User coordination
+for fast beam training in FDD multi-user massive MIMO,” IEEE Trans.
+Wireless Commun., vol. 20, no. 5, pp. 2961–2976, May 2021.
+[23] Y . Liu, Z. Ding, M. Elkashlan, and H. V . Poor, “Cooperative non-
+orthogonal multiple access with simultaneous wireless information
+and power transfer,” IEEE J. Sel. Areas Commun. , vol. 34, no. 4,
+pp. 938–953, Apr. 2016.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 
+
+===== PDF PAGE 13 =====
+YIN et al. : DESIGN AND PERFORMANCE ANAL YSIS OF MS-NOMA 1345
+[24] J. W. Betz and K. R. Kolodziejs ki, “Generalized theory of code
+tracking with an early-late discr iminator—Part I: Lower bound and
+coherent processing,” IEEE Trans. Aerosp. Electron. Syst., vol. 45, no. 4,
+pp. 1538–1556, Oct. 2009.
+[25] S. Boyd, S. P . Boyd, and L. V andenberghe, Convex Optimization .
+Cambridge, U.K.: Cambridge Univ. Press, 2004.
+[26] R. Zhang, “Optimal power control over fading cognitive radio channel
+by exploiting primary user CSI,” in IEEE Global Commun. Conf.
+(GLOBECOM), Nov. 2008, pp. 1–5.
+[27] L. Li and C. Xu, “On ergodic sum capacity of fading channels in
+OFDMA-based cognitive radio networks,” IEEE Trans. Veh. Technol. ,
+vol. 63, no. 9, pp. 4334–4343, Nov. 2014.
+[28] J. A. del Peral-Rosado, J. A. L opez-Salcedo, G. Seco-Granados,
+F. Zanier, and M. Crisci, “Achievable localization accuracy of the posi-
+tioning reference si gnal of 3GPP LTE,” in Proc. Int. Conf. Localization
+GNSS, Jun. 2012, pp. 1–6.
+[29] Y . Lu, D. Zhongliang, Z. Di, and H. Enwen, “Quality assessment method
+of GNSS signals base on multivariate dilution of precision,” in Proc. Eur .
+Navigat. Conf. (ENC) , May 2016, pp. 1–6.
+Lu Yin (Member, IEEE) r eceived the B.Sc. and
+Ph.D. degrees in electrical engineering from the
+Beijing University of Posts and Telecommunications
+(BUPT), Beijing, China, in 2014. He is currently an
+Associate Professor with the School of Electronic
+Engineering, BUPT. He was an Academic Visitor
+with Lancaster University from 2016 to 2017. He is
+involved in the development and standardization of
+3GPP 5G NR positioning. His c urrent research inter-
+ests are in the areas of GNSS, indoor positioning,
+integrated/cooperative positioning, intelligent local-
+ization (localization with artiﬁcial in telligence), positioning-communication
+integration systems, and communication systems.
+Jiameng Cao received the B.S. and M.S. degrees
+from the Beijing University of Posts and Telecom-
+munications, Beijing, China, in 2017 and 2020,
+respectively. He is currently engaged in research
+on virtualization and docke r container orchestra-
+tion at the ZTE Research Institution, Xi’an, China.
+His research interests are in the areas of wireless
+positioning, inertial navigation, and communication
+systems.
+Qiang Ni (Senior Member, IEEE) r eceived the
+B.Sc., M.Sc., and Ph.D. degrees from the Huazhong
+University of Science and Technology, China, all
+in engineering. He is currently a Professor and
+the Head of the InfoLab21, Communication Sys-
+tems Group, School of Computing and Communi-
+cations, Lancaster University, Lancaster, U.K. His
+main research interests lie in the area of future
+generation communications and networking, includ-
+ing green communications and networking, cogni-
+tive radio network systems, heterogeneous networks,
+small cell and ultra-dense networks, 5G and 6G, SDN, cloud networks, energy
+harvesting, wireless information and po wer transfer, the IoT, and vehicular
+networks. He has authored or coaut hored over 300 articles in these areas.
+He was the IEEE 802.11 Wireless Sta ndard Working Group V oting Member
+and a Contributor to the IEEE Wireless Standards.
+Yuzheng Ma received the B.S. degree from Jilin
+University, Jilin, China, in 2019. She is currently
+pursuing the M.S. degree with the Beijing Uni-
+versity of Posts and Telecommunications, Beijing,
+China. Her current research interests are in the areas
+of wireless positioning and protocol for 5G NR
+positioning.
+Song Li (Member, IEEE) r eceived the B.Sc. and
+M.Sc. degrees in communication and information
+system from Tianjin University, Tianjin, China,
+in 2007 and 2009, respectively, and the Ph.D.
+degree in signal and information processing from
+the Beijing University of Posts and Telecommu-
+nications, Beijing, China, in 2012. He was a
+Visiting Scholar with Lancaster University, U.K.,
+from 2016 to 2017. He is currently an Associate Pro-
+fessor with the School of Information and Control
+Engineering, China University of Mining and Tech-
+nology, Xuzhou, China. His current resear ch interests include B5G wireless
+networks, cyber-physical systems, and the Industrial Internet of Things.
+Authorized licensed use limited to: BEIJING UNIVERSITY OF POST AND TELECOM. Downloaded on March 18,2022 at 01:48:48 UTC from IEEE Xplore.  Restrictions apply. 

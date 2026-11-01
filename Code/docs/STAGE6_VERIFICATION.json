@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-01",
+  "timezone": "Asia/Shanghai",
+  "basicTests": 17,
+  "precisionTests": 9,
+  "dualTests": 10,
+  "projectedTests": 9,
+  "prsComparisonTests": 18,
+  "biasAndFilterTests": 17,
+  "totalTests": 80,
+  "codeAnalyzerDiagnostics": 0,
+  "sourceFiles": 87,
+  "sourceHashesMatchedAllRuns": true,
+  "run50": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113009_3dc53e95",
+  "run20": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113040_88d74fa4",
+  "budgetStressRun": "F:\\4Cell_MS_NOMA\\Results\\run_20261101_113104_6d9b54b4",
+  "scenarios": [
+    {
+      "effectiveBandwidthHz": 4.977E+7,
+      "budgetPerBSW": 0.1,
+      "selectedUsers": [
+        1,
+        10,
+        20
+      ],
+      "maximumAbsSingleFactorEffects": [
+        0.13491680442994036,
+        0.00010000151334987883,
+        0.10474587623350784
+      ],
+      "meanSingleFactorEffects": [
+        -0.13417812705004631,
+        9.7190428202257692E-5,
+        -0.069971816669163758
+      ],
+      "meanOrderedChainContributions": [
+        -0.13417812705004631,
+        6.4602299623047973E-5,
+        1.0924076144955217E-6,
+        6.7004763358612333E-6,
+        0.000521678548054344,
+        -0.00092596757926648383
+      ],
+      "maximumAbsTotalRelativeVarianceBias": 0.13548837561086513,
+      "maximumRelativeClosureResidual": 0,
+      "maximumQuadratureChange": 6.0814737523523022E-10,
+      "pointWorstActiveBer": 0,
+      "filteredWorstActiveBer": 0.20140242437986236,
+      "pointActiveBerQosMet": true,
+      "filteredActiveBerQosMet": false,
+      "fullyMatched": false,
+      "sampledReceiverImplemented": false
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.1,
+      "selectedUsers": [
+        1,
+        10,
+        20
+      ],
+      "maximumAbsSingleFactorEffects": [
+        0.13488620504680693,
+        0.00027178487647860905,
+        0.10477511036636078
+      ],
+      "meanSingleFactorEffects": [
+        -0.13416158184355167,
+        0.0002651205603922957,
+        -0.069991259272901063
+      ],
+      "meanOrderedChainContributions": [
+        -0.13416158184355165,
+        0.00018328598799280505,
+        1.1934467692397074E-6,
+        6.9966855387280605E-6,
+        0.0012891993520669418,
+        -0.00096690200005786783
+      ],
+      "maximumAbsTotalRelativeVarianceBias": 0.13451515980183881,
+      "maximumRelativeClosureResidual": 0,
+      "maximumQuadratureChange": 3.7065504035924077E-9,
+      "pointWorstActiveBer": 0.34726198052821139,
+      "filteredWorstActiveBer": 0.27365503805668639,
+      "pointActiveBerQosMet": false,
+      "filteredActiveBerQosMet": false,
+      "fullyMatched": false,
+      "sampledReceiverImplemented": false
+    },
+    {
+      "effectiveBandwidthHz": 2.016E+7,
+      "budgetPerBSW": 0.001,
+      "selectedUsers": [
+        1,
+        10,
+        20
+      ],
+      "maximumAbsSingleFactorEffects": [
+        0.13483721807312077,
+        0.00027205559462850637,
+        0.10477624813542608
+      ],
+      "meanSingleFactorEffects": [
+        -0.13404175213433958,
+        0.00026544696606824642,
+        -0.069992609539681741
+      ],
+      "meanOrderedChainContributions": [
+        -0.13404175213433958,
+        0.0001835117939850112,
+        1.5968181706912035E-8,
+        9.5021651138362256E-8,
+        0.001290787629174398,
+        -1.3131449653521704E-5
+      ],
+      "maximumAbsTotalRelativeVarianceBias": 0.13338058320183133,
+      "maximumRelativeClosureResidual": 0,
+      "maximumQuadratureChange": 3.7065504035924077E-9,
+      "pointWorstActiveBer": 0.22764645045579826,
+      "filteredWorstActiveBer": 0.12629217660383441,
+      "pointActiveBerQosMet": false,
+      "filteredActiveBerQosMet": false,
+      "fullyMatched": false,
+      "sampledReceiverImplemented": false
+    }
+  ]
+}
