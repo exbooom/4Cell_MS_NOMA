@@ -1,0 +1,861 @@
+{
+  "purpose": "把「哪份源码产生哪次运行」的对应关系放进版本库；Results/ 不入库，此文件是可跨机器复核的来源链。",
+  "digestDefinition": "sha256( 按路径排序后逐行拼接 \"相对路径\\0文件sha256\\n\" )",
+  "generatedFrom": "Results/run_*/manifest.json",
+  "currentWorkingTreeMatchesLatestRun": true,
+  "currentWorkingTreeSourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+  "runs": [
+    {
+      "runDirectory": "run_20261031_231420_dd29de9c",
+      "schemaVersion": "1.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 39,
+      "sourceSetSha256": "a3543bd793828c38272184155fc6ce009a96e0218c80c1508df03b4cb92642fe",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261031_231432_80ec02e3",
+      "schemaVersion": "1.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 39,
+      "sourceSetSha256": "a3543bd793828c38272184155fc6ce009a96e0218c80c1508df03b4cb92642fe",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_000013_d354497e",
+      "schemaVersion": "2.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 48,
+      "sourceSetSha256": "921759a7ff13a40355e098f9504e2604411f1ffefb99aab97f482d33b1202ac2",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_000324_2304afbf",
+      "schemaVersion": "2.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 49,
+      "sourceSetSha256": "7c64f90d0b1b9599b91f67f79d5875589b8d6a06d7f21ab34fe60aeb3557fbbc",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_000341_1c0cd0cd",
+      "schemaVersion": "2.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 49,
+      "sourceSetSha256": "7c64f90d0b1b9599b91f67f79d5875589b8d6a06d7f21ab34fe60aeb3557fbbc",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_103739_44ea0314",
+      "schemaVersion": "3.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 59,
+      "sourceSetSha256": "0d91b6e33ab43e98957d346fe8038c729108b5553a6ca7e0741c829e4f357851",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_103801_2a4b0adb",
+      "schemaVersion": "3.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 59,
+      "sourceSetSha256": "0d91b6e33ab43e98957d346fe8038c729108b5553a6ca7e0741c829e4f357851",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_103811_41e5c04c",
+      "schemaVersion": "3.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 59,
+      "sourceSetSha256": "0d91b6e33ab43e98957d346fe8038c729108b5553a6ca7e0741c829e4f357851",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105215_6fbb2630",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "ac6aa62c5c25a256db91c8f8662cd8e0316cf09dbfc67d64ff58120effb7fb94",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105403_51614dee",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "a7ea4628267d5f668071272fb9d528945749c6aa5f366b05d4a2bb906349c198",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105430_277c3a44",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "a7ea4628267d5f668071272fb9d528945749c6aa5f366b05d4a2bb906349c198",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105449_9d439e25",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "a7ea4628267d5f668071272fb9d528945749c6aa5f366b05d4a2bb906349c198",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105550_e4c148e5",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "7b70ee710e46be8571ccc043be591f3f7ffa59ed888a3aaec1e5cb8d51d96932",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105616_ab5e4b45",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "7b70ee710e46be8571ccc043be591f3f7ffa59ed888a3aaec1e5cb8d51d96932",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_105634_98a5eb0f",
+      "schemaVersion": "4.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 65,
+      "sourceSetSha256": "7b70ee710e46be8571ccc043be591f3f7ffa59ed888a3aaec1e5cb8d51d96932",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_111105_3f65905a",
+      "schemaVersion": "5.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 74,
+      "sourceSetSha256": "65ee9a0ee3df31bb6e8aa8939240f4c2bb3b6d5040ccdb3bdb7eca3c38a57fbf",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_111133_4c950e53",
+      "schemaVersion": "5.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 74,
+      "sourceSetSha256": "65ee9a0ee3df31bb6e8aa8939240f4c2bb3b6d5040ccdb3bdb7eca3c38a57fbf",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_111152_13a86954",
+      "schemaVersion": "5.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 74,
+      "sourceSetSha256": "65ee9a0ee3df31bb6e8aa8939240f4c2bb3b6d5040ccdb3bdb7eca3c38a57fbf",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_111410_fa412f7e",
+      "schemaVersion": "5.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 74,
+      "sourceSetSha256": "42f461fa0946c7b06807a4c14abe58cf5ac1e6bfd85efc9976f0c1e5caa6beb1",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_111441_7527b46c",
+      "schemaVersion": "5.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 74,
+      "sourceSetSha256": "42f461fa0946c7b06807a4c14abe58cf5ac1e6bfd85efc9976f0c1e5caa6beb1",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_111500_a8706e86",
+      "schemaVersion": "5.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 74,
+      "sourceSetSha256": "42f461fa0946c7b06807a4c14abe58cf5ac1e6bfd85efc9976f0c1e5caa6beb1",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_112721_fec11d44",
+      "schemaVersion": "6.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 86,
+      "sourceSetSha256": "37dd4426c3be83efe5c6d99840f3a34c80a0f19658e2ace21fbb66eb28e9d2b3",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_113009_3dc53e95",
+      "schemaVersion": "6.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 87,
+      "sourceSetSha256": "2c7418dd8be32832d2ee152f8c5bc479fb9002a350c5fae9e5c274213040dfd2",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_113040_88d74fa4",
+      "schemaVersion": "6.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 87,
+      "sourceSetSha256": "2c7418dd8be32832d2ee152f8c5bc479fb9002a350c5fae9e5c274213040dfd2",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_113104_6d9b54b4",
+      "schemaVersion": "6.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 87,
+      "sourceSetSha256": "2c7418dd8be32832d2ee152f8c5bc479fb9002a350c5fae9e5c274213040dfd2",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_120028_f182d10d",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 102,
+      "sourceSetSha256": "483ee546d2fc146cab04f8031968d9357fea8c3b24031efb1ce85653fef820fa",
+      "algorithms": [
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_120400_e965f422",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 103,
+      "sourceSetSha256": "a407415e4fefac63700b27c6cb8c1d0d237b3b6408688fb69ed285676002fd33",
+      "algorithms": [
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_120601_ec6d307d",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 103,
+      "sourceSetSha256": "a407415e4fefac63700b27c6cb8c1d0d237b3b6408688fb69ed285676002fd33",
+      "algorithms": [
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_120837_c9547e7e",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 103,
+      "sourceSetSha256": "fa865ce65beb1277e195e5e794f5797a56db097bdb1a03aed49758a98a5e1cb6",
+      "algorithms": [
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_121025_e6ad88cc",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 103,
+      "sourceSetSha256": "0f76e44e3476d2604f687b47a76701ff1adb594d1946fc6348c4360ab92156b4",
+      "algorithms": [
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_121329_dcb71ae0",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 103,
+      "sourceSetSha256": "4b365c65c2d647382d1b4c0b6d6e1926b624e1f9ededb1790ca81b5cf46d62ba",
+      "algorithms": [
+        "central"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_121551_545005f7",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "13bd46259bd78591360eef88e5fd39de9b4aa6221697b093fbb75922da3cdf4b",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_121631_7e305a9b",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "13bd46259bd78591360eef88e5fd39de9b4aa6221697b093fbb75922da3cdf4b",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_121723_689ec600",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "13bd46259bd78591360eef88e5fd39de9b4aa6221697b093fbb75922da3cdf4b",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_121829_7ae1d817",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "13bd46259bd78591360eef88e5fd39de9b4aa6221697b093fbb75922da3cdf4b",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_122149_c2fd95ca",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "4a4ef9c7186ccbc4c7e28663088a463dc022370ed416bdf9a13b8a278c234886",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_122227_ee48d93b",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "4a4ef9c7186ccbc4c7e28663088a463dc022370ed416bdf9a13b8a278c234886",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_122317_9135a33a",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "4a4ef9c7186ccbc4c7e28663088a463dc022370ed416bdf9a13b8a278c234886",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_122420_925f1ff5",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "4a4ef9c7186ccbc4c7e28663088a463dc022370ed416bdf9a13b8a278c234886",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_122505_b591a683",
+      "schemaVersion": "7.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 104,
+      "sourceSetSha256": "4a4ef9c7186ccbc4c7e28663088a463dc022370ed416bdf9a13b8a278c234886",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125140_8ca850bb",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125228_a750b5aa",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125306_14b5e24b",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125515_c67a79f2",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125638_e655714d",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125728_4a1d7ea5",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_125930_36c3eb87",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_130239_5d09fd17",
+      "schemaVersion": "8.0",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 112,
+      "sourceSetSha256": "a968ca7260dec6def0b911a1c54213c3b7d111fba7ff3ee3be9aa5ce3f8eba9a",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_133331_5c3bfeb2",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "6d2e57d24d11f7ba7abad71fb564a3fe827446bda103135b5b92c28e0a3b1a3c",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_133427_6b859648",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "6d2e57d24d11f7ba7abad71fb564a3fe827446bda103135b5b92c28e0a3b1a3c",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_133518_8a965220",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "6d2e57d24d11f7ba7abad71fb564a3fe827446bda103135b5b92c28e0a3b1a3c",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_133758_e1cd24da",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "6d2e57d24d11f7ba7abad71fb564a3fe827446bda103135b5b92c28e0a3b1a3c",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_133931_2b58e8da",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "6d2e57d24d11f7ba7abad71fb564a3fe827446bda103135b5b92c28e0a3b1a3c",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_134147_b97b8dae",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "6d2e57d24d11f7ba7abad71fb564a3fe827446bda103135b5b92c28e0a3b1a3c",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_134333_625aa67b",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_134441_0dec3af6",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_134541_e2ed74f5",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_134845_6612bf7d",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_135026_7f3fccf2",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    },
+    {
+      "runDirectory": "run_20261101_135250_e52d705b",
+      "schemaVersion": "8.1",
+      "effectiveBandwidthHz": null,
+      "sourceCount": 115,
+      "sourceSetSha256": "bbc4b04206bf1178ac84199adafa4ef414aa29f079bd3ba60735c088f206931e",
+      "algorithms": [
+        "budget_equal",
+        "qos_scaled_equal",
+        "central",
+        "dual",
+        "cp4a_consistent_candidate",
+        "cp4a_subgradient_candidate"
+      ]
+    }
+  ]
+}
